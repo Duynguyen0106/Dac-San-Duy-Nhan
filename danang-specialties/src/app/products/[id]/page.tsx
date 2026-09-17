@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/JsonLd";
 import ProductDetail from "@/components/ProductDetail";
+import { getRelatedProducts } from "@/lib/products";
 import { getProductById, readProducts } from "@/lib/productStore";
+import { getReviewsForProduct } from "@/lib/reviews";
 import {
   buildBreadcrumbJsonLd,
   buildProductJsonLd,
@@ -42,9 +44,20 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
 
+  const catalog = await readProducts();
+  const related = getRelatedProducts(product, catalog, 4);
+  const reviewSummary = await getReviewsForProduct(product.id);
+
   return (
     <>
-      <JsonLd data={buildProductJsonLd(product)} />
+      <JsonLd
+        data={buildProductJsonLd(
+          product,
+          reviewSummary.count > 0
+            ? { average: reviewSummary.average, count: reviewSummary.count }
+            : null,
+        )}
+      />
       <JsonLd
         data={buildBreadcrumbJsonLd([
           { name: "Trang chủ", path: "/" },
@@ -52,7 +65,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
           { name: product.name, path: `/products/${product.id}` },
         ])}
       />
-      <ProductDetail product={product} />
+      <ProductDetail
+        product={product}
+        related={related}
+        reviewSummary={reviewSummary}
+      />
     </>
   );
 }

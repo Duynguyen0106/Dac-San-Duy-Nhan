@@ -123,6 +123,8 @@ export function buildProductMetadata(product: Product): Metadata {
       images: [
         {
           url: image,
+          width: 1200,
+          height: 1200,
           alt: product.name,
         },
       ],
@@ -185,8 +187,11 @@ export function buildLocalBusinessJsonLd() {
   };
 }
 
-export function buildProductJsonLd(product: Product) {
-  return {
+export function buildProductJsonLd(
+  product: Product,
+  rating?: { average: number; count: number } | null,
+) {
+  const data: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
@@ -210,6 +215,48 @@ export function buildProductJsonLd(product: Product) {
         "@type": "Organization",
         name: SITE_NAME,
       },
+    },
+  };
+
+  if (rating && rating.count > 0) {
+    data.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: rating.average,
+      reviewCount: rating.count,
+      bestRating: 5,
+      worstRating: 1,
+    };
+  }
+
+  return data;
+}
+
+export function buildSimplePageMetadata(options: {
+  title: string;
+  description: string;
+  path: string;
+  image?: string;
+}): Metadata {
+  const image = absoluteImageUrl(options.image || DEFAULT_OG_IMAGE);
+  return {
+    title: options.title,
+    description: options.description,
+    alternates: { canonical: options.path },
+    openGraph: {
+      type: "website",
+      locale: "vi_VN",
+      alternateLocale: ["en_US"],
+      url: absoluteUrl(options.path),
+      siteName: SITE_NAME,
+      title: `${options.title} | ${SITE_NAME}`,
+      description: options.description,
+      images: [{ url: image, alt: options.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${options.title} | ${SITE_NAME}`,
+      description: options.description,
+      images: [image],
     },
   };
 }

@@ -85,7 +85,7 @@ export const categoryLabels: Record<
   Gifts: { vi: "Quà Tặng", en: "Gift Sets" },
 };
 
-/** Map homepage category card ids to shop filter values. */
+/** Map homepage category card ids / URL slugs to shop filter values. */
 export const HOME_CATEGORY_TO_SHOP: Record<string, ShopCategory> = {
   "dried-seafood": "Dried Seafood",
   snacks: "Snacks",
@@ -97,3 +97,54 @@ export const HOME_CATEGORY_TO_SHOP: Record<string, ShopCategory> = {
   "dried-fruit-nuts": "Dried Fruit & Nuts",
   gifts: "Gifts",
 };
+
+export const SHOP_CATEGORY_SLUGS = Object.keys(
+  HOME_CATEGORY_TO_SHOP,
+) as Array<keyof typeof HOME_CATEGORY_TO_SHOP>;
+
+export function categoryToSlug(category: ShopCategory): string {
+  const entry = Object.entries(HOME_CATEGORY_TO_SHOP).find(
+    ([, value]) => value === category,
+  );
+  return entry?.[0] ?? "dried-seafood";
+}
+
+export function slugToCategory(slug: string): ShopCategory | null {
+  return HOME_CATEGORY_TO_SHOP[slug] ?? null;
+}
+
+/** Related items: same category first, then shared tags (gift preferred). */
+export function getRelatedProducts(
+  product: Product,
+  catalog: Product[],
+  limit = 4,
+): Product[] {
+  const others = catalog.filter((item) => item.id !== product.id);
+  const sameCategory = others.filter(
+    (item) => item.category === product.category,
+  );
+  const productTags = new Set(product.tags ?? []);
+  const scored = others
+    .filter((item) => item.category !== product.category)
+    .map((item) => {
+      const tags = item.tags ?? [];
+      const shared = tags.filter((tag) => productTags.has(tag)).length;
+      const giftBoost = tags.includes("gift") ? 2 : 0;
+      return { item, score: shared * 3 + giftBoost };
+    })
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map((entry) => entry.item);
+
+  const giftFallback = others.filter((item) => item.tags?.includes("gift"));
+  const merged = [...sameCategory, ...scored, ...giftFallback];
+  const unique: Product[] = [];
+  const seen = new Set<number>();
+  for (const item of merged) {
+    if (seen.has(item.id)) continue;
+    seen.add(item.id);
+    unique.push(item);
+    if (unique.length >= limit) break;
+  }
+  return unique;
+}

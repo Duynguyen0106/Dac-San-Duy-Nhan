@@ -59,6 +59,18 @@ export default function Header() {
           >
             {t("common.shop")}
           </Link>
+          <Link
+            href="/how-to-order"
+            className="hidden text-sm font-medium text-sea-deep transition-colors hover:text-sea lg:inline"
+          >
+            {t("common.howToOrder")}
+          </Link>
+          <Link
+            href="/tips"
+            className="hidden text-sm font-medium text-sea-deep transition-colors hover:text-sea lg:inline"
+          >
+            {t("common.tips")}
+          </Link>
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
