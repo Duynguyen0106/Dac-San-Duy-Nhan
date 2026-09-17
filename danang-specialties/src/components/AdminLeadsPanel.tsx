@@ -122,6 +122,11 @@ export default function AdminLeadsPanel({
                   </p>
                   <p className="text-sm text-mist">
                     {lead.customer.phone} · {lead.channel} ·{" "}
+                    {lead.customer.deliveryMethod || "vietnam"}
+                    {lead.customer.countryCode
+                      ? ` · ${lead.customer.countryCode}`
+                      : ""}{" "}
+                    ·{" "}
                     {new Date(lead.createdAt).toLocaleString(
                       language === "VI" ? "vi-VN" : "en-GB",
                     )}
