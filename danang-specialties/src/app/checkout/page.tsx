@@ -468,15 +468,7 @@ export default function CheckoutPage() {
                   ) : (
                     <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
                   )}
-                  <span>
-                    {statusMessage}
-                    {leadId ? (
-                      <>
-                        {" "}
-                        <span className="font-semibold">{leadId}</span>
-                      </>
-                    ) : null}
-                  </span>
+                  <span>{statusMessage}</span>
                 </div>
               )}
 
