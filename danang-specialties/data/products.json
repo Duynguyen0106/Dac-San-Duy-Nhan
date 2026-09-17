@@ -6,7 +6,7 @@
     "category": "Tea & Coffee",
     "price": 50000,
     "weight": "250g",
-    "image": "/products/tea-green-leaves.jpg",
+    "image": "/products/tra-sam-dua-real.jpg",
     "description": "Trà sâm dứa đặc sản Đà Nẵng thơm dịu, vị ngọt thanh dễ uống. Pha nóng hay lạnh đều ngon — món quà thanh mát quen thuộc ở chợ Cồn.",
     "descriptionEn": "Classic Da Nang pandan-ginseng tea with a gentle aroma and light sweetness. Brew hot or iced — a Chợ Cồn favorite gift.",
     "tags": [
@@ -22,7 +22,7 @@
     "category": "Snacks",
     "price": 150000,
     "weight": "250g",
-    "image": "/products/beef-jerky.jpg",
+    "image": "/products/bo-kho-real.jpg",
     "description": "Bò khô Đà Nẵng mềm dai, ướp tiêu, tỏi, ớt và gia vị miền Trung. Thơm nức, cay nhẹ — lý tưởng nhâm nhi hoặc biếu người thân.",
     "descriptionEn": "Da Nang beef jerky with a tender chew and Central Vietnam spices. Savory, lightly spicy — perfect for snacking or gifting.",
     "tags": [
@@ -37,7 +37,7 @@
     "category": "Dried Seafood",
     "price": 180000,
     "weight": "250g",
-    "image": "/products/squid-shredded.jpg",
+    "image": "/products/muc-1-nang-xe-soi-real.jpg",
     "description": "Mực một nắng xé sợi từ vùng biển Quảng Nam – Đà Nẵng, ngọt tự nhiên và giòn dai. Ăn liền, nướng nhẹ hoặc nhâm nhi cùng bia đều tuyệt.",
     "descriptionEn": "Shredded one-sun squid from the Quang Nam–Da Nang coast — naturally sweet with a satisfying chew. Ready to eat, lightly grill, or enjoy with a drink.",
     "tags": [
@@ -53,7 +53,7 @@
     "category": "Dried Seafood",
     "price": 220000,
     "weight": "500g",
-    "image": "/products/fish-dried-vn.jpg",
+    "image": "/products/ca-chi-vang-real.jpg",
     "description": "Khô cá chỉ vàng đặc sản biển Đà Nẵng, thịt chắc và vị ngọt sâu. Rang muối ớt, nướng hoặc rim me — món nhắm khó cưỡng.",
     "descriptionEn": "Premium dried golden threadfin bream from Da Nang waters. Firm, sweet flesh — delicious chili-salt fried, grilled, or simmered with tamarind.",
     "tags": [
@@ -69,7 +69,7 @@
     "price": 60000,
     "weight": "Box of 6",
     "weightGrams": 300,
-    "image": "/products/banh-dau-xanh.jpg",
+    "image": "/products/banh-dau-xanh-real.jpg",
     "description": "Bánh đậu xanh mềm mịn, thơm bùi vị đậu quen thuộc. Hộp 6 cái tiện biếu — ngọt dịu, vừa miệng, rất hợp làm quà Đà Nẵng.",
     "descriptionEn": "Soft mung bean cakes with classic nutty sweetness. A box of 6 — gently sweet and ideal as a Da Nang souvenir.",
     "tags": [
@@ -84,7 +84,7 @@
     "category": "Dried Seafood",
     "price": 90000,
     "weight": "250g",
-    "image": "/products/fish-anchovy.jpg",
+    "image": "/products/ca-thieu-tam-real.jpg",
     "description": "Cá thiểu tẩm sợi thơm lừng, mặn ngọt hài hòa — đặc sản khô phổ biến ở chợ đặc sản Đà Nẵng. Giòn rụm khi rang.",
     "descriptionEn": "Seasoned shredded anchovy with a fragrant savory-sweet balance — a staple dried snack at Da Nang specialty markets. Crispy when pan-fried.",
     "tags": [
@@ -99,7 +99,7 @@
     "category": "Dried Seafood",
     "price": 280000,
     "weight": "500g",
-    "image": "/products/squid-dried.jpg",
+    "image": "/products/muc-mot-nang-real.jpg",
     "description": "Mực một nắng nguyên con từ biển miền Trung, thân dày, ngọt như mực tươi. Nướng sa tế, hấp hành gừng hoặc xào chua ngọt đều ngon.",
     "descriptionEn": "Whole one-sun dried squid from Central Vietnam seas — thick, sweet, almost like fresh squid. Grill with chili oil, steam with ginger, or stir-fry sweet-and-sour.",
     "tags": [
@@ -115,7 +115,7 @@
     "category": "Dried Seafood",
     "price": 260000,
     "weight": "500g",
-    "image": "/products/squid-drying.jpg",
+    "image": "/products/muc-kho-real.jpg",
     "description": "Mực khô Đà Nẵng chọn lọc, thịt dày và ngọt tự nhiên. Nướng than, nhúng nước rồi xé, hoặc rim me — món quà biển kinh điển.",
     "descriptionEn": "Select Da Nang dried squid with thick, naturally sweet meat. Charcoal-grill, rehydrate and shred, or simmer in tamarind sauce — a classic coastal gift.",
     "tags": [
@@ -130,7 +130,7 @@
     "category": "Snacks",
     "price": 170000,
     "weight": "500g",
-    "image": "/products/grilled-squid.jpg",
+    "image": "/products/muc-rim-me-real.jpg",
     "description": "Mực cơm rim me đặc sản Đà Nẵng — mềm dai, ngọt me, cay nhẹ. Ăn liền không cần chế biến, rất được ưa chuộng làm quà biếu.",
     "descriptionEn": "Da Nang tamarind-glazed squid — chewy, sweet-tangy, lightly spicy. Ready to eat, a favorite take-home specialty gift.",
     "tags": [
@@ -146,7 +146,7 @@
     "category": "Dried Seafood",
     "price": 95000,
     "weight": "250g",
-    "image": "/products/fish-dried-market.jpg",
+    "image": "/products/ca-chi-vang-chay-toi-real.jpg",
     "description": "Cá chỉ vàng chấy tỏi thơm bùi, giòn tan — món khô biển Đà Nẵng ăn chơi rất cuốn. Mở hũ là thưởng thức ngay.",
     "descriptionEn": "Garlic-crisped golden threadfin bream — fragrant, crunchy, and addictive. A ready-to-eat Da Nang dried seafood snack.",
     "tags": [
@@ -161,7 +161,7 @@
     "category": "Dried Seafood",
     "price": 160000,
     "weight": "250g",
-    "image": "/products/shrimp-dried.jpg",
+    "image": "/products/tom-kho-real.jpg",
     "description": "Tôm khô ngọt tự nhiên từ vùng biển miền Trung, màu đỏ cam đẹp. Dùng nấu canh, làm gỏi hoặc rang tỏi ớt đều đậm vị.",
     "descriptionEn": "Naturally sweet dried shrimp from Central Vietnam waters with a bright coral color. Great in soups, salads, or garlic-chili stir-fries.",
     "tags": [
@@ -214,7 +214,7 @@
     "category": "Snacks",
     "price": 140000,
     "weight": "250g",
-    "image": "/products/beef-jerky.jpg",
+    "image": "/products/bo-kho-soi-real.jpg",
     "description": "Bò khô sợi Đà Nẵng xé sẵn, thấm gia vị đậm đà. Ăn chơi, trộn gỏi hoặc nhâm nhi cùng bia đều hợp.",
     "descriptionEn": "Ready-shredded Da Nang beef jerky soaked in bold seasoning. Snack straight, toss into salad, or pair with a cold drink.",
     "tags": [
@@ -229,7 +229,7 @@
     "category": "Tea & Coffee",
     "price": 85000,
     "weight": "500g",
-    "image": "/products/tea-green-leaves.jpg",
+    "image": "/products/tra-sam-dua-real.jpg",
     "description": "Túi trà sâm dứa 500g kiểu truyền thống — đủ pha cả nhà hoặc biếu đồng nghiệp. Hương sâm dịu, ngọt dứa thanh mát.",
     "descriptionEn": "Traditional 500g pandan-ginseng tea pack — enough for the family or office gifting. Soft ginseng notes with cool pineapple sweetness.",
     "tags": [
@@ -293,7 +293,7 @@
     "category": "Traditional Cakes",
     "price": 45000,
     "weight": "250g",
-    "image": "/products/sesame-peanut-cookie.jpg",
+    "image": "/products/banh-dua-nuong-real.jpg",
     "description": "Bánh dừa nướng thơm béo, giòn tan — món bánh khô làm quà phổ biến ở Đà Nẵng. Ngọt vừa, ăn chơi rất cuốn.",
     "descriptionEn": "Roasted coconut cakes — fragrant, crunchy, and lightly sweet. A popular Da Nang dry cake for snacking and souvenir boxes.",
     "tags": [
@@ -309,7 +309,7 @@
     "price": 75000,
     "weight": "Box of 8",
     "weightGrams": 400,
-    "image": "/products/banh-dau-xanh-2.jpg",
+    "image": "/products/banh-dau-xanh-nhan-thit-real.jpg",
     "description": "Bánh đậu xanh nhân thịt — ngọt bùi ngoài, mặn vừa bên trong. Vị lạ miệng được yêu thích tại chợ Cồn như món quà 'có gu'.",
     "descriptionEn": "Savory-filled mung bean cakes — sweet outside, lightly salty within. A unique Chợ Cồn favorite for gift-givers who want something different.",
     "tags": [
@@ -324,7 +324,7 @@
     "category": "Traditional Cakes",
     "price": 40000,
     "weight": "300g",
-    "image": "/products/keo-me-xung.jpg",
+    "image": "/products/keo-me-xung-real.jpg",
     "description": "Kẹo mè xửng mềm dẻo, thơm mè và đậu phộng — món kẹo quê miền Trung thường có tại các quầy đặc sản Đà Nẵng.",
     "descriptionEn": "Soft sesame-peanut candy with a chewy bite — a Central Vietnam sweet commonly found at Da Nang specialty stalls.",
     "tags": [
@@ -339,7 +339,7 @@
     "category": "Dried Seafood",
     "price": 195000,
     "weight": "500g",
-    "image": "/products/fish-drying-vn.jpg",
+    "image": "/products/ca-thu-real.jpg",
     "description": "Cá thu một nắng Đà Nẵng thịt dày, ngọt béo. Nướng than hoặc kho tiêu — đặc sản khô bán chạy tại chợ Cồn.",
     "descriptionEn": "One-sun dried mackerel from Da Nang — thick, rich, and sweet. Charcoal-grill or braise with pepper — a Chợ Cồn bestseller.",
     "tags": [
@@ -354,7 +354,7 @@
     "category": "Dried Seafood",
     "price": 70000,
     "weight": "200g",
-    "image": "/products/fish-anchovy.jpg",
+    "image": "/products/kho-ca-com-real.jpg",
     "description": "Khô cá cơm giòn rụm, vị mặn ngọt tự nhiên từ biển miền Trung. Rang tỏi ớt hoặc ăn chơi đều ngon.",
     "descriptionEn": "Crispy dried anchovies with natural sea sweetness from Central Vietnam. Stir-fry with garlic chili or snack as-is.",
     "tags": [
@@ -395,7 +395,7 @@
     "price": 55000,
     "weight": "500ml",
     "weightGrams": 550,
-    "image": "/products/mam-nem-bowl.jpg",
+    "image": "/products/mam-nem-real.jpg",
     "description": "Mắm nêm Dì Cẩn — đặc sản Đà Nẵng làm quà số một. Đậm đà, thơm ngậy, pha chấm bánh tráng cuốn thịt heo chuẩn vị.",
     "descriptionEn": "Di Can fermented anchovy sauce — Da Nang’s iconic gift condiment. Rich and aromatic, perfect for pork rice-paper rolls.",
     "tags": [
@@ -411,7 +411,7 @@
     "category": "Condiments",
     "price": 50000,
     "weight": "400g",
-    "image": "/products/shrimp-paste.jpg",
+    "image": "/products/mam-ruoc-real.jpg",
     "description": "Mắm ruốc Dì Cẩn làm từ ruốc biển, ít tanh hơn mắm tôm miền Bắc. Nêm canh, kho thịt hoặc chấm rau luộc đều đậm vị quê.",
     "descriptionEn": "Di Can shrimp paste from sea krill — milder than northern shrimp paste. Season soups, braises, or dip blanched vegetables.",
     "tags": [
@@ -475,7 +475,7 @@
     "category": "Snacks",
     "price": 85000,
     "weight": "250g",
-    "image": "/products/dried-mango.jpg",
+    "image": "/products/xoai-say-deo-real.jpg",
     "description": "Xoài sấy dẻo chua ngọt tự nhiên, không phẩm màu — món ăn vặt và quà biếu phổ biến tại siêu thị đặc sản Đà Nẵng.",
     "descriptionEn": "Naturally sweet-tart chewy dried mango without artificial color — a popular snack and gift at Da Nang specialty shops.",
     "tags": [
@@ -490,7 +490,7 @@
     "category": "Dried Seafood",
     "price": 175000,
     "weight": "500g",
-    "image": "/products/fish-dried-vn.jpg",
+    "image": "/products/ca-bong-real.jpg",
     "description": "Cá bống rút xương Đà Nẵng — thịt chắc, ít xương, dễ nướng hoặc rim chua ngọt. Đặc sản khô làm quà rất được chuộng ở chợ Cồn.",
     "descriptionEn": "Boneless dried goby from Da Nang — firm meat, easy to grill or simmer sweet-and-sour. A Chợ Cồn favorite dried gift.",
     "tags": [
@@ -505,7 +505,7 @@
     "category": "Dried Seafood",
     "price": 145000,
     "weight": "250g",
-    "image": "/products/fish-trigger.jpg",
+    "image": "/products/ca-bo-tam-real.jpg",
     "description": "Cá bò tẩm gia vị miền Trung — dai ngọt, thơm tiêu ớt. Rang hoặc nướng nhẹ là món nhắm biển quen thuộc.",
     "descriptionEn": "Central Vietnam seasoned dried triggerfish — chewy-sweet with chili-pepper aroma. Lightly pan-fry or grill for a classic coastal snack.",
     "tags": [
@@ -520,7 +520,7 @@
     "category": "Snacks",
     "price": 89000,
     "weight": "250g",
-    "image": "/products/soft-shell-crab.jpg",
+    "image": "/products/ghe-sua-rim-real.jpg",
     "description": "Ghẹ sữa rim Đà Nẵng ăn liền — mặn ngọt cay nhẹ, đóng hũ tiện biếu. Món rim nổi tiếng trong khu đồ khô chợ Cồn.",
     "descriptionEn": "Ready-to-eat Da Nang glazed soft-shell crab — savory-sweet with a light heat, jarred for gifting. A signature Chợ Cồn rim specialty.",
     "tags": [
@@ -536,7 +536,7 @@
     "category": "Snacks",
     "price": 145000,
     "weight": "500g",
-    "image": "/products/fish-trigger.jpg",
+    "image": "/products/ca-bo-rim-me-real.jpg",
     "description": "Cá bò rim mè vàng óng, ngọt đường và thơm mè rang. Ăn chơi hoặc làm quà — vị rim đặc trưng Đà Thành.",
     "descriptionEn": "Golden sesame-glazed triggerfish with caramel sweetness and toasted sesame. Ready snacking or gifting — classic Da Nang rim flavor.",
     "tags": [
@@ -563,7 +563,7 @@
     "category": "Condiments",
     "price": 48000,
     "weight": "400g",
-    "image": "/products/shrimp-paste.jpg",
+    "image": "/products/mam-tom-chua-real.jpg",
     "description": "Mắm tôm chua miền Trung — chua dịu, thơm ruốc, dùng kho thịt hoặc chấm rau sống. Lọ nhỏ dễ mang về từ chợ Cồn.",
     "descriptionEn": "Central Vietnam sour shrimp paste — gently tangy and aromatic for braises or raw-herb dips. A compact Chợ Cồn jar to bring home.",
     "tags": [
@@ -610,7 +610,7 @@
     "category": "Rice Paper",
     "price": 45000,
     "weight": "500g",
-    "image": "/products/banh-trang-drying.jpg",
+    "image": "/products/banh-trang-dai-loc-real.jpg",
     "description": "Bánh tráng Đại Lộc OCOP — dẻo dai, thơm gạo nguyên chất, cuốn thịt heo không bã. Đặc sản mang về không thể thiếu của xứ Quảng.",
     "descriptionEn": "OCOP Đại Lộc rice paper — elastic, pure-rice aroma, perfect for pork rolls without tearing. An essential Quang Nam–Da Nang take-home specialty.",
     "tags": [
@@ -626,7 +626,7 @@
     "category": "Rice Paper",
     "price": 40000,
     "weight": "300g",
-    "image": "/products/banh-trang-nuong.jpg",
+    "image": "/products/banh-trang-me-real.jpg",
     "description": "Bánh tráng mè nướng giòn rụm, thơm mè rang — ăn chơi hoặc chấm mắm nêm. Gói tiện lợi làm quà từ khu bánh tráng chợ Cồn.",
     "descriptionEn": "Crispy toasted sesame rice paper — snack plain or dip in fermented sauce. A convenient Chợ Cồn rice-paper gift pack.",
     "tags": [
@@ -641,7 +641,7 @@
     "category": "Rice Paper",
     "price": 55000,
     "weight": "250g",
-    "image": "/products/banh-trang-tron.jpg",
+    "image": "/products/banh-trang-tom-hanh-real.jpg",
     "description": "Bánh tráng tôm hành sấy sẵn — giòn, mặn ngọt, thơm hành phi và tôm khô. Mở gói là ăn, rất hợp làm quà ăn vặt Đà Nẵng.",
     "descriptionEn": "Ready dried shrimp-scallion rice paper — crunchy, savory-sweet with fried shallot and dried shrimp. Open-and-eat Da Nang snack gifting.",
     "tags": [
