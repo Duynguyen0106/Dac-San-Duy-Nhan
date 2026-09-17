@@ -31,8 +31,8 @@ export default function TipsIndexPage() {
           </h1>
           <p className="mt-3 max-w-2xl text-mist">
             {isVi
-              ? "Đóng gói lên máy bay, chọn quà biếu, và cách đặt hàng tại kiốt Duy Nhân."
-              : "Packing for flights, gift ideas, and how to order at the Duy Nhan kiosk."}
+              ? "50 bài hướng dẫn theo nhóm hàng: hải sản khô, bánh kẹo, trà, bánh tráng, gia vị, quà biếu và cách đặt tại kiốt Duy Nhân."
+              : "50 guides by category: dried seafood, sweets, tea, rice paper, condiments, gifts, and how to order at Duy Nhan."}
           </p>
 
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -53,7 +53,10 @@ export default function TipsIndexPage() {
                   />
                 </div>
                 <div className="p-4">
-                  <p className="text-xs text-mist">{tip.date}</p>
+                  <p className="text-xs text-mist">
+                    {tip.date}
+                    {tip.category ? ` · ${tip.category}` : ""}
+                  </p>
                   <h2 className="mt-1 font-display text-lg font-semibold text-sea-deep">
                     {isVi ? tip.titleVi : tip.titleEn}
                   </h2>

@@ -4,7 +4,7 @@ import { buildSimplePageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildSimplePageMetadata({
   title: "Mẹo & hướng dẫn",
   description:
-    "Mẹo mang đặc sản Đà Nẵng lên máy bay, gợi ý quà biếu, và cách đặt hàng tại Duy Nhân.",
+    "50 bài mẹo đặc sản Đà Nẵng: hải sản khô, bánh kẹo, trà, bánh tráng, gia vị, quà biếu và cách đặt hàng tại Duy Nhân.",
   path: "/tips",
 });
 

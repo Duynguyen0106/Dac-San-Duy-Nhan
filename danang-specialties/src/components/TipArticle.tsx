@@ -32,6 +32,7 @@ export default function TipArticle({ tip }: { tip: TipPost }) {
 
           <p className="mt-4 text-xs font-medium uppercase tracking-wide text-mist">
             {tip.date}
+            {tip.category ? ` · ${tip.category}` : ""}
           </p>
           <h1 className="mt-2 font-display text-3xl font-semibold text-sea-deep sm:text-4xl">
             {title}
