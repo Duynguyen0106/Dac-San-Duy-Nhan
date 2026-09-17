@@ -5,19 +5,33 @@ import Image from "next/image";
 import Link from "next/link";
 import { Heart, MessageCircle, Minus, Plus, ShoppingBag } from "lucide-react";
 import Header from "@/components/Header";
+import ProductReviews from "@/components/ProductReviews";
+import RelatedProducts from "@/components/RelatedProducts";
 import SiteFooter from "@/components/SiteFooter";
 import { useCart } from "@/context/CartContext";
 import { useFavorites } from "@/context/FavoritesContext";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import { useTranslation } from "@/hooks/useTranslation";
-import { formatPrice, type Product } from "@/lib/products";
+import {
+  formatPrice,
+  categoryToSlug,
+  type Product,
+  type ShopCategory,
+} from "@/lib/products";
+import type { ReviewSummary } from "@/lib/reviews";
 import { getShopContact } from "@/lib/shopContact";
 
 type ProductDetailProps = {
   product: Product;
+  related?: Product[];
+  reviewSummary?: ReviewSummary;
 };
 
-export default function ProductDetail({ product }: ProductDetailProps) {
+export default function ProductDetail({
+  product,
+  related = [],
+  reviewSummary = { count: 0, average: 0, reviews: [] },
+}: ProductDetailProps) {
   const { t, language } = useTranslation();
   const { addItem } = useCart();
   const { isFavorite, toggleFavorite } = useFavorites();
@@ -58,6 +72,13 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             <span className="mx-2">/</span>
             <Link href="/shop" className="hover:text-sea">
               {t("common.shop")}
+            </Link>
+            <span className="mx-2">/</span>
+            <Link
+              href={`/shop/${categoryToSlug(product.category as ShopCategory)}`}
+              className="hover:text-sea"
+            >
+              {categoryLabel}
             </Link>
             <span className="mx-2">/</span>
             <span className="text-sea-deep">{productName}</span>
@@ -183,6 +204,9 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               </div>
             </div>
           </div>
+
+          <ProductReviews summary={reviewSummary} language={language} />
+          <RelatedProducts products={related} />
         </div>
       </main>
 

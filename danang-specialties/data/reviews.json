@@ -1,0 +1,137 @@
+[
+  {
+    "id": "r1",
+    "productId": 1,
+    "author": "Minh Anh",
+    "rating": 5,
+    "textVi": "Cá chỉ vàng thơm, đóng gói kỹ — mang về Sài Gòn vẫn ngon.",
+    "textEn": "Golden threadfin smelled great and was packed well — still tasty back in Saigon.",
+    "date": "2026-08-12"
+  },
+  {
+    "id": "r2",
+    "productId": 1,
+    "author": "James K.",
+    "rating": 5,
+    "textVi": "Món quà biển tuyệt cho khách nước ngoài. Chủ quán tư vấn nhiệt tình.",
+    "textEn": "Perfect seafood gift for visitors. The stall owner helped us choose.",
+    "date": "2026-07-28"
+  },
+  {
+    "id": "r3",
+    "productId": 6,
+    "author": "Hương",
+    "rating": 5,
+    "textVi": "Bò khô vừa miệng, không quá mặn — mua thêm 2 bịch biếu người thân.",
+    "textEn": "Beef jerky is well seasoned, not too salty — bought two more packs as gifts.",
+    "date": "2026-08-02"
+  },
+  {
+    "id": "r4",
+    "productId": 15,
+    "author": "Lan",
+    "rating": 5,
+    "textVi": "Mực rim me đúng vị Đà Nẵng, ăn với cơm trắng quá đã.",
+    "textEn": "Tamarind squid tastes like real Da Nang — excellent with rice.",
+    "date": "2026-06-19"
+  },
+  {
+    "id": "r5",
+    "productId": 15,
+    "author": "Tom",
+    "rating": 4,
+    "textVi": "Ngon, hơi cay nhẹ. Đóng gói chắc chắn để check-in hành lý.",
+    "textEn": "Tasty with a mild kick. Packed solid enough for checked luggage.",
+    "date": "2026-09-01"
+  },
+  {
+    "id": "r6",
+    "productId": 42,
+    "author": "Ngọc",
+    "rating": 5,
+    "textVi": "Trà sâm dứa thơm dịu, pha nóng hay lạnh đều ổn. Mua làm quà.",
+    "textEn": "Pandan-ginseng tea is gentle and fragrant hot or iced. Great as a gift.",
+    "date": "2026-07-05"
+  },
+  {
+    "id": "r7",
+    "productId": 42,
+    "author": "Emily",
+    "rating": 5,
+    "textVi": "Hộp đẹp, dễ mang lên máy bay. Sẽ quay lại kiốt lần sau.",
+    "textEn": "Nice box and easy to carry on the plane. Will visit the kiosk again.",
+    "date": "2026-08-21"
+  },
+  {
+    "id": "r8",
+    "productId": 55,
+    "author": "Quang",
+    "rating": 5,
+    "textVi": "Mắm nêm Dì Cẩn chuẩn vị — pha nước chấm bánh tráng cuốn tuyệt.",
+    "textEn": "Di Can fermented sauce is the real deal for rice-paper rolls.",
+    "date": "2026-05-30"
+  },
+  {
+    "id": "r9",
+    "productId": 70,
+    "author": "Thảo",
+    "rating": 5,
+    "textVi": "Hộp quà trà sâm dứa đẹp, biếu sếp rất ưng.",
+    "textEn": "The pandan tea gift box looked premium — my boss loved it.",
+    "date": "2026-09-03"
+  },
+  {
+    "id": "r10",
+    "productId": 70,
+    "author": "David",
+    "rating": 4,
+    "textVi": "Set quà gọn, dễ giải thích cho bạn bè nước ngoài.",
+    "textEn": "Compact gift set — easy to explain to friends overseas.",
+    "date": "2026-08-15"
+  },
+  {
+    "id": "r11",
+    "productId": 23,
+    "author": "Mai",
+    "rating": 5,
+    "textVi": "Bánh khô mè Cẩm Lệ giòn rụm, vị mè đậm. Mua mang về làm quà.",
+    "textEn": "Cam Le sesame crisps are crunchy and rich — bought extras as gifts.",
+    "date": "2026-07-14"
+  },
+  {
+    "id": "r12",
+    "productId": 35,
+    "author": "Phúc",
+    "rating": 4,
+    "textVi": "Bánh tráng Đại Lộc mỏng, nướng lên thơm. Gói chắc chắn.",
+    "textEn": "Dai Loc rice paper is thin and toasts beautifully. Solid packaging.",
+    "date": "2026-06-08"
+  },
+  {
+    "id": "r13",
+    "productId": 49,
+    "author": "Hải",
+    "rating": 5,
+    "textVi": "Chả bò dai ngon, ăn kèm bánh mì sáng là hết sẩy.",
+    "textEn": "Beef roll has great bite — perfect with morning baguettes.",
+    "date": "2026-08-29"
+  },
+  {
+    "id": "r14",
+    "productId": 63,
+    "author": "Sophie",
+    "rating": 5,
+    "textVi": "Xoài sấy dẻo ngọt tự nhiên, không bị khô cứng.",
+    "textEn": "Dried mango is naturally sweet and chewy, not hard.",
+    "date": "2026-09-05"
+  },
+  {
+    "id": "r15",
+    "productId": 3,
+    "author": "Tuấn",
+    "rating": 5,
+    "textVi": "Cá thiều tẩm đậm đà, chiên lên vàng đều. Gia đình rất thích.",
+    "textEn": "Seasoned threadfin fries up evenly — the whole family loved it.",
+    "date": "2026-07-22"
+  }
+]

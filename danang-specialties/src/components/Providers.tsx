@@ -5,6 +5,7 @@ import { CartProvider } from "@/context/CartContext";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 import CartDrawer from "@/components/CartDrawer";
 import ChatShortcuts from "@/components/ChatShortcuts";
+import MobileStickyCta from "@/components/MobileStickyCta";
 import type { Language } from "@/lib/products";
 
 type LanguageContextValue = {
@@ -78,6 +79,7 @@ export default function Providers({ children }: { children: ReactNode }) {
         <FavoritesProvider>
           {children}
           <CartDrawerHost />
+          <MobileStickyCta />
           <ChatShortcuts />
         </FavoritesProvider>
       </CartProvider>

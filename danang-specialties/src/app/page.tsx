@@ -18,7 +18,6 @@ import ProductCard from "@/components/ProductCard";
 import SiteFooter from "@/components/SiteFooter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useProducts } from "@/hooks/useProducts";
-import { HOME_CATEGORY_TO_SHOP } from "@/lib/products";
 
 const categoryMeta = [
   { id: "dried-seafood", icon: Fish },
@@ -98,11 +97,10 @@ export default function Home() {
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {categoryMeta.map((category, index) => {
                 const Icon = category.icon;
-                const shopCategory = HOME_CATEGORY_TO_SHOP[category.id];
                 return (
                   <Link
                     key={category.id}
-                    href={`/shop?category=${encodeURIComponent(shopCategory)}`}
+                    href={`/shop/${category.id}`}
                     className="animate-soft-rise group flex flex-col items-start border border-line bg-card p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-sea hover:shadow-[0_12px_32px_-16px_rgba(15,92,108,0.35)]"
                     style={{ animationDelay: `${index * 0.06}s` }}
                   >
