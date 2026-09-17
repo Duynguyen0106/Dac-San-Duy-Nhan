@@ -96,6 +96,12 @@ export default function SiteFooter() {
             >
               {isVi ? "Set mang máy bay" : "Airport packing"}
             </Link>
+            <Link
+              href="/promo/tet-gifts"
+              className="text-foam/85 hover:text-white"
+            >
+              {isVi ? "Giỏ quà Tết" : "Tet gifts"}
+            </Link>
             <Link href="/shop" className="text-foam/85 hover:text-white">
               {t("common.shop")}
             </Link>

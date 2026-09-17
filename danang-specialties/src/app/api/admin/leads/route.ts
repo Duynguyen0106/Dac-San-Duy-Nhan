@@ -5,6 +5,7 @@ import {
   updateLeadStatus,
   type LeadStatus,
 } from "@/lib/leads";
+import { isLeadNotifyConfigured } from "@/lib/leadNotify";
 
 const STATUSES: LeadStatus[] = ["pending", "contacted", "done"];
 
@@ -15,7 +16,10 @@ export async function GET() {
 
   try {
     const leads = await readLeads();
-    return NextResponse.json({ leads });
+    return NextResponse.json({
+      leads,
+      notifyConfigured: isLeadNotifyConfigured(),
+    });
   } catch (error) {
     console.error(error);
     return NextResponse.json(

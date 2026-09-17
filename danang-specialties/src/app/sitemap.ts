@@ -43,6 +43,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.75,
     },
+    {
+      url: `${siteUrl}/promo/tet-gifts`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
   ];
 
   const categoryEntries: MetadataRoute.Sitemap = SHOP_CATEGORY_SLUGS.map(

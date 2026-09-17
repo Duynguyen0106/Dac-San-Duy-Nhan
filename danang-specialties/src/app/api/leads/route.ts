@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createLead, validateLeadInput } from "@/lib/leads";
+import { notifyLeadCreated } from "@/lib/leadNotify";
 
 export async function POST(request: Request) {
   try {
@@ -10,7 +11,8 @@ export async function POST(request: Request) {
     }
 
     const lead = await createLead(validated.data);
-    return NextResponse.json({ lead }, { status: 201 });
+    const notify = await notifyLeadCreated(lead);
+    return NextResponse.json({ lead, notify }, { status: 201 });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
