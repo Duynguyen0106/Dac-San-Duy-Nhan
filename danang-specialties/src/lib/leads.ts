@@ -102,11 +102,22 @@ export function validateLeadInput(body: unknown): {
   const address = String(customerObj.address ?? "").trim();
   const note = String(customerObj.note ?? "").trim();
   const paymentMethod = customerObj.paymentMethod;
+  const deliveryMethodRaw = customerObj.deliveryMethod;
+  const deliveryMethod =
+    deliveryMethodRaw === "pickup" ||
+    deliveryMethodRaw === "vietnam" ||
+    deliveryMethodRaw === "international"
+      ? deliveryMethodRaw
+      : "vietnam";
+  const countryCode = String(customerObj.countryCode ?? "VN").trim() || "VN";
+  const city = String(customerObj.city ?? "").trim();
+  const postalCode = String(customerObj.postalCode ?? "").trim();
+
   if (!name || name.length < 2) {
     return { ok: false, error: "Customer name is required." };
   }
   if (!phone) return { ok: false, error: "Customer phone is required." };
-  if (!address || address.length < 8) {
+  if (!address || address.length < 4) {
     return { ok: false, error: "Customer address is required." };
   }
   if (
@@ -164,6 +175,10 @@ export function validateLeadInput(body: unknown): {
     address,
     note,
     paymentMethod: paymentMethod as PaymentMethod,
+    deliveryMethod,
+    countryCode,
+    city,
+    postalCode,
   };
 
   return {

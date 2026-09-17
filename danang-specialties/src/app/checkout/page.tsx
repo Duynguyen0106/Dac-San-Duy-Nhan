@@ -7,7 +7,10 @@ import {
   AlertCircle,
   Building2,
   CheckCircle2,
+  Globe2,
+  MapPin,
   MessageCircle,
+  Package,
   Scale,
   Truck,
 } from "lucide-react";
@@ -17,6 +20,7 @@ import { useLanguage } from "@/components/Providers";
 import { useCart } from "@/context/CartContext";
 import {
   composeOrderMessage,
+  getCheckoutShippingEstimate,
   getOrderChatUrl,
   validateCheckoutForm,
   type CheckoutFormErrors,
@@ -24,6 +28,15 @@ import {
 } from "@/lib/checkout";
 import { formatPrice, formatWeight } from "@/lib/products";
 import { getShopContact } from "@/lib/shopContact";
+import {
+  findAirCautionProducts,
+  getCountryLabel,
+  getShippingNote,
+  getZoneEta,
+  getZoneLabel,
+  SHIPPING_COUNTRIES,
+  type DeliveryMethod,
+} from "@/lib/shipping";
 
 const initialValues: CheckoutFormValues = {
   name: "",
@@ -31,6 +44,10 @@ const initialValues: CheckoutFormValues = {
   address: "",
   note: "",
   paymentMethod: "COD",
+  deliveryMethod: "vietnam",
+  countryCode: "VN",
+  city: "",
+  postalCode: "",
 };
 
 export default function CheckoutPage() {
@@ -49,11 +66,25 @@ export default function CheckoutPage() {
 
   const [values, setValues] = useState<CheckoutFormValues>(initialValues);
   const [errors, setErrors] = useState<CheckoutFormErrors>({});
-  const [touched, setTouched] = useState<Partial<Record<keyof CheckoutFormValues, boolean>>>({});
-  const [status, setStatus] = useState<"idle" | "copied" | "error" | "saving">("idle");
+  const [touched, setTouched] = useState<
+    Partial<Record<keyof CheckoutFormValues, boolean>>
+  >({});
+  const [status, setStatus] = useState<"idle" | "copied" | "error" | "saving">(
+    "idle",
+  );
   const [statusMessage, setStatusMessage] = useState("");
   const [leadId, setLeadId] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+
+  const shippingEstimate = useMemo(
+    () => getCheckoutShippingEstimate(values, totalWeightGrams, totalPrice),
+    [values, totalWeightGrams, totalPrice],
+  );
+
+  const airCaution = useMemo(
+    () => findAirCautionProducts(items.map((item) => item.product)),
+    [items],
+  );
 
   const messagePreview = useMemo(
     () =>
@@ -65,18 +96,39 @@ export default function CheckoutPage() {
             totalPrice,
             totalWeightGrams,
             language,
+            shippingEstimate,
           }),
-    [values, items, totalPrice, totalWeightGrams, language],
+    [values, items, totalPrice, totalWeightGrams, language, shippingEstimate],
   );
 
   const setField = <K extends keyof CheckoutFormValues>(
     key: K,
     value: CheckoutFormValues[K],
   ) => {
-    setValues((current) => ({ ...current, [key]: value }));
+    setValues((current) => {
+      const next = { ...current, [key]: value };
+      if (key === "deliveryMethod") {
+        const method = value as DeliveryMethod;
+        if (method === "international") {
+          next.paymentMethod = "BankTransfer";
+          if (!next.countryCode || next.countryCode === "VN") {
+            next.countryCode = language === "EN" ? "US" : "US";
+          }
+        } else if (method === "vietnam") {
+          next.countryCode = "VN";
+        } else if (method === "pickup") {
+          next.countryCode = "VN";
+          next.paymentMethod = current.paymentMethod;
+        }
+      }
+      return next;
+    });
     setStatus("idle");
     if (touched[key] || errors[key]) {
-      const nextValues = { ...values, [key]: value };
+      const nextValues = { ...values, [key]: value } as CheckoutFormValues;
+      if (key === "deliveryMethod" && value === "international") {
+        nextValues.paymentMethod = "BankTransfer";
+      }
       const nextErrors = validateCheckoutForm(nextValues, language);
       setErrors((current) => ({ ...current, [key]: nextErrors[key] }));
     }
@@ -97,6 +149,10 @@ export default function CheckoutPage() {
       address: true,
       note: true,
       paymentMethod: true,
+      deliveryMethod: true,
+      countryCode: true,
+      city: true,
+      postalCode: true,
     });
     return Object.keys(nextErrors).length === 0;
   };
@@ -108,6 +164,7 @@ export default function CheckoutPage() {
       totalPrice,
       totalWeightGrams,
       language,
+      shippingEstimate,
     });
 
     const response = await fetch("/api/leads", {
@@ -187,6 +244,7 @@ export default function CheckoutPage() {
         totalWeightGrams,
         language,
         leadId: savedLeadId,
+        shippingEstimate,
       });
 
       if (!openChat) {
@@ -264,6 +322,8 @@ export default function CheckoutPage() {
     );
   }
 
+  const intlCountries = SHIPPING_COUNTRIES.filter((c) => c.code !== "VN");
+
   return (
     <div className="flex min-h-full flex-col bg-background text-foreground">
       <Header />
@@ -290,9 +350,15 @@ export default function CheckoutPage() {
             </h1>
             <p className="mt-3 text-mist">
               {isVi
-                ? "Dành cho khách trong nước, Việt kiều và du khách — điền rõ họ tên, SĐT (kèm mã quốc gia nếu ở nước ngoài) và địa chỉ nhận hàng."
-                : "For local customers, overseas Vietnamese, and tourists — use clear contact details and include your country code if ordering from abroad."}
+                ? "Nhận tại kiốt, giao Việt Nam, hoặc ship quốc tế toàn cầu — phí ship ước tính theo kg, xác nhận cuối qua chat."
+                : "Pickup, Vietnam delivery, or worldwide shipping — estimate by kg, final quote confirmed on chat."}
             </p>
+            <Link
+              href="/shipping"
+              className="mt-2 inline-flex text-sm font-medium text-sea hover:text-sea-deep"
+            >
+              {isVi ? "Xem bảng phí ship toàn cầu →" : "View worldwide shipping rates →"}
+            </Link>
           </div>
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
@@ -305,15 +371,51 @@ export default function CheckoutPage() {
                 {isVi ? "Thông tin giao hàng" : "Delivery details"}
               </h2>
 
+              <fieldset className="mt-6">
+                <legend className="text-sm font-semibold text-sea-deep">
+                  {isVi ? "Hình thức nhận hàng" : "Delivery method"}
+                </legend>
+                <div className="mt-3 grid gap-3 sm:grid-cols-3">
+                  <PaymentOption
+                    selected={values.deliveryMethod === "pickup"}
+                    onSelect={() => setField("deliveryMethod", "pickup")}
+                    icon={Package}
+                    title={isVi ? "Nhận tại kiốt" : "Kiosk pickup"}
+                    description={
+                      isVi
+                        ? "90 Hùng Vương, Đà Nẵng — miễn phí."
+                        : "90 Hung Vuong, Da Nang — free."
+                    }
+                  />
+                  <PaymentOption
+                    selected={values.deliveryMethod === "vietnam"}
+                    onSelect={() => setField("deliveryMethod", "vietnam")}
+                    icon={Truck}
+                    title={isVi ? "Giao Việt Nam" : "Ship in Vietnam"}
+                    description={
+                      isVi
+                        ? "Nội thành Đà Nẵng hoặc toàn quốc."
+                        : "Da Nang city or nationwide."
+                    }
+                  />
+                  <PaymentOption
+                    selected={values.deliveryMethod === "international"}
+                    onSelect={() => setField("deliveryMethod", "international")}
+                    icon={Globe2}
+                    title={isVi ? "Ship quốc tế" : "Worldwide"}
+                    description={
+                      isVi
+                        ? "EMS / bưu chính toàn cầu."
+                        : "EMS / postal worldwide."
+                    }
+                  />
+                </div>
+              </fieldset>
+
               <div className="mt-6 space-y-5">
                 <Field
                   id="name"
                   label={isVi ? "Họ và tên" : "Full name"}
-                  hint={
-                    isVi
-                      ? "Tên người nhận hàng (Full name of recipient)"
-                      : "Name of the person receiving the order"
-                  }
                   error={touched.name ? errors.name : undefined}
                 >
                   <input
@@ -334,8 +436,8 @@ export default function CheckoutPage() {
                   label={isVi ? "Số điện thoại" : "Phone number"}
                   hint={
                     isVi
-                      ? "Việt Nam: 090… — Quốc tế: +84… / +1…"
-                      : "Vietnam: 090… — Overseas: +84… / +1…"
+                      ? "Quốc tế: kèm mã quốc gia (+1 / +44 / +61…)"
+                      : "Include country code for overseas (+1 / +44 / +61…)"
                   }
                   error={touched.phone ? errors.phone : undefined}
                 >
@@ -348,19 +450,114 @@ export default function CheckoutPage() {
                     value={values.phone}
                     onChange={(e) => setField("phone", e.target.value)}
                     onBlur={() => markTouched("phone")}
-                    placeholder={isVi ? "0905747413 hoặc +84905747413" : "+84905747413"}
+                    placeholder={
+                      isVi ? "0905747413 hoặc +84905747413" : "+84905747413"
+                    }
                     aria-invalid={Boolean(touched.phone && errors.phone)}
                     className={inputClass(Boolean(touched.phone && errors.phone))}
                   />
                 </Field>
 
+                {values.deliveryMethod === "vietnam" && (
+                  <Field
+                    id="vnRegion"
+                    label={isVi ? "Khu vực giao" : "Delivery region"}
+                  >
+                    <select
+                      id="vnRegion"
+                      value={values.countryCode === "VN-DN" ? "VN-DN" : "VN"}
+                      onChange={(e) => setField("countryCode", e.target.value)}
+                      className={inputClass(false)}
+                    >
+                      <option value="VN-DN">
+                        {isVi ? "Nội thành Đà Nẵng" : "Da Nang city"}
+                      </option>
+                      <option value="VN">
+                        {isVi ? "Tỉnh/thành khác (toàn quốc)" : "Other Vietnam cities"}
+                      </option>
+                    </select>
+                  </Field>
+                )}
+
+                {values.deliveryMethod === "international" && (
+                  <>
+                    <Field
+                      id="countryCode"
+                      label={isVi ? "Quốc gia nhận" : "Destination country"}
+                      error={touched.countryCode ? errors.countryCode : undefined}
+                    >
+                      <select
+                        id="countryCode"
+                        value={values.countryCode}
+                        onChange={(e) => setField("countryCode", e.target.value)}
+                        onBlur={() => markTouched("countryCode")}
+                        className={inputClass(
+                          Boolean(touched.countryCode && errors.countryCode),
+                        )}
+                      >
+                        {intlCountries.map((country) => (
+                          <option key={country.code} value={country.code}>
+                            {getCountryLabel(country, language)}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      <Field
+                        id="city"
+                        label={isVi ? "Thành phố" : "City"}
+                        error={touched.city ? errors.city : undefined}
+                      >
+                        <input
+                          id="city"
+                          value={values.city}
+                          onChange={(e) => setField("city", e.target.value)}
+                          onBlur={() => markTouched("city")}
+                          className={inputClass(
+                            Boolean(touched.city && errors.city),
+                          )}
+                        />
+                      </Field>
+                      <Field
+                        id="postalCode"
+                        label={isVi ? "Mã bưu điện / ZIP" : "Postal / ZIP code"}
+                        error={
+                          touched.postalCode ? errors.postalCode : undefined
+                        }
+                      >
+                        <input
+                          id="postalCode"
+                          value={values.postalCode}
+                          onChange={(e) =>
+                            setField("postalCode", e.target.value)
+                          }
+                          onBlur={() => markTouched("postalCode")}
+                          className={inputClass(
+                            Boolean(touched.postalCode && errors.postalCode),
+                          )}
+                        />
+                      </Field>
+                    </div>
+                  </>
+                )}
+
                 <Field
                   id="address"
-                  label={isVi ? "Địa chỉ nhận hàng" : "Delivery address"}
+                  label={
+                    values.deliveryMethod === "pickup"
+                      ? isVi
+                        ? "Ghi chú nhận tại kiốt"
+                        : "Pickup note"
+                      : isVi
+                        ? "Địa chỉ nhận hàng"
+                        : "Delivery address"
+                  }
                   hint={
-                    isVi
-                      ? "Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành (hoặc địa chỉ khách sạn nếu là du khách)."
-                      : "Street, district, city, country — or hotel name/room if you are visiting."
+                    values.deliveryMethod === "international"
+                      ? isVi
+                        ? "Số nhà, đường, quận — viết rõ bằng tiếng Anh nếu được."
+                        : "Street, district — prefer English for customs labels."
+                      : undefined
                   }
                   error={touched.address ? errors.address : undefined}
                 >
@@ -368,32 +565,28 @@ export default function CheckoutPage() {
                     id="address"
                     name="address"
                     rows={3}
-                    autoComplete="street-address"
                     value={values.address}
                     onChange={(e) => setField("address", e.target.value)}
                     onBlur={() => markTouched("address")}
                     placeholder={
-                      isVi
-                        ? "123 Nguyễn Văn Linh, Hải Châu, Đà Nẵng"
-                        : "123 Nguyen Van Linh, Hai Chau, Da Nang, Vietnam"
+                      values.deliveryMethod === "pickup"
+                        ? isVi
+                          ? "VD: Đến lấy lúc 16:00, tên Nguyen"
+                          : "e.g. Pickup at 4pm, name Nguyen"
+                        : isVi
+                          ? "Số nhà, đường, phường/quận, tỉnh/thành"
+                          : "Street, district, city, country"
                     }
                     aria-invalid={Boolean(touched.address && errors.address)}
-                    className={inputClass(Boolean(touched.address && errors.address))}
+                    className={inputClass(
+                      Boolean(touched.address && errors.address),
+                    )}
                   />
                 </Field>
 
                 <Field
                   id="note"
-                  label={
-                    isVi
-                      ? "Ghi chú (không bắt buộc)"
-                      : "Note (optional)"
-                  }
-                  hint={
-                    isVi
-                      ? "Giờ giao, yêu cầu đóng gói quà, hoặc ghi chú tiếng Anh/Việt."
-                      : "Delivery time, gift wrap, or bilingual notes welcome."
-                  }
+                  label={isVi ? "Ghi chú (tuỳ chọn)" : "Note (optional)"}
                 >
                   <textarea
                     id="note"
@@ -404,36 +597,58 @@ export default function CheckoutPage() {
                     onBlur={() => markTouched("note")}
                     placeholder={
                       isVi
-                        ? "Ví dụ: Gọi trước khi giao / Please call on arrival"
-                        : "e.g. Call before delivery / Gift wrap please"
+                        ? "VD: Gói quà / Tránh nước mắm trong xách tay"
+                        : "e.g. Gift wrap / Keep fish sauce in checked bags"
                     }
                     className={inputClass(false)}
                   />
                 </Field>
               </div>
 
+              {values.deliveryMethod === "international" &&
+                airCaution.length > 0 && (
+                  <div className="mt-6 border border-sun/40 bg-[#fff8f0] px-4 py-3 text-sm text-sea-deep">
+                    <p className="font-semibold">
+                      {isVi
+                        ? "Lưu ý món nước/gia vị khi ship máy bay"
+                        : "Liquid/sauce packing note for air shipping"}
+                    </p>
+                    <p className="mt-1 text-mist">
+                      {isVi
+                        ? `Giỏ có: ${airCaution.map((p) => p.name).join(", ")}. Shop sẽ bọc chống đổ; một số nước có thể yêu cầu khai hải quan.`
+                        : `Cart includes: ${airCaution.map((p) => p.nameEn).join(", ")}. We leak-wrap bottles; some destinations need customs declaration.`}
+                    </p>
+                  </div>
+                )}
+
               <fieldset className="mt-8">
                 <legend className="font-display text-xl font-semibold text-sea-deep">
                   {isVi ? "Phương thức thanh toán" : "Payment method"}
                 </legend>
                 <p className="mt-1 text-sm text-mist">
-                  {isVi
-                    ? "Chọn một hình thức phù hợp với bạn."
-                    : "Choose the option that works best for you."}
+                  {values.deliveryMethod === "international"
+                    ? isVi
+                      ? "Ship quốc tế: chuyển khoản sau khi shop báo phí EMS cuối."
+                      : "International: bank transfer after we confirm the final EMS fee."
+                    : isVi
+                      ? "Chọn một hình thức phù hợp với bạn."
+                      : "Choose the option that works best for you."}
                 </p>
 
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <PaymentOption
-                    selected={values.paymentMethod === "COD"}
-                    onSelect={() => setField("paymentMethod", "COD")}
-                    icon={Truck}
-                    title={isVi ? "COD - Tiền mặt" : "COD - Cash on Delivery"}
-                    description={
-                      isVi
-                        ? "Thanh toán khi nhận hàng tại Việt Nam."
-                        : "Pay in cash when the order arrives in Vietnam."
-                    }
-                  />
+                  {values.deliveryMethod !== "international" && (
+                    <PaymentOption
+                      selected={values.paymentMethod === "COD"}
+                      onSelect={() => setField("paymentMethod", "COD")}
+                      icon={Truck}
+                      title={isVi ? "COD - Tiền mặt" : "COD - Cash on Delivery"}
+                      description={
+                        isVi
+                          ? "Thanh toán khi nhận hàng tại Việt Nam."
+                          : "Pay in cash when the order arrives in Vietnam."
+                      }
+                    />
+                  )}
                   <PaymentOption
                     selected={values.paymentMethod === "BankTransfer"}
                     onSelect={() => setField("paymentMethod", "BankTransfer")}
@@ -447,7 +662,10 @@ export default function CheckoutPage() {
                   />
                 </div>
                 {touched.paymentMethod && errors.paymentMethod && (
-                  <p className="mt-2 flex items-start gap-1.5 text-sm text-red-700" role="alert">
+                  <p
+                    className="mt-2 flex items-start gap-1.5 text-sm text-red-700"
+                    role="alert"
+                  >
                     <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
                     {errors.paymentMethod}
                   </p>
@@ -497,7 +715,9 @@ export default function CheckoutPage() {
                   onClick={() => void handleOrderViaChat(false)}
                   className="inline-flex items-center justify-center border border-line px-6 py-3.5 text-sm font-medium text-sea-deep transition-colors hover:border-sea hover:text-sea disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  {isVi ? "Lưu đơn (chưa chat được)" : "Save order (can’t chat now)"}
+                  {isVi
+                    ? "Lưu đơn (chưa chat được)"
+                    : "Save order (can’t chat now)"}
                 </button>
                 <button
                   type="button"
@@ -509,9 +729,8 @@ export default function CheckoutPage() {
               </div>
 
               <p className="mt-4 text-xs leading-relaxed text-mist">
-                {isVi
-                  ? `Đơn được lưu trên web trước khi mở ${contact.chatLabel}. Nếu bạn chưa nhắn được ngay, shop vẫn có SĐT để gọi lại.`
-                  : `Your order is saved on the website before ${contact.chatLabel} opens. If you can’t message right away, the shop still has your phone to call back.`}
+                {getShippingNote(language)}{" "}
+                {leadId ? `(${leadId})` : null}
               </p>
             </form>
 
@@ -522,7 +741,10 @@ export default function CheckoutPage() {
                 </h2>
                 <ul className="mt-4 space-y-3 border-b border-line pb-4">
                   {items.map(({ product, quantity }) => (
-                    <li key={product.id} className="flex justify-between gap-3 text-sm">
+                    <li
+                      key={product.id}
+                      className="flex justify-between gap-3 text-sm"
+                    >
                       <span className="text-sea-deep">
                         {isVi ? product.name : product.nameEn}{" "}
                         <span className="text-mist">×{quantity}</span>
@@ -537,25 +759,53 @@ export default function CheckoutPage() {
                 <div className="mt-4 border border-sea/20 bg-foam px-4 py-3">
                   <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-sea">
                     <Scale className="h-4 w-4" />
-                    {isVi ? "Tổng khối lượng" : "Total weight"}
+                    {isVi ? "Khối lượng" : "Weight"}
                   </div>
-                  <p className="mt-1 font-display text-2xl font-bold text-sea-deep">
+                  <p className="mt-1 font-display text-xl font-bold text-sea-deep">
                     {formatWeight(totalWeightGrams, language)}
+                    <span className="ml-2 text-sm font-medium text-mist">
+                      → {formatWeight(shippingEstimate.chargeableWeightGrams, language)}{" "}
+                      {isVi ? "tính phí" : "chargeable"}
+                    </span>
                   </p>
                   <p className="mt-1 text-xs text-mist">
-                    {isVi
-                      ? `${itemCount} sản phẩm — phí ship tính theo kg`
-                      : `${itemCount} items — shipping charged by weight`}
+                    {itemCount}{" "}
+                    {isVi ? "sản phẩm · gồm đệm đóng gói" : "items · incl. packing buffer"}
                   </p>
                 </div>
 
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="text-sm text-mist">
-                    {isVi ? "Tổng tiền" : "Total"}
-                  </span>
-                  <span className="font-display text-2xl font-semibold text-sea">
-                    {formatPrice(totalPrice, language)}
-                  </span>
+                <div className="mt-4 space-y-2 text-sm">
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="text-mist">
+                      {isVi ? "Tạm tính SP" : "Products"}
+                    </span>
+                    <span className="font-medium text-sea-deep">
+                      {formatPrice(totalPrice, language)}
+                    </span>
+                  </div>
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="text-mist">
+                      <span className="flex items-center gap-1">
+                        <MapPin className="h-3.5 w-3.5" />
+                        {isVi ? "Ship ước tính" : "Est. shipping"}
+                      </span>
+                      <span className="mt-0.5 block text-xs">
+                        {getZoneLabel(shippingEstimate.zone, language)} ·{" "}
+                        {getZoneEta(shippingEstimate.zone, language)}
+                      </span>
+                    </span>
+                    <span className="font-medium text-sea-deep">
+                      {formatPrice(shippingEstimate.shippingFee, language)}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between border-t border-line pt-3">
+                    <span className="font-semibold text-sea-deep">
+                      {isVi ? "Tổng ước tính" : "Est. grand total"}
+                    </span>
+                    <span className="font-display text-2xl font-semibold text-sea">
+                      {formatPrice(shippingEstimate.grandTotal, language)}
+                    </span>
+                  </div>
                 </div>
               </div>
 

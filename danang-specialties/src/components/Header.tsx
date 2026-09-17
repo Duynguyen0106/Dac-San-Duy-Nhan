@@ -66,6 +66,12 @@ export default function Header() {
             {t("common.howToOrder")}
           </Link>
           <Link
+            href="/shipping"
+            className="hidden text-sm font-medium text-sea-deep transition-colors hover:text-sea xl:inline"
+          >
+            {t("common.shipping")}
+          </Link>
+          <Link
             href="/tips"
             className="hidden text-sm font-medium text-sea-deep transition-colors hover:text-sea lg:inline"
           >

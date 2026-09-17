@@ -19,12 +19,16 @@ export default function HowToOrderPage() {
           body: "Vào Cửa hàng, lọc theo danh mục hoặc quà mang đi, thêm vào giỏ.",
         },
         {
-          title: "2. Gửi đơn qua chat",
-          body: "Ở trang thanh toán, gửi tin nhắn Zalo (VI) hoặc WhatsApp (EN) để xác nhận còn hàng.",
+          title: "2. Chọn ship: kiốt / Việt Nam / quốc tế",
+          body: "Ở trang thanh toán chọn nhận tại kiốt, giao trong nước, hoặc ship toàn cầu — xem phí ước tính theo kg.",
         },
         {
-          title: "3. Nhận tại kiốt hoặc giao",
-          body: "Đến Kiốt số 6, 90 Hùng Vương — hoặc nhờ shop hỗ trợ giao trong nội thành khi có lịch.",
+          title: "3. Gửi đơn qua chat",
+          body: "Zalo (VI) hoặc WhatsApp (EN) để xác nhận còn hàng và phí EMS cuối cùng.",
+        },
+        {
+          title: "4. Nhận hàng / tracking",
+          body: "Lấy tại Kiốt số 6, 90 Hùng Vương — hoặc nhận mã vận đơn khi gửi tỉnh / quốc tế.",
         },
       ]
     : [
@@ -33,12 +37,16 @@ export default function HowToOrderPage() {
           body: "Browse the shop, filter by category or travel gifts, and add to cart.",
         },
         {
-          title: "2. Confirm on chat",
-          body: "From checkout, send WhatsApp (EN) or Zalo (VI) so we can confirm stock.",
+          title: "2. Choose pickup / Vietnam / worldwide",
+          body: "At checkout pick kiosk pickup, domestic delivery, or international shipping — see the kg estimate.",
         },
         {
-          title: "3. Pickup or delivery",
-          body: "Visit Kiosk No. 6, 90 Hung Vuong — or ask about local delivery when available.",
+          title: "3. Confirm on chat",
+          body: "WhatsApp (EN) or Zalo (VI) to confirm stock and the final EMS fee.",
+        },
+        {
+          title: "4. Receive / track",
+          body: "Pickup at Kiosk No. 6, 90 Hung Vuong — or get a tracking number for domestic/international parcels.",
         },
       ];
 
@@ -79,13 +87,19 @@ export default function HowToOrderPage() {
             ))}
           </ol>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <Link
               href="/shop"
               className="inline-flex items-center justify-center gap-2 bg-sun px-4 py-3 text-sm font-semibold text-white hover:bg-sun-hover"
             >
               <ShoppingBag className="h-4 w-4" />
               {isVi ? "Mua ngay" : "Shop now"}
+            </Link>
+            <Link
+              href="/shipping"
+              className="inline-flex items-center justify-center gap-2 border border-line bg-card px-4 py-3 text-sm font-semibold text-sea-deep hover:border-sea"
+            >
+              {isVi ? "Ship toàn cầu" : "Worldwide shipping"}
             </Link>
             <a
               href={contact.phoneTel}

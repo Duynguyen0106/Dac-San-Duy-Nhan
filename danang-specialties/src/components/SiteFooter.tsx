@@ -87,6 +87,9 @@ export default function SiteFooter() {
             <Link href="/how-to-order" className="text-foam/85 hover:text-white">
               {t("common.howToOrder")}
             </Link>
+            <Link href="/shipping" className="text-foam/85 hover:text-white">
+              {t("common.shipping")}
+            </Link>
             <Link href="/tips" className="text-foam/85 hover:text-white">
               {t("common.tips")}
             </Link>

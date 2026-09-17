@@ -1,0 +1,151 @@
+{
+  "packagingBufferGrams": 150,
+  "packagingBufferPercent": 0.08,
+  "currency": "VND",
+  "noteVi": "Phí ship là ước tính EMS/bưu chính từ Việt Nam — shop xác nhận chính xác qua Zalo/WhatsApp theo cân thực tế.",
+  "noteEn": "Fees are EMS/postal estimates from Vietnam — we confirm the exact quote on Zalo/WhatsApp after real weighing.",
+  "zones": [
+    {
+      "id": "pickup",
+      "labelVi": "Nhận tại kiốt Đà Nẵng",
+      "labelEn": "Pickup at Da Nang kiosk",
+      "etaVi": "Trong ngày / hẹn giờ",
+      "etaEn": "Same day / by appointment",
+      "countries": [],
+      "bands": [{ "maxKg": 99, "fee": 0 }]
+    },
+    {
+      "id": "vn_local",
+      "labelVi": "Giao nội thành Đà Nẵng",
+      "labelEn": "Da Nang city delivery",
+      "etaVi": "1–2 ngày",
+      "etaEn": "1–2 days",
+      "countries": ["VN-DN"],
+      "bands": [
+        { "maxKg": 2, "fee": 30000 },
+        { "maxKg": 5, "fee": 45000 },
+        { "maxKg": 10, "fee": 70000 },
+        { "maxKg": 99, "fee": 120000 }
+      ]
+    },
+    {
+      "id": "vn_domestic",
+      "labelVi": "Giao toàn quốc Việt Nam",
+      "labelEn": "Vietnam nationwide",
+      "etaVi": "2–5 ngày",
+      "etaEn": "2–5 days",
+      "countries": ["VN"],
+      "bands": [
+        { "maxKg": 0.5, "fee": 35000 },
+        { "maxKg": 1, "fee": 45000 },
+        { "maxKg": 2, "fee": 60000 },
+        { "maxKg": 5, "fee": 95000 },
+        { "maxKg": 10, "fee": 150000 },
+        { "maxKg": 99, "fee": 250000 }
+      ]
+    },
+    {
+      "id": "asia",
+      "labelVi": "Châu Á gần (SG, TH, MY, KR, JP, TW, HK…)",
+      "labelEn": "Nearby Asia (SG, TH, MY, KR, JP, TW, HK…)",
+      "etaVi": "5–12 ngày làm việc",
+      "etaEn": "5–12 business days",
+      "countries": ["SG", "TH", "MY", "KH", "LA", "PH", "ID", "KR", "JP", "TW", "HK", "MO", "CN", "BN"],
+      "bands": [
+        { "maxKg": 0.5, "fee": 280000 },
+        { "maxKg": 1, "fee": 420000 },
+        { "maxKg": 2, "fee": 650000 },
+        { "maxKg": 5, "fee": 1200000 },
+        { "maxKg": 10, "fee": 2100000 },
+        { "maxKg": 99, "fee": 3200000 }
+      ]
+    },
+    {
+      "id": "au_nz",
+      "labelVi": "Úc & New Zealand",
+      "labelEn": "Australia & New Zealand",
+      "etaVi": "7–16 ngày làm việc",
+      "etaEn": "7–16 business days",
+      "countries": ["AU", "NZ"],
+      "bands": [
+        { "maxKg": 0.5, "fee": 450000 },
+        { "maxKg": 1, "fee": 680000 },
+        { "maxKg": 2, "fee": 1050000 },
+        { "maxKg": 5, "fee": 1900000 },
+        { "maxKg": 10, "fee": 3200000 },
+        { "maxKg": 99, "fee": 4800000 }
+      ]
+    },
+    {
+      "id": "eu_uk",
+      "labelVi": "Châu Âu & Anh",
+      "labelEn": "Europe & United Kingdom",
+      "etaVi": "8–18 ngày làm việc",
+      "etaEn": "8–18 business days",
+      "countries": ["GB", "UK", "DE", "FR", "NL", "BE", "IT", "ES", "PT", "IE", "SE", "NO", "DK", "FI", "AT", "CH", "PL", "CZ", "HU", "RO", "GR"],
+      "bands": [
+        { "maxKg": 0.5, "fee": 520000 },
+        { "maxKg": 1, "fee": 780000 },
+        { "maxKg": 2, "fee": 1200000 },
+        { "maxKg": 5, "fee": 2200000 },
+        { "maxKg": 10, "fee": 3800000 },
+        { "maxKg": 99, "fee": 5500000 }
+      ]
+    },
+    {
+      "id": "north_america",
+      "labelVi": "Mỹ & Canada",
+      "labelEn": "United States & Canada",
+      "etaVi": "8–20 ngày làm việc",
+      "etaEn": "8–20 business days",
+      "countries": ["US", "CA", "MX"],
+      "bands": [
+        { "maxKg": 0.5, "fee": 580000 },
+        { "maxKg": 1, "fee": 850000 },
+        { "maxKg": 2, "fee": 1350000 },
+        { "maxKg": 5, "fee": 2500000 },
+        { "maxKg": 10, "fee": 4200000 },
+        { "maxKg": 99, "fee": 6200000 }
+      ]
+    },
+    {
+      "id": "row",
+      "labelVi": "Các nước khác (toàn cầu)",
+      "labelEn": "Rest of world",
+      "etaVi": "10–25 ngày làm việc",
+      "etaEn": "10–25 business days",
+      "countries": ["*"],
+      "bands": [
+        { "maxKg": 0.5, "fee": 620000 },
+        { "maxKg": 1, "fee": 920000 },
+        { "maxKg": 2, "fee": 1500000 },
+        { "maxKg": 5, "fee": 2800000 },
+        { "maxKg": 10, "fee": 4600000 },
+        { "maxKg": 99, "fee": 7000000 }
+      ]
+    }
+  ],
+  "countries": [
+    { "code": "VN", "nameVi": "Việt Nam", "nameEn": "Vietnam" },
+    { "code": "US", "nameVi": "Hoa Kỳ", "nameEn": "United States" },
+    { "code": "CA", "nameVi": "Canada", "nameEn": "Canada" },
+    { "code": "AU", "nameVi": "Úc", "nameEn": "Australia" },
+    { "code": "NZ", "nameVi": "New Zealand", "nameEn": "New Zealand" },
+    { "code": "GB", "nameVi": "Anh Quốc", "nameEn": "United Kingdom" },
+    { "code": "DE", "nameVi": "Đức", "nameEn": "Germany" },
+    { "code": "FR", "nameVi": "Pháp", "nameEn": "France" },
+    { "code": "NL", "nameVi": "Hà Lan", "nameEn": "Netherlands" },
+    { "code": "SG", "nameVi": "Singapore", "nameEn": "Singapore" },
+    { "code": "JP", "nameVi": "Nhật Bản", "nameEn": "Japan" },
+    { "code": "KR", "nameVi": "Hàn Quốc", "nameEn": "South Korea" },
+    { "code": "TW", "nameVi": "Đài Loan", "nameEn": "Taiwan" },
+    { "code": "HK", "nameVi": "Hồng Kông", "nameEn": "Hong Kong" },
+    { "code": "TH", "nameVi": "Thái Lan", "nameEn": "Thailand" },
+    { "code": "MY", "nameVi": "Malaysia", "nameEn": "Malaysia" },
+    { "code": "PH", "nameVi": "Philippines", "nameEn": "Philippines" },
+    { "code": "ID", "nameVi": "Indonesia", "nameEn": "Indonesia" },
+    { "code": "AE", "nameVi": "UAE", "nameEn": "United Arab Emirates" },
+    { "code": "OTHER", "nameVi": "Quốc gia khác", "nameEn": "Other country" }
+  ],
+  "airRestrictedKeywords": ["nước mắm", "mắm", "fish sauce", "mam nem", "mam ruoc", "mam tom", "mam muc"]
+}
