@@ -12,6 +12,7 @@ import {
   Trash2,
   X,
 } from "lucide-react";
+import AdminImageField from "@/components/AdminImageField";
 import Header from "@/components/Header";
 import { useTranslation } from "@/hooks/useTranslation";
 import {
@@ -40,7 +41,7 @@ const emptyForm: FormState = {
   price: "",
   weight: "",
   weightGrams: "",
-  image: "https://placehold.co/400x400?text=New+Product",
+  image: "",
   description: "",
   descriptionEn: "",
 };
@@ -193,6 +194,15 @@ export default function AdminPage() {
     setError(null);
     setMessage(null);
 
+    if (!form.image.trim()) {
+      setError(
+        isVi
+          ? "Vui lòng tải ảnh sản phẩm hoặc chọn từ thư viện."
+          : "Please upload a product photo or pick one from the library.",
+      );
+      return;
+    }
+
     const payload = toPayload(form);
     const isEdit = editingId !== null;
     const response = await fetch(
@@ -331,8 +341,8 @@ export default function AdminPage() {
               </h1>
               <p className="mt-1 text-sm text-mist">
                 {isVi
-                  ? "Thêm, sửa, xóa sản phẩm — lưu vào data/products.json."
-                  : "Add, edit, delete products — saved to data/products.json."}
+                  ? "Thêm, sửa, xóa sản phẩm — tải ảnh kéo thả hoặc chọn từ thư viện."
+                  : "Add, edit, delete products — drag-drop photos or pick from the library."}
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -472,16 +482,13 @@ export default function AdminPage() {
                     className={inputClass}
                   />
                 </Field>
-                <Field label={isVi ? "URL ảnh" : "Image URL"}>
-                  <input
-                    required
-                    value={form.image}
-                    onChange={(e) =>
-                      setForm({ ...form, image: e.target.value })
-                    }
-                    className={inputClass}
-                  />
-                </Field>
+
+                <AdminImageField
+                  value={form.image}
+                  onChange={(image) => setForm({ ...form, image })}
+                  isVi={isVi}
+                  nameHint={form.name || form.nameEn}
+                />
               </div>
 
               <div className="mt-4 grid gap-4">
@@ -545,13 +552,13 @@ export default function AdminPage() {
                     key={product.id}
                     className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:px-5"
                   >
-                    <div className="relative h-16 w-16 shrink-0 overflow-hidden bg-foam">
+                    <div className="relative h-20 w-20 shrink-0 overflow-hidden border border-line bg-foam sm:h-24 sm:w-24">
                       <Image
                         src={product.image}
                         alt={product.name}
                         fill
                         className="object-cover"
-                        sizes="64px"
+                        sizes="96px"
                         unoptimized
                       />
                     </div>
