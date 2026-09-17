@@ -81,7 +81,7 @@ export function validateProductInput(input: Partial<ProductInput>): {
     return { ok: false, error: "weightGrams must be a non-negative number." };
   }
   if (!image) {
-    return { ok: false, error: "Image URL is required." };
+    return { ok: false, error: "Product image is required." };
   }
   if (!description || !descriptionEn) {
     return {
