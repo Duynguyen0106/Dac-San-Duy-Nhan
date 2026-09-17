@@ -9,9 +9,12 @@ import {
   CupSoda,
   Droplets,
   Fish,
+  Gift,
   Heart,
   LayoutGrid,
   List,
+  Luggage,
+  Package,
   RotateCcw,
   ScrollText,
   Search,
@@ -36,7 +39,9 @@ import {
 import {
   buildShopUrl,
   parseOptionalNumber,
+  parseQuickFilter,
   type CategoryFilter,
+  type ShopQuickFilter,
   type ShopSortOption,
   type ShopViewMode,
 } from "@/lib/shopFilters";
@@ -111,6 +116,7 @@ function ShopPageContent() {
   const minFromUrl = parseOptionalNumber(searchParams.get("min"));
   const maxFromUrl = parseOptionalNumber(searchParams.get("max"));
   const favFromUrl = searchParams.get("fav") === "1";
+  const pickFromUrl = parseQuickFilter(searchParams.get("pick"));
 
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>(
     isShopCategory(categoryFromUrl) ? categoryFromUrl : "All",
@@ -129,6 +135,7 @@ function ShopPageContent() {
     maxFromUrl != null ? String(maxFromUrl) : "",
   );
   const [favoritesOnly, setFavoritesOnly] = useState(favFromUrl);
+  const [quickFilter, setQuickFilter] = useState<ShopQuickFilter>(pickFromUrl);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   useEffect(() => {
@@ -141,6 +148,7 @@ function ShopPageContent() {
     setMinPrice(minFromUrl != null ? String(minFromUrl) : "");
     setMaxPrice(maxFromUrl != null ? String(maxFromUrl) : "");
     setFavoritesOnly(favFromUrl);
+    setQuickFilter(pickFromUrl);
   }, [
     categoryFromUrl,
     queryFromUrl,
@@ -149,6 +157,7 @@ function ShopPageContent() {
     minFromUrl,
     maxFromUrl,
     favFromUrl,
+    pickFromUrl,
   ]);
 
   const priceBounds = useMemo(() => {
@@ -171,6 +180,7 @@ function ShopPageContent() {
     maxPrice?: number | null;
     favoritesOnly?: boolean;
     view?: ShopViewMode;
+    quickFilter?: ShopQuickFilter;
   }) => {
     const url = buildShopUrl({
       category: next.category ?? activeCategory,
@@ -186,6 +196,8 @@ function ShopPageContent() {
           : parseOptionalNumber(maxPrice || null),
       favoritesOnly: next.favoritesOnly ?? favoritesOnly,
       view: next.view ?? view,
+      quickFilter:
+        next.quickFilter !== undefined ? next.quickFilter : quickFilter,
     });
     router.replace(url, { scroll: false });
   };
@@ -215,6 +227,8 @@ function ShopPageContent() {
       if (!matchesCategory) return false;
 
       if (favoritesOnly && !isFavorite(product.id)) return false;
+
+      if (quickFilter && !product.tags?.includes(quickFilter)) return false;
 
       if (parsedMin != null && product.price < parsedMin) return false;
       if (parsedMax != null && product.price > parsedMax) return false;
@@ -261,6 +275,7 @@ function ShopPageContent() {
     isVi,
     favoritesOnly,
     isFavorite,
+    quickFilter,
     parsedMin,
     parsedMax,
   ]);
@@ -333,6 +348,34 @@ function ShopPageContent() {
         },
       });
     }
+    if (quickFilter === "gift") {
+      chips.push({
+        key: "pick",
+        label: isVi ? "Quà biếu" : "Gift picks",
+        clear: () => {
+          setQuickFilter(null);
+          syncUrl({ quickFilter: null });
+        },
+      });
+    } else if (quickFilter === "tourist") {
+      chips.push({
+        key: "pick",
+        label: isVi ? "Cho khách du lịch" : "Travel picks",
+        clear: () => {
+          setQuickFilter(null);
+          syncUrl({ quickFilter: null });
+        },
+      });
+    } else if (quickFilter === "shelf-stable") {
+      chips.push({
+        key: "pick",
+        label: isVi ? "Dễ mang đi" : "Travel-friendly",
+        clear: () => {
+          setQuickFilter(null);
+          syncUrl({ quickFilter: null });
+        },
+      });
+    }
 
     return chips;
   }, [
@@ -341,6 +384,7 @@ function ShopPageContent() {
     parsedMin,
     parsedMax,
     favoritesOnly,
+    quickFilter,
     isVi,
     language,
   ]);
@@ -352,6 +396,7 @@ function ShopPageContent() {
     setMinPrice("");
     setMaxPrice("");
     setFavoritesOnly(false);
+    setQuickFilter(null);
     setView("grid");
     router.replace("/shop", { scroll: false });
   };
@@ -479,6 +524,53 @@ function ShopPageContent() {
           {favoriteIds.length}
         </span>
       </button>
+
+      <div className="space-y-2">
+        <h3 className="text-sm font-semibold text-sea-deep">
+          {isVi ? "Gợi ý mua" : "Shopping picks"}
+        </h3>
+        {(
+          [
+            {
+              id: "gift" as const,
+              icon: Gift,
+              label: isVi ? "Quà biếu" : "Gift picks",
+            },
+            {
+              id: "tourist" as const,
+              icon: Luggage,
+              label: isVi ? "Cho khách du lịch" : "Travel picks",
+            },
+            {
+              id: "shelf-stable" as const,
+              icon: Package,
+              label: isVi ? "Dễ mang đi" : "Travel-friendly",
+            },
+          ] as const
+        ).map((pick) => {
+          const Icon = pick.icon;
+          const active = quickFilter === pick.id;
+          return (
+            <button
+              key={pick.id}
+              type="button"
+              onClick={() => {
+                const next = active ? null : pick.id;
+                setQuickFilter(next);
+                syncUrl({ quickFilter: next });
+              }}
+              className={`flex w-full items-center gap-2 border px-3 py-2.5 text-left text-sm font-medium transition-colors ${
+                active
+                  ? "border-sea bg-sea text-foam"
+                  : "border-line bg-card text-sea-deep hover:border-sea"
+              }`}
+            >
+              <Icon className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+              {pick.label}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 
@@ -537,7 +629,7 @@ function ShopPageContent() {
         </section>
 
         <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
-          <div className="sticky top-[4.5rem] z-30 -mx-4 border-y border-line/70 bg-background/90 px-4 py-3 backdrop-blur-md sm:-mx-6 sm:px-6 lg:static lg:mx-0 lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none">
+          <div className="sticky top-[6.5rem] z-30 -mx-4 border-y border-line/70 bg-background/95 px-4 py-3 backdrop-blur-md sm:top-[7rem] sm:-mx-6 sm:px-6 lg:static lg:mx-0 lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none">
             <div className="flex flex-col gap-3 lg:flex-row">
               <label className="relative min-w-0 flex-1">
                 <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-mist" />
@@ -646,6 +738,45 @@ function ShopPageContent() {
                 </button>
               </div>
             </div>
+          </div>
+
+          <div className="mt-3 flex gap-2 overflow-x-auto pb-1 lg:hidden">
+            {(
+              [
+                {
+                  id: "tourist" as const,
+                  label: isVi ? "Du lịch" : "Travel",
+                },
+                {
+                  id: "gift" as const,
+                  label: isVi ? "Quà biếu" : "Gifts",
+                },
+                {
+                  id: "shelf-stable" as const,
+                  label: isVi ? "Dễ mang" : "Easy pack",
+                },
+              ] as const
+            ).map((pick) => {
+              const active = quickFilter === pick.id;
+              return (
+                <button
+                  key={pick.id}
+                  type="button"
+                  onClick={() => {
+                    const next = active ? null : pick.id;
+                    setQuickFilter(next);
+                    syncUrl({ quickFilter: next });
+                  }}
+                  className={`shrink-0 border px-3 py-1.5 text-xs font-medium transition-colors ${
+                    active
+                      ? "border-sea bg-sea text-foam"
+                      : "border-line bg-card text-sea-deep"
+                  }`}
+                >
+                  {pick.label}
+                </button>
+              );
+            })}
           </div>
 
           {activeChips.length > 0 && (

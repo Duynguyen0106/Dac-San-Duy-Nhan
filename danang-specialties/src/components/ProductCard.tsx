@@ -33,6 +33,8 @@ export default function ProductCard({
     t(`product.categories.${product.category}`) || product.category;
   const favorited = isFavorite(product.id);
   const [justAdded, setJustAdded] = useState(false);
+  const isGift = product.tags?.includes("gift");
+  const isTouristPick = product.tags?.includes("tourist");
 
   useEffect(() => {
     if (!justAdded) return;
@@ -44,6 +46,23 @@ export default function ProductCard({
     addItem(product, 1);
     setJustAdded(true);
   };
+
+  const badges = (
+    <div className="absolute bottom-3 left-3 z-[1] flex flex-wrap gap-1.5">
+      <span className="bg-sea-deep/80 px-2 py-1 text-[11px] font-medium uppercase tracking-wide text-foam backdrop-blur-sm">
+        {categoryLabel}
+      </span>
+      {isTouristPick ? (
+        <span className="bg-sun/95 px-2 py-1 text-[11px] font-medium uppercase tracking-wide text-white">
+          {isVi ? "Du lịch" : "Travel"}
+        </span>
+      ) : isGift ? (
+        <span className="bg-sun/95 px-2 py-1 text-[11px] font-medium uppercase tracking-wide text-white">
+          {isVi ? "Quà biếu" : "Gift"}
+        </span>
+      ) : null}
+    </div>
+  );
 
   const favoriteButton = (
     <button
@@ -96,8 +115,17 @@ export default function ProductCard({
         </Link>
         <div className="flex flex-col justify-between gap-4 p-4 sm:p-5">
           <div>
-            <p className="text-xs font-medium uppercase tracking-wide text-mist">
+            <p className="mt-1 text-xs font-medium uppercase tracking-wide text-mist">
               {categoryLabel}
+              {isTouristPick
+                ? isVi
+                  ? " · Du lịch"
+                  : " · Travel pick"
+                : isGift
+                  ? isVi
+                    ? " · Quà biếu"
+                    : " · Gift"
+                  : ""}
             </p>
             <Link href={`/products/${product.id}`}>
               <h3 className="mt-1 font-display text-xl font-semibold text-sea-deep hover:text-sea">
@@ -145,22 +173,20 @@ export default function ProductCard({
   return (
     <article className="group relative flex flex-col overflow-hidden border border-line bg-card transition-all duration-300 hover:-translate-y-1 hover:border-sea/40 hover:shadow-[0_16px_36px_-20px_rgba(15,92,108,0.45)]">
       {favoriteButton}
-      <Link
-        href={`/products/${product.id}`}
-        className="relative block aspect-square overflow-hidden bg-foam"
-      >
-        <Image
-          src={product.image}
-          alt={productName}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          unoptimized
-        />
-        <span className="absolute bottom-3 left-3 bg-sea-deep/80 px-2 py-1 text-[11px] font-medium uppercase tracking-wide text-foam backdrop-blur-sm">
-          {categoryLabel}
-        </span>
-      </Link>
+        <Link
+          href={`/products/${product.id}`}
+          className="relative block aspect-square overflow-hidden bg-foam"
+        >
+          <Image
+            src={product.image}
+            alt={productName}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            unoptimized
+          />
+          {badges}
+        </Link>
       <div className="flex flex-1 flex-col p-4">
         <Link href={`/products/${product.id}`}>
           <h3 className="font-display text-lg font-semibold text-sea-deep hover:text-sea">

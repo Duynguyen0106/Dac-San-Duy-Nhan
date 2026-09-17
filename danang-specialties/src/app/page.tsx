@@ -35,6 +35,9 @@ export default function Home() {
   const { t, language } = useTranslation();
   const { products } = useProducts();
   const bestSellers = products.slice(0, 8);
+  const travelPicks = products
+    .filter((product) => product.tags?.includes("tourist"))
+    .slice(0, 4);
 
   return (
     <div className="flex min-h-full flex-col bg-background text-foreground">
@@ -111,6 +114,38 @@ export default function Home() {
                   </Link>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="travel-gifts"
+          className="border-b border-line bg-[linear-gradient(135deg,#0f5c6c_0%,#0a3d48_55%,#1b4a3a_100%)]"
+        >
+          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+              <div className="max-w-xl">
+                <h2 className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                  {t("home.giftTitle")}
+                </h2>
+                <p className="mt-3 text-foam/85">{t("home.giftSubtitle")}</p>
+              </div>
+              <Link
+                href="/shop?pick=tourist"
+                className="inline-flex items-center bg-sun px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-sun-hover"
+              >
+                {t("home.giftCta")}
+              </Link>
+            </div>
+
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {travelPicks.map((product) => (
+                <ProductCard
+                  key={`gift-${product.id}`}
+                  product={product}
+                  language={language}
+                />
+              ))}
             </div>
           </div>
         </section>
