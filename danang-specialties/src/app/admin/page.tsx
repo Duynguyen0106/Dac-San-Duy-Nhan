@@ -310,11 +310,13 @@ export default function AdminPage() {
             >
               {isVi ? "Đăng nhập" : "Sign in"}
             </button>
-            <p className="mt-4 text-xs text-mist">
-              {isVi
-                ? "Mặc định local: duynhan2026 (đổi bằng ADMIN_PASSWORD)."
-                : "Local default: duynhan2026 (override with ADMIN_PASSWORD)."}
-            </p>
+            {process.env.NODE_ENV === "development" && (
+              <p className="mt-4 text-xs text-mist">
+                {isVi
+                  ? "Dev local: duynhan2026 (đổi bằng ADMIN_PASSWORD)."
+                  : "Dev local: duynhan2026 (override with ADMIN_PASSWORD)."}
+              </p>
+            )}
           </form>
         </main>
       </div>
