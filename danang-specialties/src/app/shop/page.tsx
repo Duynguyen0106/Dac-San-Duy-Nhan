@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Search, SlidersHorizontal } from "lucide-react";
 import Header from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
@@ -17,13 +18,29 @@ import {
 type CategoryFilter = "All" | ShopCategory;
 type SortOption = "featured" | "price-asc" | "price-desc" | "name";
 
-export default function ShopPage() {
+function isShopCategory(value: string | null): value is ShopCategory {
+  return Boolean(
+    value && (SHOP_CATEGORIES as readonly string[]).includes(value),
+  );
+}
+
+function ShopPageContent() {
+  const searchParams = useSearchParams();
   const { language } = useLanguage();
   const { products, loading, error, refresh } = useProducts();
+  const categoryFromUrl = searchParams.get("category");
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>("All");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<SortOption>("featured");
   const isVi = language === "VI";
+
+  useEffect(() => {
+    if (isShopCategory(categoryFromUrl)) {
+      setActiveCategory(categoryFromUrl);
+    } else if (!categoryFromUrl) {
+      setActiveCategory("All");
+    }
+  }, [categoryFromUrl]);
 
   const filters: { id: CategoryFilter; label: string }[] = [
     { id: "All", label: isVi ? "Tất cả" : "All" },
@@ -32,6 +49,14 @@ export default function ShopPage() {
       label: isVi ? categoryLabels[category].vi : categoryLabels[category].en,
     })),
   ];
+
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = { All: products.length };
+    for (const category of SHOP_CATEGORIES) {
+      counts[category] = products.filter((p) => p.category === category).length;
+    }
+    return counts;
+  }, [products]);
 
   const filteredProducts = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -71,6 +96,15 @@ export default function ShopPage() {
 
     return next;
   }, [products, activeCategory, query, sort, isVi]);
+
+  const selectCategory = (category: CategoryFilter) => {
+    setActiveCategory(category);
+    const url =
+      category === "All"
+        ? "/shop"
+        : `/shop?category=${encodeURIComponent(category)}`;
+    window.history.replaceState(null, "", url);
+  };
 
   return (
     <div className="flex min-h-full flex-col bg-background text-foreground">
@@ -153,18 +187,26 @@ export default function ShopPage() {
               <ul className="mt-4 flex gap-2 overflow-x-auto pb-1 lg:block lg:space-y-1 lg:overflow-visible lg:border lg:border-line lg:bg-card lg:p-2 lg:pb-2">
                 {filters.map((filter) => {
                   const isActive = activeCategory === filter.id;
+                  const count = categoryCounts[filter.id] ?? 0;
                   return (
                     <li key={filter.id} className="shrink-0 lg:block">
                       <button
                         type="button"
-                        onClick={() => setActiveCategory(filter.id)}
-                        className={`w-full px-3 py-2.5 text-left text-sm font-medium transition-colors lg:w-full ${
+                        onClick={() => selectCategory(filter.id)}
+                        className={`flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left text-sm font-medium transition-colors lg:w-full ${
                           isActive
                             ? "bg-sea text-foam"
                             : "border border-line bg-card text-sea-deep hover:bg-foam lg:border-0"
                         }`}
                       >
-                        {filter.label}
+                        <span>{filter.label}</span>
+                        <span
+                          className={`tabular-nums text-xs ${
+                            isActive ? "text-foam/80" : "text-mist"
+                          }`}
+                        >
+                          {count}
+                        </span>
                       </button>
                     </li>
                   );
@@ -222,5 +264,25 @@ export default function ShopPage() {
 
       <SiteFooter />
     </div>
+  );
+}
+
+export default function ShopPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-full flex-col bg-background text-foreground">
+          <Header />
+          <main className="flex-1 bg-[linear-gradient(180deg,#f3f7f6_0%,#e8f1ef_45%,#efe8dc_100%)]">
+            <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+              <p className="text-mist">Loading shop...</p>
+            </div>
+          </main>
+          <SiteFooter />
+        </div>
+      }
+    >
+      <ShopPageContent />
+    </Suspense>
   );
 }

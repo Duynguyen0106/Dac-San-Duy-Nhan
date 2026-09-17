@@ -17,25 +17,37 @@
     "heroSubtitle": "Đặc sản chọn lọc từ thành phố biển — mang hương vị quê nhà đến tận tay bạn.",
     "shopNow": "Mua Ngay",
     "categoriesTitle": "Danh Mục Nổi Bật",
-    "categoriesSubtitle": "Khám phá những nhóm đặc sản được yêu thích nhất từ Đà Nẵng.",
+    "categoriesSubtitle": "Bảy nhóm đặc sản kiểu chợ Cồn — từ hải sản khô, mắm Nam Ô đến bánh tráng Đại Lộc.",
     "bestSellersTitle": "Bán Chạy Nhất",
     "bestSellersSubtitle": "Những món được khách lựa chọn nhiều nhất tuần này.",
     "categories": {
       "dried-seafood": {
         "name": "Hải Sản Khô",
-        "description": "Cá, mực và hải sản phơi khô từ biển miền Trung."
+        "description": "Mực một nắng, cá chỉ vàng, cá bống rút xương và tôm khô từ biển Quảng Nam – Đà Nẵng."
       },
-      "jerky-snacks": {
-        "name": "Bò Khô & Ăn Vặt",
-        "description": "Bò khô đậm vị và món ăn vặt mang hương Đà Nẵng."
+      "snacks": {
+        "name": "Đồ Rim & Ăn Vặt",
+        "description": "Mực rim me, ghẹ sữa rim, bò khô và các món ăn liền quen thuộc ở chợ Cồn."
       },
-      "tea": {
-        "name": "Trà",
-        "description": "Trà sâm dứa và thức uống thanh mát quê nhà."
+      "cold-cuts": {
+        "name": "Chả & Tré",
+        "description": "Chả bò, tré, nem chua và chả cá — món lạnh đặc trưng xứ Quảng làm quà."
+      },
+      "condiments": {
+        "name": "Mắm & Nước Chấm",
+        "description": "Mắm nêm Dì Cẩn, mắm tôm chua và nước mắm Nam Ô trứ danh."
+      },
+      "tea-coffee": {
+        "name": "Trà & Cà Phê",
+        "description": "Trà sâm dứa thanh mát, trà gừng mật ong và cà phê rang xay đậm vị Đà Nẵng."
       },
       "traditional-cakes": {
         "name": "Bánh Truyền Thống",
-        "description": "Bánh đặc sản làm thủ công theo công thức miền Trung."
+        "description": "Bánh khô mè Cẩm Lệ, bánh dừa nướng, bánh đậu xanh và kẹo mè xửng."
+      },
+      "rice-paper": {
+        "name": "Bánh Tráng",
+        "description": "Bánh tráng Đại Lộc cuốn thịt heo, bánh tráng mè nướng và gói ăn liền."
       }
     }
   },
@@ -48,19 +60,14 @@
     "chatZalo": "Chat Zalo",
     "addToCart": "Thêm vào giỏ",
     "viewDetails": "Xem chi tiết",
-    "descriptions": {
-      "1": "Trà sâm dứa Duy Nhân thơm dịu, vị ngọt thanh dễ uống. Pha nóng hay lạnh đều ngon — món quà thanh mát mang hương Đà Nẵng.",
-      "2": "Bò khô Duy Nhân mềm dai, ướp gia vị đậm đà vừa miệng. Thơm nức, cay nhẹ — hoàn hảo để nhâm nhi hay biếu người thân.",
-      "3": "Mực một nắng xé sợi sẵn, ngọt biển tự nhiên và giòn dai hấp dẫn. Ăn liền, nướng nhẹ hoặc nhâm nhi cùng bia đều tuyệt.",
-      "4": "Cá chỉ vàng khô chọn lọc, thịt chắc và vị ngọt sâu đặc trưng miền Trung. Rang muối ớt hoặc làm món nhắm đều ngon khó cưỡng.",
-      "5": "Bánh đậu xanh mềm mịn, thơm bùi vị đậu quen thuộc. Hộp 6 cái tiện biếu — ngọt dịu, vừa miệng, rất hợp làm quà Đà Nẵng.",
-      "6": "Cá thiểu tẩm gia vị thơm lừng, vị mặn ngọt hài hòa. Giòn rụm khi rang — món ăn vặt biển cả được yêu thích mọi nhà."
-    },
     "categories": {
       "Dried Seafood": "Hải Sản Khô",
-      "Snacks": "Ăn Vặt",
-      "Tea": "Trà",
-      "Traditional Cakes": "Bánh Truyền Thống"
+      "Snacks": "Đồ Rim & Ăn Vặt",
+      "Cold Cuts": "Chả & Tré",
+      "Condiments": "Mắm & Nước Chấm",
+      "Tea & Coffee": "Trà & Cà Phê",
+      "Traditional Cakes": "Bánh Truyền Thống",
+      "Rice Paper": "Bánh Tráng"
     }
   }
 }

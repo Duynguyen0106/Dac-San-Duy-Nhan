@@ -2,18 +2,30 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Fish, Cookie, CupSoda, Drumstick } from "lucide-react";
+import {
+  Fish,
+  Cookie,
+  CupSoda,
+  Drumstick,
+  Beef,
+  Droplets,
+  ScrollText,
+} from "lucide-react";
 import Header from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
 import SiteFooter from "@/components/SiteFooter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useProducts } from "@/hooks/useProducts";
+import { HOME_CATEGORY_TO_SHOP } from "@/lib/products";
 
 const categoryMeta = [
   { id: "dried-seafood", icon: Fish },
-  { id: "jerky-snacks", icon: Drumstick },
-  { id: "tea", icon: CupSoda },
+  { id: "snacks", icon: Drumstick },
+  { id: "cold-cuts", icon: Beef },
+  { id: "condiments", icon: Droplets },
+  { id: "tea-coffee", icon: CupSoda },
   { id: "traditional-cakes", icon: Cookie },
+  { id: "rice-paper", icon: ScrollText },
 ] as const;
 
 const HERO_IMAGE =
@@ -79,12 +91,13 @@ export default function Home() {
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {categoryMeta.map((category, index) => {
                 const Icon = category.icon;
+                const shopCategory = HOME_CATEGORY_TO_SHOP[category.id];
                 return (
                   <Link
                     key={category.id}
-                    href="/shop"
+                    href={`/shop?category=${encodeURIComponent(shopCategory)}`}
                     className="animate-soft-rise group flex flex-col items-start border border-line bg-card p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-sea hover:shadow-[0_12px_32px_-16px_rgba(15,92,108,0.35)]"
-                    style={{ animationDelay: `${index * 0.08}s` }}
+                    style={{ animationDelay: `${index * 0.06}s` }}
                   >
                     <span className="flex h-11 w-11 items-center justify-center bg-foam text-sea transition-colors group-hover:bg-sea group-hover:text-foam">
                       <Icon className="h-5 w-5" strokeWidth={1.75} />

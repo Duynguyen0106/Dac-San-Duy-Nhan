@@ -36,9 +36,9 @@ export const formatWeight = (grams: number, language: Language = "VI"): string =
     const formatted = Number.isInteger(kg)
       ? String(kg)
       : kg.toFixed(2).replace(/\.?0+$/, "");
-    return language === "VI" ? `${formatted} kg` : `${formatted} kg`;
+    return `${formatted} kg`;
   }
-  return language === "VI" ? `${grams}g` : `${grams}g`;
+  return `${grams}g`;
 };
 
 /** Resolve product weight in grams for shipping totals. */
@@ -55,8 +55,11 @@ export const getProductWeightGrams = (product: {
 export const SHOP_CATEGORIES = [
   "Dried Seafood",
   "Snacks",
-  "Tea",
+  "Cold Cuts",
+  "Condiments",
+  "Tea & Coffee",
   "Traditional Cakes",
+  "Rice Paper",
 ] as const;
 
 export type ShopCategory = (typeof SHOP_CATEGORIES)[number];
@@ -66,7 +69,21 @@ export const categoryLabels: Record<
   { vi: string; en: string }
 > = {
   "Dried Seafood": { vi: "Hải Sản Khô", en: "Dried Seafood" },
-  Snacks: { vi: "Ăn Vặt", en: "Snacks" },
-  Tea: { vi: "Trà", en: "Tea" },
+  Snacks: { vi: "Đồ Rim & Ăn Vặt", en: "Rim & Snacks" },
+  "Cold Cuts": { vi: "Chả & Tré", en: "Cold Cuts" },
+  Condiments: { vi: "Mắm & Nước Chấm", en: "Sauces & Condiments" },
+  "Tea & Coffee": { vi: "Trà & Cà Phê", en: "Tea & Coffee" },
   "Traditional Cakes": { vi: "Bánh Truyền Thống", en: "Traditional Cakes" },
+  "Rice Paper": { vi: "Bánh Tráng", en: "Rice Paper" },
+};
+
+/** Map homepage category card ids to shop filter values. */
+export const HOME_CATEGORY_TO_SHOP: Record<string, ShopCategory> = {
+  "dried-seafood": "Dried Seafood",
+  snacks: "Snacks",
+  "cold-cuts": "Cold Cuts",
+  condiments: "Condiments",
+  "tea-coffee": "Tea & Coffee",
+  "traditional-cakes": "Traditional Cakes",
+  "rice-paper": "Rice Paper",
 };

@@ -17,25 +17,37 @@
     "heroSubtitle": "Handpicked specialties from the coastal city — hometown flavor, delivered to you.",
     "shopNow": "Shop Now",
     "categoriesTitle": "Featured Categories",
-    "categoriesSubtitle": "Explore the most loved specialty groups from Da Nang.",
+    "categoriesSubtitle": "Seven Chợ Cồn–style groups — from one-sun squid and Nam O fish sauce to Đại Lộc rice paper.",
     "bestSellersTitle": "Best Sellers",
     "bestSellersSubtitle": "The specialties customers choose most this week.",
     "categories": {
       "dried-seafood": {
         "name": "Dried Seafood",
-        "description": "Sun-dried fish, squid, and coastal seafood."
+        "description": "One-sun squid, golden threadfin, boneless goby, and shrimp from Quang Nam–Da Nang seas."
       },
-      "jerky-snacks": {
-        "name": "Jerky & Snacks",
-        "description": "Savory jerky and snacks with Da Nang character."
+      "snacks": {
+        "name": "Rim & Snacks",
+        "description": "Tamarind squid, soft-shell crab rim, beef jerky, and ready-to-eat Chợ Cồn snacks."
       },
-      "tea": {
-        "name": "Tea",
-        "description": "Ginseng pineapple tea and refreshing local blends."
+      "cold-cuts": {
+        "name": "Cold Cuts",
+        "description": "Beef roll, tre, nem chua, and fish cake — Quang Nam–Da Nang cold cuts for gifting."
+      },
+      "condiments": {
+        "name": "Sauces & Condiments",
+        "description": "Di Can fermented sauces, sour shrimp paste, and legendary Nam O fish sauce."
+      },
+      "tea-coffee": {
+        "name": "Tea & Coffee",
+        "description": "Cooling pandan-ginseng tea, ginger honey brew, and bold Da Nang roast coffee."
       },
       "traditional-cakes": {
         "name": "Traditional Cakes",
-        "description": "Handcrafted cakes from Central Vietnam recipes."
+        "description": "Cam Le sesame crisps, roasted coconut cakes, mung bean cakes, and sesame candy."
+      },
+      "rice-paper": {
+        "name": "Rice Paper",
+        "description": "Đại Lộc rice paper for rolls, sesame-toasted sheets, and ready snack packs."
       }
     }
   },
@@ -48,19 +60,14 @@
     "chatZalo": "Chat on Zalo",
     "addToCart": "Add to Cart",
     "viewDetails": "View details",
-    "descriptions": {
-      "1": "Duy Nhân pandan tea with a gentle aroma and light natural sweetness. Brew hot or iced — a refreshing Da Nang gift in every cup.",
-      "2": "Duy Nhân beef jerky with a tender chew and well-balanced seasoning. Savory, lightly spicy, and perfect for snacking or gifting.",
-      "3": "Sun-dried squid, shredded and ready to enjoy — naturally sweet with a satisfying chew. Great straight from the pack, lightly grilled, or with a cold drink.",
-      "4": "Premium dried golden threadfin bream with firm flesh and deep coastal sweetness. Delicious chili-salt fried or served as a savory snack.",
-      "5": "Soft, fragrant mung bean cakes with a classic nutty sweetness. A box of 6 — gentle, not overly sweet, and ideal as a Da Nang souvenir.",
-      "6": "Seasoned dried anchovy with a fragrant, savory-sweet balance. Crispy when pan-fried — a coastal snack the whole family loves."
-    },
     "categories": {
       "Dried Seafood": "Dried Seafood",
-      "Snacks": "Snacks",
-      "Tea": "Tea",
-      "Traditional Cakes": "Traditional Cakes"
+      "Snacks": "Rim & Snacks",
+      "Cold Cuts": "Cold Cuts",
+      "Condiments": "Sauces & Condiments",
+      "Tea & Coffee": "Tea & Coffee",
+      "Traditional Cakes": "Traditional Cakes",
+      "Rice Paper": "Rice Paper"
     }
   }
 }
