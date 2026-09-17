@@ -50,8 +50,10 @@ export default function CheckoutPage() {
   const [values, setValues] = useState<CheckoutFormValues>(initialValues);
   const [errors, setErrors] = useState<CheckoutFormErrors>({});
   const [touched, setTouched] = useState<Partial<Record<keyof CheckoutFormValues, boolean>>>({});
-  const [status, setStatus] = useState<"idle" | "copied" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "copied" | "error" | "saving">("idle");
   const [statusMessage, setStatusMessage] = useState("");
+  const [leadId, setLeadId] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
   const messagePreview = useMemo(
     () =>
@@ -99,7 +101,48 @@ export default function CheckoutPage() {
     return Object.keys(nextErrors).length === 0;
   };
 
-  const handleOrderViaChat = async () => {
+  const saveLead = async (channel: "zalo" | "whatsapp" | "saved_only") => {
+    const draftMessage = composeOrderMessage({
+      values,
+      items,
+      totalPrice,
+      totalWeightGrams,
+      language,
+    });
+
+    const response = await fetch("/api/leads", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        language,
+        channel,
+        customer: values,
+        items: items.map((item) => ({
+          productId: item.product.id,
+          name: item.product.name,
+          nameEn: item.product.nameEn,
+          quantity: item.quantity,
+          unitPrice: item.product.price,
+          weight: item.product.weight,
+        })),
+        totalPrice,
+        totalWeightGrams,
+        message: draftMessage,
+      }),
+    });
+
+    if (!response.ok) {
+      const data = (await response.json().catch(() => null)) as {
+        error?: string;
+      } | null;
+      throw new Error(data?.error || "Failed to save lead.");
+    }
+
+    const data = (await response.json()) as { lead: { id: string } };
+    return data.lead.id;
+  };
+
+  const handleOrderViaChat = async (openChat: boolean) => {
     closeCart();
 
     if (items.length === 0) {
@@ -122,39 +165,77 @@ export default function CheckoutPage() {
       return;
     }
 
-    const message = composeOrderMessage({
-      values,
-      items,
-      totalPrice,
-      totalWeightGrams,
-      language,
-    });
-
-    const chatUrl = getOrderChatUrl(language, message);
+    setSubmitting(true);
+    setStatus("saving");
+    setStatusMessage(
+      isVi ? "Đang lưu đơn trên web..." : "Saving your order on the website...",
+    );
 
     try {
-      await navigator.clipboard.writeText(message);
-      setStatus("copied");
-      setStatusMessage(
-        isVi
-          ? `Đã sao chép đơn hàng. Dán tin nhắn vào ${contact.chatLabel} để hoàn tất.`
-          : `Order copied. ${contact.chatLabel} will open with your order ready to send.`,
-      );
-    } catch {
-      setStatus("copied");
-      setStatusMessage(
-        isVi
-          ? `Mở ${contact.chatLabel} và gửi nội dung đơn hàng bên dưới.`
-          : `Open ${contact.chatLabel} and send the order message shown below.`,
-      );
-    }
+      const channel = openChat
+        ? contact.chatChannel === "whatsapp"
+          ? "whatsapp"
+          : "zalo"
+        : "saved_only";
+      const savedLeadId = await saveLead(channel);
+      setLeadId(savedLeadId);
 
-    window.open(chatUrl, "_blank", "noopener,noreferrer");
+      const message = composeOrderMessage({
+        values,
+        items,
+        totalPrice,
+        totalWeightGrams,
+        language,
+        leadId: savedLeadId,
+      });
+
+      if (!openChat) {
+        setStatus("copied");
+        setStatusMessage(
+          isVi
+            ? `Đã lưu đơn ${savedLeadId}. Shop sẽ gọi/Zalo lại nếu bạn chưa nhắn được.`
+            : `Order ${savedLeadId} saved. We’ll call/message you back if chat isn’t available.`,
+        );
+        return;
+      }
+
+      const chatUrl = getOrderChatUrl(language, message);
+
+      try {
+        await navigator.clipboard.writeText(message);
+        setStatus("copied");
+        setStatusMessage(
+          isVi
+            ? `Đã lưu đơn ${savedLeadId} và sao chép tin nhắn. Dán vào ${contact.chatLabel} để hoàn tất.`
+            : `Saved ${savedLeadId} and copied the message. ${contact.chatLabel} will open with your order.`,
+        );
+      } catch {
+        setStatus("copied");
+        setStatusMessage(
+          isVi
+            ? `Đã lưu đơn ${savedLeadId}. Mở ${contact.chatLabel} và gửi nội dung bên dưới.`
+            : `Saved ${savedLeadId}. Open ${contact.chatLabel} and send the message below.`,
+        );
+      }
+
+      window.open(chatUrl, "_blank", "noopener,noreferrer");
+    } catch (error) {
+      setStatus("error");
+      setStatusMessage(
+        error instanceof Error
+          ? error.message
+          : isVi
+            ? "Không lưu được đơn. Thử lại hoặc gọi shop."
+            : "Could not save the order. Try again or call the shop.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    void handleOrderViaChat();
+    void handleOrderViaChat(true);
   };
 
   if (items.length === 0) {
@@ -377,7 +458,7 @@ export default function CheckoutPage() {
                 <div
                   role="status"
                   className={`mt-6 flex items-start gap-2 border px-4 py-3 text-sm ${
-                    status === "copied"
+                    status === "copied" || status === "saving"
                       ? "border-sea/30 bg-foam text-sea-deep"
                       : "border-red-200 bg-red-50 text-red-800"
                   }`}
@@ -387,23 +468,44 @@ export default function CheckoutPage() {
                   ) : (
                     <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
                   )}
-                  <span>{statusMessage}</span>
+                  <span>
+                    {statusMessage}
+                    {leadId ? (
+                      <>
+                        {" "}
+                        <span className="font-semibold">{leadId}</span>
+                      </>
+                    ) : null}
+                  </span>
                 </div>
               )}
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <button
                   type="submit"
-                  className={`inline-flex flex-1 items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 ${
+                  disabled={submitting}
+                  className={`inline-flex flex-1 items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 ${
                     contact.chatChannel === "whatsapp"
                       ? "bg-[#25D366]"
                       : "bg-[#0068FF]"
                   }`}
                 >
                   <MessageCircle className="h-4 w-4" />
-                  {isVi
-                    ? `Đặt hàng qua ${contact.chatLabel}`
-                    : `Order via ${contact.chatLabel}`}
+                  {submitting
+                    ? isVi
+                      ? "Đang gửi..."
+                      : "Sending..."
+                    : isVi
+                      ? `Đặt hàng qua ${contact.chatLabel}`
+                      : `Order via ${contact.chatLabel}`}
+                </button>
+                <button
+                  type="button"
+                  disabled={submitting}
+                  onClick={() => void handleOrderViaChat(false)}
+                  className="inline-flex items-center justify-center border border-line px-6 py-3.5 text-sm font-medium text-sea-deep transition-colors hover:border-sea hover:text-sea disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {isVi ? "Lưu đơn (chưa chat được)" : "Save order (can’t chat now)"}
                 </button>
                 <button
                   type="button"
@@ -416,8 +518,8 @@ export default function CheckoutPage() {
 
               <p className="mt-4 text-xs leading-relaxed text-mist">
                 {isVi
-                  ? `Nút ${contact.chatLabel} sẽ sao chép chi tiết đơn hàng và mở chat với Duy Nhân (${contact.phoneDisplay}). Bạn chỉ cần dán tin nhắn để gửi.`
-                  : `The ${contact.chatLabel} button opens chat with Duy Nhân (${contact.phoneDisplay}) and prefills your order details so you can send in one tap.`}
+                  ? `Đơn được lưu trên web trước khi mở ${contact.chatLabel}. Nếu bạn chưa nhắn được ngay, shop vẫn có SĐT để gọi lại.`
+                  : `Your order is saved on the website before ${contact.chatLabel} opens. If you can’t message right away, the shop still has your phone to call back.`}
               </p>
             </form>
 

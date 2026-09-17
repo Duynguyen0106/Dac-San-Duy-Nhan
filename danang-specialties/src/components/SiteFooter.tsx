@@ -8,6 +8,7 @@ import { SHOP_CONTACT, getShopContact } from "@/lib/shopContact";
 export default function SiteFooter() {
   const { t, language } = useTranslation();
   const contact = getShopContact(language);
+  const isVi = language === "VI";
 
   return (
     <footer className="border-t border-line bg-sea-deep text-foam">
@@ -88,6 +89,12 @@ export default function SiteFooter() {
             </Link>
             <Link href="/tips" className="text-foam/85 hover:text-white">
               {t("common.tips")}
+            </Link>
+            <Link
+              href="/promo/airport-packing"
+              className="text-foam/85 hover:text-white"
+            >
+              {isVi ? "Set mang máy bay" : "Airport packing"}
             </Link>
             <Link href="/shop" className="text-foam/85 hover:text-white">
               {t("common.shop")}

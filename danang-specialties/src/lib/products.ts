@@ -16,7 +16,19 @@ export type Product = {
   descriptionEn: string;
   /** Optional merchandising tags for shop filters. */
   tags?: ProductTag[];
+  /**
+   * Inventory units remaining.
+   * Omit / null = not tracked (treated as available).
+   * 0 = sold out.
+   */
+  stock?: number | null;
 };
+
+/** True when the product can be added to cart. */
+export function isProductAvailable(product: Product): boolean {
+  if (product.stock === undefined || product.stock === null) return true;
+  return product.stock > 0;
+}
 
 export const formatPrice = (price: number, language: Language = "VI") =>
   new Intl.NumberFormat(language === "VI" ? "vi-VN" : "en-US").format(price) +

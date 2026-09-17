@@ -19,20 +19,24 @@ import { useTranslation } from "@/hooks/useTranslation";
 import {
   SHOP_CATEGORIES,
   formatPrice,
+  isProductAvailable,
   type Product,
   type ShopCategory,
 } from "@/lib/products";
+import AdminLeadsPanel from "@/components/AdminLeadsPanel";
 
 type FormState = {
   name: string;
   nameEn: string;
   category: ShopCategory;
   price: string;
+  stock: string;
   weight: string;
   weightGrams: string;
   image: string;
   description: string;
   descriptionEn: string;
+  tags: Product["tags"];
 };
 
 const emptyForm: FormState = {
@@ -40,11 +44,13 @@ const emptyForm: FormState = {
   nameEn: "",
   category: "Dried Seafood",
   price: "",
+  stock: "",
   weight: "",
   weightGrams: "",
   image: "",
   description: "",
   descriptionEn: "",
+  tags: undefined,
 };
 
 function toFormState(product: Product): FormState {
@@ -53,12 +59,17 @@ function toFormState(product: Product): FormState {
     nameEn: product.nameEn,
     category: product.category as ShopCategory,
     price: String(product.price),
+    stock:
+      product.stock === undefined || product.stock === null
+        ? ""
+        : String(product.stock),
     weight: product.weight,
     weightGrams:
       product.weightGrams === undefined ? "" : String(product.weightGrams),
     image: product.image,
     description: product.description,
     descriptionEn: product.descriptionEn,
+    tags: product.tags,
   };
 }
 
@@ -76,6 +87,16 @@ function toPayload(form: FormState) {
 
   if (form.weightGrams.trim() !== "") {
     payload.weightGrams = Number(form.weightGrams);
+  }
+
+  if (form.stock.trim() === "") {
+    payload.stock = null;
+  } else {
+    payload.stock = Number(form.stock);
+  }
+
+  if (form.tags && form.tags.length > 0) {
+    payload.tags = form.tags;
   }
 
   return payload;
@@ -257,6 +278,35 @@ export default function AdminPage() {
 
     if (editingId === product.id) cancelForm();
     setMessage(isVi ? "Đã xóa sản phẩm." : "Product deleted.");
+    await loadProducts();
+  };
+
+  const quickPatchProduct = async (
+    product: Product,
+    patch: { price?: number; stock?: number | null },
+  ) => {
+    setError(null);
+    setMessage(null);
+    const response = await fetch(`/api/products/${product.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(patch),
+    });
+    const data = (await response.json()) as {
+      error?: string;
+      product?: Product;
+    };
+    if (!response.ok) {
+      setError(
+        data.error || (isVi ? "Không cập nhật được." : "Could not update."),
+      );
+      return;
+    }
+    setMessage(
+      isVi
+        ? `Đã cập nhật #${product.id} (giá/tồn).`
+        : `Updated #${product.id} (price/stock).`,
+    );
     await loadProducts();
   };
 
@@ -457,6 +507,25 @@ export default function AdminPage() {
                     className={inputClass}
                   />
                 </Field>
+                <Field
+                  label={
+                    isVi
+                      ? "Tồn kho (để trống = không theo dõi)"
+                      : "Stock (blank = untracked)"
+                  }
+                >
+                  <input
+                    type="number"
+                    min={0}
+                    step={1}
+                    value={form.stock}
+                    onChange={(e) =>
+                      setForm({ ...form, stock: e.target.value })
+                    }
+                    placeholder={isVi ? "VD: 12" : "e.g. 12"}
+                    className={inputClass}
+                  />
+                </Field>
                 <Field label={isVi ? "Khối lượng hiển thị" : "Display weight"}>
                   <input
                     required
@@ -530,6 +599,12 @@ export default function AdminPage() {
             </form>
           )}
 
+          <AdminLeadsPanel
+            isVi={isVi}
+            language={language}
+            enabled={authenticated}
+          />
+
           <div className="mt-8 border border-line bg-card">
             <div className="border-b border-line px-4 py-3 sm:px-5">
               <h2 className="font-display text-lg font-semibold text-sea-deep">
@@ -571,9 +646,77 @@ export default function AdminPage() {
                         #{product.id} · {product.name}
                       </p>
                       <p className="text-sm text-mist">
-                        {product.nameEn} · {product.category} · {product.weight}{" "}
-                        · {formatPrice(product.price, language)}
+                        {product.nameEn} · {product.category} · {product.weight}
                       </p>
+                      <div className="mt-2 flex flex-wrap items-end gap-3">
+                        <label className="text-xs text-mist">
+                          {isVi ? "Giá" : "Price"}
+                          <input
+                            type="number"
+                            min={0}
+                            step={1000}
+                            defaultValue={product.price}
+                            key={`price-${product.id}-${product.price}`}
+                            onBlur={(event) => {
+                              const next = Number(event.target.value);
+                              if (
+                                !Number.isFinite(next) ||
+                                next === product.price
+                              ) {
+                                return;
+                              }
+                              void quickPatchProduct(product, { price: next });
+                            }}
+                            className="mt-1 block w-28 border border-line bg-background px-2 py-1.5 text-sm text-sea-deep"
+                          />
+                        </label>
+                        <label className="text-xs text-mist">
+                          {isVi ? "Tồn" : "Stock"}
+                          <input
+                            type="number"
+                            min={0}
+                            step={1}
+                            defaultValue={
+                              product.stock === undefined ||
+                              product.stock === null
+                                ? ""
+                                : product.stock
+                            }
+                            key={`stock-${product.id}-${product.stock ?? "x"}`}
+                            placeholder="∞"
+                            onBlur={(event) => {
+                              const raw = event.target.value.trim();
+                              const next =
+                                raw === "" ? null : Number(raw);
+                              const current =
+                                product.stock === undefined
+                                  ? null
+                                  : product.stock;
+                              if (raw !== "" && !Number.isFinite(next)) return;
+                              if (next === current) return;
+                              void quickPatchProduct(product, {
+                                stock: next as number | null,
+                              });
+                            }}
+                            className="mt-1 block w-20 border border-line bg-background px-2 py-1.5 text-sm text-sea-deep"
+                          />
+                        </label>
+                        <span
+                          className={`mb-1.5 text-xs font-medium ${
+                            isProductAvailable(product)
+                              ? "text-sea"
+                              : "text-red-700"
+                          }`}
+                        >
+                          {isProductAvailable(product)
+                            ? isVi
+                              ? "Còn bán"
+                              : "Available"
+                            : isVi
+                              ? "Hết hàng"
+                              : "Sold out"}
+                        </span>
+                      </div>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       <button

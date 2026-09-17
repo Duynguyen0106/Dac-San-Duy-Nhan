@@ -76,12 +76,14 @@ export function composeOrderMessage({
   totalPrice,
   totalWeightGrams,
   language,
+  leadId,
 }: {
   values: CheckoutFormValues;
   items: CartItem[];
   totalPrice: number;
   totalWeightGrams: number;
   language: Language;
+  leadId?: string;
 }): string {
   const isVi = language === "VI";
   const paymentLabel =
@@ -97,6 +99,9 @@ export function composeOrderMessage({
     isVi
       ? "Xin chào Duy Nhân! Tôi muốn đặt hàng:"
       : "Hello Duy Nhân! I would like to place an order:",
+    leadId
+      ? `${isVi ? "Mã đơn web" : "Web order ID"}: ${leadId}`
+      : null,
     "",
     isVi ? "=== THÔNG TIN KHÁCH ===" : "=== CUSTOMER INFO ===",
     `${isVi ? "Họ tên" : "Name"}: ${values.name.trim()}`,

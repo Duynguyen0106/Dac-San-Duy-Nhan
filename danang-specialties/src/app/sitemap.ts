@@ -37,6 +37,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 0.7,
     },
+    {
+      url: `${siteUrl}/promo/airport-packing`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
   ];
 
   const categoryEntries: MetadataRoute.Sitemap = SHOP_CATEGORY_SLUGS.map(
