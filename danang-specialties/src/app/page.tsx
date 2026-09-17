@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Fish, Cookie, CupSoda, Drumstick } from "lucide-react";
 import Header from "@/components/Header";
+import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
-
-type Language = "VI" | "EN";
+import { type Language } from "@/lib/products";
 
 const categories = [
   {
@@ -42,10 +43,6 @@ const categories = [
     icon: Cookie,
   },
 ];
-
-const formatPrice = (price: number, language: Language) =>
-  new Intl.NumberFormat(language === "VI" ? "vi-VN" : "en-US").format(price) +
-  "đ";
 
 const bestSellers = products.slice(0, 4);
 
@@ -93,12 +90,12 @@ export default function Home() {
                 : "Handpicked specialties from the coastal city — hometown flavor, delivered to you."}
             </p>
             <div className="animate-fade-up delay-300 mt-8">
-              <a
-                href="#best-sellers"
+              <Link
+                href="/shop"
                 className="inline-flex items-center bg-sun px-7 py-3.5 text-sm font-semibold tracking-wide text-white transition-colors hover:bg-sun-hover sm:text-base"
               >
                 {isVi ? "Mua Ngay" : "Shop Now"}
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -124,9 +121,9 @@ export default function Home() {
               {categories.map((category, index) => {
                 const Icon = category.icon;
                 return (
-                  <button
+                  <Link
                     key={category.id}
-                    type="button"
+                    href="/shop"
                     className="animate-soft-rise group flex flex-col items-start border border-line bg-card p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-sea hover:shadow-[0_12px_32px_-16px_rgba(15,92,108,0.35)]"
                     style={{ animationDelay: `${index * 0.08}s` }}
                   >
@@ -139,7 +136,7 @@ export default function Home() {
                     <span className="mt-2 text-sm leading-relaxed text-mist">
                       {isVi ? category.descriptionVi : category.descriptionEn}
                     </span>
-                  </button>
+                  </Link>
                 );
               })}
             </div>
@@ -164,38 +161,12 @@ export default function Home() {
             </div>
 
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {bestSellers.map((product, index) => (
-                <article
+              {bestSellers.map((product) => (
+                <ProductCard
                   key={product.id}
-                  className="animate-soft-rise flex flex-col overflow-hidden border border-line bg-card transition-transform duration-300 hover:-translate-y-1"
-                  style={{ animationDelay: `${index * 0.08}s` }}
-                >
-                  <div className="relative aspect-square overflow-hidden bg-foam">
-                    <Image
-                      src={product.image}
-                      alt={isVi ? product.name : product.nameEn}
-                      fill
-                      className="object-cover transition-transform duration-500 hover:scale-105"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      unoptimized
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-4">
-                    <h3 className="font-display text-lg font-semibold text-sea-deep">
-                      {isVi ? product.name : product.nameEn}
-                    </h3>
-                    <p className="mt-1 text-sm text-mist">{product.weight}</p>
-                    <p className="mt-3 text-base font-semibold text-sea">
-                      {formatPrice(product.price, language)}
-                    </p>
-                    <button
-                      type="button"
-                      className="mt-4 w-full bg-sea px-4 py-2.5 text-sm font-semibold text-foam transition-colors hover:bg-sea-deep"
-                    >
-                      {isVi ? "Thêm vào giỏ" : "Add to Cart"}
-                    </button>
-                  </div>
-                </article>
+                  product={product}
+                  language={language}
+                />
               ))}
             </div>
           </div>
