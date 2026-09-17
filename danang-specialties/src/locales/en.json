@@ -60,7 +60,8 @@
     "decreaseQty": "Decrease quantity",
     "increaseQty": "Increase quantity",
     "buyNow": "Buy Now",
-    "chatZalo": "Chat on Zalo",
+    "chatZalo": "Chat on WhatsApp",
+    "chatNow": "Chat on WhatsApp",
     "addToCart": "Add to Cart",
     "viewDetails": "View details",
     "categories": {

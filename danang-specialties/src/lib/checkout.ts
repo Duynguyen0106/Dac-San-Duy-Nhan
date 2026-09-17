@@ -4,10 +4,7 @@ import {
   formatWeight,
   type Language,
 } from "@/lib/products";
-
-import { SHOP_CONTACT } from "@/lib/shopContact";
-
-export const ZALO_ORDER_URL = SHOP_CONTACT.zaloUrl;
+import { getShopContact } from "@/lib/shopContact";
 
 export type PaymentMethod = "COD" | "BankTransfer";
 
@@ -51,7 +48,7 @@ export function validateCheckoutForm(
   } else if (!phonePattern.test(phone)) {
     errors.phone = isVi
       ? "Số điện thoại không hợp lệ. Ví dụ: 0901234567 hoặc +84901234567."
-      : "Invalid phone number. Example: 0901234567 or +84901234567.";
+      : "Invalid phone number. Example: +447700900123 or +84901234567.";
   }
 
   if (!values.address.trim()) {
@@ -73,7 +70,7 @@ export function validateCheckoutForm(
   return errors;
 }
 
-export function composeZaloOrderMessage({
+export function composeOrderMessage({
   values,
   items,
   totalPrice,
@@ -125,4 +122,15 @@ export function composeZaloOrderMessage({
   ];
 
   return lines.filter((line) => line !== null).join("\n");
+}
+
+/** @deprecated Prefer composeOrderMessage */
+export const composeZaloOrderMessage = composeOrderMessage;
+
+export function getOrderChatUrl(language: Language, message?: string) {
+  const contact = getShopContact(language);
+  if (contact.chatChannel === "whatsapp" && message) {
+    return `${contact.chatUrl}?text=${encodeURIComponent(message)}`;
+  }
+  return contact.chatUrl;
 }

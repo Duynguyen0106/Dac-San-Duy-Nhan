@@ -2,12 +2,11 @@
 
 import { MapPin, Phone } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
-import { SHOP_CONTACT } from "@/lib/shopContact";
+import { getShopContact } from "@/lib/shopContact";
 
 export default function SiteFooter() {
   const { t, language } = useTranslation();
-  const isVi = language === "VI";
-  const address = isVi ? SHOP_CONTACT.addressVi : SHOP_CONTACT.addressEn;
+  const contact = getShopContact(language);
 
   return (
     <footer className="border-t border-line bg-sea-deep text-foam">
@@ -25,7 +24,7 @@ export default function SiteFooter() {
                 <span className="block text-xs font-semibold uppercase tracking-wide text-foam/60">
                   {t("common.addressLabel")}
                 </span>
-                {address}
+                {contact.address}
               </span>
             </p>
             <p className="flex items-start gap-2.5">
@@ -35,19 +34,19 @@ export default function SiteFooter() {
                   {t("common.phoneLabel")}
                 </span>
                 <a
-                  href={SHOP_CONTACT.phoneTel}
+                  href={contact.phoneTel}
                   className="font-medium transition-colors hover:text-white"
                 >
-                  {SHOP_CONTACT.phoneDisplay}
+                  {contact.phoneDisplay}
                 </a>
                 <span className="text-foam/60"> · </span>
                 <a
-                  href={SHOP_CONTACT.zaloUrl}
+                  href={contact.chatUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-colors hover:text-white"
                 >
-                  Zalo
+                  {contact.chatLabel}
                 </a>
               </span>
             </p>
@@ -58,9 +57,7 @@ export default function SiteFooter() {
           <p className="text-xs font-semibold uppercase tracking-wide text-foam/60">
             {t("common.hoursLabel")}
           </p>
-          <p className="mt-1 text-sm text-foam/90">
-            {isVi ? SHOP_CONTACT.hoursVi : SHOP_CONTACT.hoursEn}
-          </p>
+          <p className="mt-1 text-sm text-foam/90">{contact.hours}</p>
         </div>
       </div>
     </footer>
