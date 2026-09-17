@@ -12,6 +12,7 @@ import {
   Trash2,
   X,
 } from "lucide-react";
+import AdminFacebookPoster from "@/components/AdminFacebookPoster";
 import Header from "@/components/Header";
 import { useTranslation } from "@/hooks/useTranslation";
 import {
@@ -93,6 +94,7 @@ export default function AdminPage() {
   const [editingId, setEditingId] = useState<number | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [form, setForm] = useState<FormState>(emptyForm);
+  const [facebookFocusId, setFacebookFocusId] = useState<number | null>(null);
 
   const sortedProducts = useMemo(
     () => [...products].sort((a, b) => a.id - b.id),
@@ -331,8 +333,8 @@ export default function AdminPage() {
               </h1>
               <p className="mt-1 text-sm text-mist">
                 {isVi
-                  ? "Thêm, sửa, xóa sản phẩm — lưu vào data/products.json."
-                  : "Add, edit, delete products — saved to data/products.json."}
+                  ? "Thêm, sửa, xóa sản phẩm — và tạo bài Facebook cho từng món."
+                  : "Add, edit, delete products — and create Facebook posts for each item."}
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -564,7 +566,20 @@ export default function AdminPage() {
                         · {formatPrice(product.price, language)}
                       </p>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setFacebookFocusId(product.id);
+                          document
+                            .getElementById("admin-facebook-tool")
+                            ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                        }}
+                        className="inline-flex items-center gap-1.5 border border-[#1877F2]/30 px-3 py-2 text-sm font-medium text-[#1877F2] hover:bg-[#1877F2]/5"
+                      >
+                        <FacebookGlyph className="h-3.5 w-3.5" />
+                        FB
+                      </button>
                       <button
                         type="button"
                         onClick={() => startEdit(product)}
@@ -587,6 +602,15 @@ export default function AdminPage() {
               </ul>
             )}
           </div>
+
+          <div id="admin-facebook-tool">
+            <AdminFacebookPoster
+              products={sortedProducts}
+              isVi={isVi}
+              language={language}
+              focusProductId={facebookFocusId}
+            />
+          </div>
         </div>
       </main>
     </div>
@@ -608,5 +632,13 @@ function Field({
       {label}
       {children}
     </label>
+  );
+}
+
+function FacebookGlyph({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden fill="currentColor">
+      <path d="M14 8h2V5h-2c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h2.2l.8-3H13V9c0-.6.4-1 1-1z" />
+    </svg>
   );
 }
