@@ -180,9 +180,14 @@ export function buildLocalBusinessJsonLd() {
       SHOP_CONTACT.messengerUrl,
     ],
     priceRange: "₫₫",
-    areaServed: {
-      "@type": "City",
-      name: "Đà Nẵng",
+    areaServed: [
+      { "@type": "City", name: "Đà Nẵng" },
+      { "@type": "Country", name: "Vietnam" },
+      { "@type": "AdministrativeArea", name: "Worldwide shipping" },
+    ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Da Nang specialties with domestic and international shipping",
     },
   };
 }
