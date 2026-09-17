@@ -10,7 +10,7 @@ const beVietnam = Be_Vietnam_Pro({
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
-  subsets: ["latin", "vietnamese"],
+  subsets: ["latin"],
   weight: ["500", "600", "700"],
 });
 
