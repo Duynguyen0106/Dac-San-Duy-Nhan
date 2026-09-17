@@ -1,0 +1,61 @@
+{
+  "common": {
+    "brand": "Duy Nhân - Da Nang Specialties",
+    "brandShort": "Duy Nhân",
+    "shop": "Shop",
+    "home": "Home",
+    "cart": "Shopping cart",
+    "language": "Language",
+    "footerTagline": "Da Nang specialties — bring the coast home."
+  },
+  "home": {
+    "heroAlt": "Da Nang beach at sunrise",
+    "heroHeadline": "Taste of Da Nang's Sea",
+    "heroSubtitle": "Handpicked specialties from the coastal city — hometown flavor, delivered to you.",
+    "shopNow": "Shop Now",
+    "categoriesTitle": "Featured Categories",
+    "categoriesSubtitle": "Explore the most loved specialty groups from Da Nang.",
+    "bestSellersTitle": "Best Sellers",
+    "bestSellersSubtitle": "The specialties customers choose most this week.",
+    "categories": {
+      "dried-seafood": {
+        "name": "Dried Seafood",
+        "description": "Sun-dried fish, squid, and coastal seafood."
+      },
+      "jerky-snacks": {
+        "name": "Jerky & Snacks",
+        "description": "Savory jerky and snacks with Da Nang character."
+      },
+      "tea": {
+        "name": "Tea",
+        "description": "Ginseng pineapple tea and refreshing local blends."
+      },
+      "traditional-cakes": {
+        "name": "Traditional Cakes",
+        "description": "Handcrafted cakes from Central Vietnam recipes."
+      }
+    }
+  },
+  "product": {
+    "weight": "Weight",
+    "quantity": "Quantity",
+    "decreaseQty": "Decrease quantity",
+    "increaseQty": "Increase quantity",
+    "buyNow": "Buy Now",
+    "chatZalo": "Chat on Zalo",
+    "addToCart": "Add to Cart",
+    "viewDetails": "View details",
+    "descriptions": {
+      "1": "Fragrant dried golden anchovy, a Da Nang specialty. Firm texture and natural sweetness — great fried with chili salt or as a snack.",
+      "2": "Da Nang beef jerky that is tender and savory. Mild heat and rich aroma — ideal as a gift or everyday snack.",
+      "3": "Refreshing ginseng pineapple tea with fragrant ginseng and gentle pineapple sweetness. Cooling and good for wellness.",
+      "4": "Premium dried squid from Central Vietnam seas. Thick, naturally sweet meat — delicious grilled or rehydrated and torn by hand.",
+      "5": "Thin, chewy Da Nang rice paper for pork rolls with fresh herbs. A famous street-food specialty of the coastal city."
+    },
+    "categories": {
+      "Dried Seafood": "Dried Seafood",
+      "Snacks": "Snacks",
+      "Tea": "Tea"
+    }
+  }
+}

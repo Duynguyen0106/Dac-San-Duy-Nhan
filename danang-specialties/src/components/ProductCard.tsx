@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { useTranslation } from "@/hooks/useTranslation";
 import { formatPrice, type Language, type Product } from "@/lib/products";
 
 type ProductCardProps = {
@@ -13,10 +14,13 @@ type ProductCardProps = {
 
 export default function ProductCard({
   product,
-  language = "VI",
+  language: languageProp,
 }: ProductCardProps) {
   const { addItem } = useCart();
+  const { t, language: contextLanguage } = useTranslation();
+  const language = languageProp ?? contextLanguage;
   const isVi = language === "VI";
+  const productName = isVi ? product.name : product.nameEn;
 
   return (
     <article className="flex flex-col overflow-hidden border border-line bg-card transition-transform duration-300 hover:-translate-y-1">
@@ -26,7 +30,7 @@ export default function ProductCard({
       >
         <Image
           src={product.image}
-          alt={isVi ? product.name : product.nameEn}
+          alt={productName}
           fill
           className="object-cover transition-transform duration-500 hover:scale-105"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -36,7 +40,7 @@ export default function ProductCard({
       <div className="flex flex-1 flex-col p-4">
         <Link href={`/products/${product.id}`}>
           <h3 className="font-display text-lg font-semibold text-sea-deep hover:text-sea">
-            {isVi ? product.name : product.nameEn}
+            {productName}
           </h3>
         </Link>
         <p className="mt-1 text-sm text-mist">{product.weight}</p>
@@ -50,13 +54,13 @@ export default function ProductCard({
             className="inline-flex w-full items-center justify-center gap-2 bg-sea px-4 py-2.5 text-sm font-semibold text-foam transition-colors hover:bg-sea-deep"
           >
             <ShoppingCart className="h-4 w-4" />
-            {isVi ? "Thêm vào giỏ" : "Add to Cart"}
+            {t("product.addToCart")}
           </button>
           <Link
             href={`/products/${product.id}`}
             className="inline-flex w-full items-center justify-center border border-line px-4 py-2 text-center text-sm font-medium text-sea-deep transition-colors hover:border-sea hover:text-sea"
           >
-            {isVi ? "Xem chi tiết" : "View details"}
+            {t("product.viewDetails")}
           </Link>
         </div>
       </div>

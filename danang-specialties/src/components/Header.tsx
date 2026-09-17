@@ -3,12 +3,11 @@
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/context/CartContext";
-import { useLanguage } from "@/components/Providers";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Header() {
-  const { language, setLanguage } = useLanguage();
+  const { t, language, setLanguage } = useTranslation();
   const { itemCount, openCart } = useCart();
-  const isVi = language === "VI";
 
   return (
     <header className="sticky top-0 z-50 border-b border-line/70 bg-background/90 backdrop-blur-md">
@@ -22,14 +21,14 @@ export default function Header() {
               DN
             </span>
             <span className="truncate font-display text-base font-semibold tracking-tight text-sea-deep sm:text-lg">
-              Duy Nhân - Đặc Sản Đà Nẵng
+              {t("common.brand")}
             </span>
           </Link>
           <Link
             href="/shop"
             className="hidden text-sm font-medium text-sea-deep transition-colors hover:text-sea sm:inline"
           >
-            {isVi ? "Cửa hàng" : "Shop"}
+            {t("common.shop")}
           </Link>
         </div>
 
@@ -38,11 +37,11 @@ export default function Header() {
             href="/shop"
             className="text-sm font-medium text-sea-deep transition-colors hover:text-sea sm:hidden"
           >
-            Shop
+            {t("common.shop")}
           </Link>
           <div
             role="group"
-            aria-label="Language"
+            aria-label={t("common.language")}
             className="flex overflow-hidden rounded-md border border-line bg-card text-sm font-medium"
           >
             <button
@@ -72,7 +71,7 @@ export default function Header() {
           <button
             type="button"
             onClick={openCart}
-            aria-label={isVi ? "Giỏ hàng" : "Shopping cart"}
+            aria-label={t("common.cart")}
             className="relative rounded-md border border-line bg-card p-2 text-sea-deep transition-colors hover:border-sea hover:text-sea"
           >
             <ShoppingCart className="h-5 w-5" strokeWidth={1.75} />

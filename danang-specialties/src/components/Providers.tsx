@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { CartProvider } from "@/context/CartContext";
 import CartDrawer from "@/components/CartDrawer";
 import type { Language } from "@/lib/products";
@@ -29,9 +29,18 @@ function LanguageProvider({ children }: { children: ReactNode }) {
 
   return (
     <LanguageContext.Provider value={value}>
+      <DocumentLang />
       {children}
     </LanguageContext.Provider>
   );
+}
+
+function DocumentLang() {
+  const { language } = useLanguage();
+  useEffect(() => {
+    document.documentElement.lang = language === "VI" ? "vi" : "en";
+  }, [language]);
+  return null;
 }
 
 function CartDrawerHost() {

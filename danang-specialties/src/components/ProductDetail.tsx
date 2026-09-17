@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { MessageCircle, Minus, Plus, ShoppingBag } from "lucide-react";
 import Header from "@/components/Header";
-import { useLanguage } from "@/components/Providers";
 import { useCart } from "@/context/CartContext";
+import { useTranslation } from "@/hooks/useTranslation";
 import { formatPrice, type Product } from "@/lib/products";
 
 const ZALO_URL = "https://zalo.me/0905747413";
@@ -16,7 +16,7 @@ type ProductDetailProps = {
 };
 
 export default function ProductDetail({ product }: ProductDetailProps) {
-  const { language } = useLanguage();
+  const { t, language } = useTranslation();
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
   const isVi = language === "VI";
@@ -28,6 +28,12 @@ export default function ProductDetail({ product }: ProductDetailProps) {
     addItem(product, quantity);
   };
 
+  const productName = isVi ? product.name : product.nameEn;
+  const productDescription =
+    t(`product.descriptions.${product.id}`) || product.description;
+  const categoryLabel =
+    t(`product.categories.${product.category}`) || product.category;
+
   return (
     <div className="flex min-h-full flex-col bg-background text-foreground">
       <Header />
@@ -36,23 +42,21 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
           <nav className="mb-6 text-sm text-mist">
             <Link href="/" className="hover:text-sea">
-              {isVi ? "Trang chủ" : "Home"}
+              {t("common.home")}
             </Link>
             <span className="mx-2">/</span>
             <Link href="/shop" className="hover:text-sea">
-              {isVi ? "Cửa hàng" : "Shop"}
+              {t("common.shop")}
             </Link>
             <span className="mx-2">/</span>
-            <span className="text-sea-deep">
-              {isVi ? product.name : product.nameEn}
-            </span>
+            <span className="text-sea-deep">{productName}</span>
           </nav>
 
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
             <div className="relative aspect-square overflow-hidden border border-line bg-card sm:aspect-[4/3] lg:aspect-square">
               <Image
                 src={product.image}
-                alt={isVi ? product.name : product.nameEn}
+                alt={productName}
                 fill
                 priority
                 className="object-cover"
@@ -63,21 +67,21 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
             <div className="flex flex-col">
               <p className="text-sm font-medium uppercase tracking-wide text-mist">
-                {product.category}
+                {categoryLabel}
               </p>
               <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-sea-deep sm:text-4xl">
-                {isVi ? product.name : product.nameEn}
+                {productName}
               </h1>
               <p className="mt-4 font-display text-2xl font-semibold text-sea sm:text-3xl">
                 {formatPrice(product.price, language)}
               </p>
               <p className="mt-2 text-sm text-mist">
-                {isVi ? "Khối lượng" : "Weight"}:{" "}
+                {t("product.weight")}:{" "}
                 <span className="font-medium text-sea-deep">{product.weight}</span>
               </p>
 
               <p className="mt-6 text-base leading-relaxed text-foreground/85">
-                {product.description}
+                {productDescription}
               </p>
 
               <div className="mt-8">
@@ -85,13 +89,13 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   htmlFor="quantity"
                   className="mb-2 block text-sm font-medium text-sea-deep"
                 >
-                  {isVi ? "Số lượng" : "Quantity"}
+                  {t("product.quantity")}
                 </label>
                 <div className="inline-flex items-center border border-line bg-card">
                   <button
                     type="button"
                     onClick={decrease}
-                    aria-label={isVi ? "Giảm số lượng" : "Decrease quantity"}
+                    aria-label={t("product.decreaseQty")}
                     className="p-3 text-sea-deep transition-colors hover:bg-foam"
                   >
                     <Minus className="h-4 w-4" />
@@ -112,7 +116,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   <button
                     type="button"
                     onClick={increase}
-                    aria-label={isVi ? "Tăng số lượng" : "Increase quantity"}
+                    aria-label={t("product.increaseQty")}
                     className="p-3 text-sea-deep transition-colors hover:bg-foam"
                   >
                     <Plus className="h-4 w-4" />
@@ -127,7 +131,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   className="inline-flex flex-1 items-center justify-center gap-2 bg-sun px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-sun-hover"
                 >
                   <ShoppingBag className="h-4 w-4" />
-                  {isVi ? "Mua Ngay" : "Buy Now"}
+                  {t("product.buyNow")}
                 </button>
                 <a
                   href={ZALO_URL}
@@ -136,7 +140,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   className="inline-flex flex-1 items-center justify-center gap-2 border border-sea bg-card px-6 py-3.5 text-sm font-semibold text-sea transition-colors hover:bg-sea hover:text-foam"
                 >
                   <MessageCircle className="h-4 w-4" />
-                  {isVi ? "Chat Zalo" : "Chat on Zalo"}
+                  {t("product.chatZalo")}
                 </a>
               </div>
             </div>
@@ -146,12 +150,10 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
       <footer className="border-t border-line bg-sea-deep text-foam">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p className="font-display text-lg font-semibold">Duy Nhân</p>
-          <p className="text-sm text-foam/75">
-            {isVi
-              ? "Đặc sản Đà Nẵng — mang biển cả về nhà."
-              : "Da Nang specialties — bring the coast home."}
+          <p className="font-display text-lg font-semibold">
+            {t("common.brandShort")}
           </p>
+          <p className="text-sm text-foam/75">{t("common.footerTagline")}</p>
         </div>
       </footer>
     </div>
