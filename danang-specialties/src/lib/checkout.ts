@@ -5,7 +5,9 @@ import {
   type Language,
 } from "@/lib/products";
 
-export const ZALO_ORDER_URL = "https://zalo.me/0905747413";
+import { SHOP_CONTACT } from "@/lib/shopContact";
+
+export const ZALO_ORDER_URL = SHOP_CONTACT.zaloUrl;
 
 export type PaymentMethod = "COD" | "BankTransfer";
 

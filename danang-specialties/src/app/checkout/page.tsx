@@ -12,16 +12,17 @@ import {
   Truck,
 } from "lucide-react";
 import Header from "@/components/Header";
+import SiteFooter from "@/components/SiteFooter";
 import { useLanguage } from "@/components/Providers";
 import { useCart } from "@/context/CartContext";
 import {
   composeZaloOrderMessage,
   validateCheckoutForm,
-  ZALO_ORDER_URL,
   type CheckoutFormErrors,
   type CheckoutFormValues,
 } from "@/lib/checkout";
 import { formatPrice, formatWeight } from "@/lib/products";
+import { SHOP_CONTACT } from "@/lib/shopContact";
 
 const initialValues: CheckoutFormValues = {
   name: "",
@@ -144,7 +145,7 @@ export default function CheckoutPage() {
       );
     }
 
-    window.open(ZALO_ORDER_URL, "_blank", "noopener,noreferrer");
+    window.open(SHOP_CONTACT.zaloUrl, "_blank", "noopener,noreferrer");
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -405,8 +406,8 @@ export default function CheckoutPage() {
 
               <p className="mt-4 text-xs leading-relaxed text-mist">
                 {isVi
-                  ? "Nút Zalo sẽ sao chép chi tiết đơn hàng và mở chat với Duy Nhân (0905747413). Bạn chỉ cần dán tin nhắn để gửi."
-                  : "The Zalo button copies your order details and opens chat with Duy Nhân (0905747413). Paste the message to send."}
+                  ? `Nút Zalo sẽ sao chép chi tiết đơn hàng và mở chat với Duy Nhân (${SHOP_CONTACT.phoneDisplay}). Bạn chỉ cần dán tin nhắn để gửi.`
+                  : `The Zalo button copies your order details and opens chat with Duy Nhân (${SHOP_CONTACT.phoneDisplay}). Paste the message to send.`}
               </p>
             </form>
 
@@ -476,16 +477,7 @@ export default function CheckoutPage() {
         </div>
       </main>
 
-      <footer className="border-t border-line bg-sea-deep text-foam">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p className="font-display text-lg font-semibold">Duy Nhân</p>
-          <p className="text-sm text-foam/75">
-            {isVi
-              ? "Đặt hàng nhanh qua Zalo — hỗ trợ Việt & English."
-              : "Order quickly via Zalo — Vietnamese & English supported."}
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

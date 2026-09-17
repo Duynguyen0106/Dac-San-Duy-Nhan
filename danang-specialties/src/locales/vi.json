@@ -6,7 +6,10 @@
     "home": "Trang chủ",
     "cart": "Giỏ hàng",
     "language": "Ngôn ngữ",
-    "footerTagline": "Đặc sản Đà Nẵng — mang biển cả về nhà."
+    "footerTagline": "Đặc sản Đà Nẵng — mang biển cả về nhà.",
+    "addressLabel": "Địa chỉ",
+    "phoneLabel": "Điện thoại",
+    "hoursLabel": "Giờ mở cửa"
   },
   "home": {
     "heroAlt": "Bãi biển Đà Nẵng lúc bình minh",

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Search, SlidersHorizontal } from "lucide-react";
 import Header from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
+import SiteFooter from "@/components/SiteFooter";
 import { useLanguage } from "@/components/Providers";
 import { useProducts } from "@/hooks/useProducts";
 import {
@@ -219,16 +220,7 @@ export default function ShopPage() {
         </div>
       </main>
 
-      <footer className="border-t border-line bg-sea-deep text-foam">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p className="font-display text-lg font-semibold">Duy Nhân</p>
-          <p className="text-sm text-foam/75">
-            {isVi
-              ? "Đặc sản Đà Nẵng — mang biển cả về nhà."
-              : "Da Nang specialties — bring the coast home."}
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

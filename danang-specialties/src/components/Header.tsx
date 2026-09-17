@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { ShoppingCart } from "lucide-react";
+import { Phone, ShoppingCart } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useTranslation } from "@/hooks/useTranslation";
+import { SHOP_CONTACT } from "@/lib/shopContact";
 
 export default function Header() {
   const { t, language, setLanguage } = useTranslation();
@@ -11,6 +12,22 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line/70 bg-background/90 backdrop-blur-md">
+      <div className="border-b border-line/50 bg-foam/60">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-4 gap-y-1 px-4 py-1.5 text-xs text-sea-deep sm:px-6">
+          <a
+            href={SHOP_CONTACT.phoneTel}
+            className="inline-flex items-center gap-1.5 font-medium transition-colors hover:text-sea"
+          >
+            <Phone className="h-3.5 w-3.5" />
+            {SHOP_CONTACT.phoneDisplay}
+          </a>
+          <p className="max-w-full truncate text-mist sm:max-w-[70%]">
+            {language === "VI"
+              ? SHOP_CONTACT.addressVi
+              : SHOP_CONTACT.addressEn}
+          </p>
+        </div>
+      </div>
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:h-[4.5rem] sm:px-6">
         <div className="flex min-w-0 items-center gap-4 sm:gap-6">
           <Link href="/" className="flex min-w-0 items-center gap-3">

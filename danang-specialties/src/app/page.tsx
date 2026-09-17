@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Fish, Cookie, CupSoda, Drumstick } from "lucide-react";
 import Header from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
+import SiteFooter from "@/components/SiteFooter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useProducts } from "@/hooks/useProducts";
 
@@ -126,14 +127,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-line bg-sea-deep text-foam">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p className="font-display text-lg font-semibold">
-            {t("common.brandShort")}
-          </p>
-          <p className="text-sm text-foam/75">{t("common.footerTagline")}</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

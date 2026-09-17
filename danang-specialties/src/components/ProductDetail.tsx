@@ -5,11 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { MessageCircle, Minus, Plus, ShoppingBag } from "lucide-react";
 import Header from "@/components/Header";
+import SiteFooter from "@/components/SiteFooter";
 import { useCart } from "@/context/CartContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import { formatPrice, type Product } from "@/lib/products";
-
-const ZALO_URL = "https://zalo.me/0905747413";
+import { SHOP_CONTACT } from "@/lib/shopContact";
 
 type ProductDetailProps = {
   product: Product;
@@ -135,7 +135,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   {t("product.buyNow")}
                 </button>
                 <a
-                  href={ZALO_URL}
+                  href={SHOP_CONTACT.zaloUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex flex-1 items-center justify-center gap-2 border border-sea bg-card px-6 py-3.5 text-sm font-semibold text-sea transition-colors hover:bg-sea hover:text-foam"
@@ -149,14 +149,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         </div>
       </main>
 
-      <footer className="border-t border-line bg-sea-deep text-foam">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p className="font-display text-lg font-semibold">
-            {t("common.brandShort")}
-          </p>
-          <p className="text-sm text-foam/75">{t("common.footerTagline")}</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

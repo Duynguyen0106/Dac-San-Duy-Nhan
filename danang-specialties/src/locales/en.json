@@ -6,7 +6,10 @@
     "home": "Home",
     "cart": "Shopping cart",
     "language": "Language",
-    "footerTagline": "Da Nang specialties — bring the coast home."
+    "footerTagline": "Da Nang specialties — bring the coast home.",
+    "addressLabel": "Address",
+    "phoneLabel": "Phone",
+    "hoursLabel": "Hours"
   },
   "home": {
     "heroAlt": "Da Nang beach at sunrise",
