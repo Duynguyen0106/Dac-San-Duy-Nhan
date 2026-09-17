@@ -176,7 +176,7 @@
     "category": "Cold Cuts",
     "price": 120000,
     "weight": "500g",
-    "image": "/products/cha-lua.jpg",
+    "image": "/products/cha-bo-real.jpg",
     "description": "Chả bò Đà Nẵng dai giòn, thơm tiêu và lá chuối. Ăn với bánh mì, bún hoặc làm món nhắm — đặc sản lạnh nổi tiếng xứ Quảng.",
     "descriptionEn": "Da Nang beef roll — springy, peppery, wrapped in banana leaf aroma. Serve with bread, noodles, or as a cold-cut snack — a Quang Nam–Da Nang classic.",
     "tags": [
@@ -190,7 +190,7 @@
     "category": "Cold Cuts",
     "price": 85000,
     "weight": "400g",
-    "image": "/products/nem-chua.jpg",
+    "image": "/products/tre-da-nang-real.jpg",
     "description": "Tré Đà Nẵng chua nhẹ, thơm thính và gia vị truyền thống. Ăn với rau sống, bánh tráng hoặc cơm nóng — vị quê khó quên.",
     "descriptionEn": "Da Nang tre — lightly tangy fermented pork with toasted rice aroma. Enjoy with herbs, rice paper, or hot rice — unforgettable hometown flavor.",
     "tags": []
@@ -202,7 +202,7 @@
     "category": "Snacks",
     "price": 95000,
     "weight": "500g",
-    "image": "/products/spring-rolls.jpg",
+    "image": "/products/cha-ram-tom-dat-real.jpg",
     "description": "Chả ram tôm đất giòn rụm, nhân tôm ngọt đặc trưng miền Trung. Chiên lại là nóng giòn — món đông lạnh tiện lợi làm quà.",
     "descriptionEn": "Crispy Central Vietnam shrimp spring rolls with sweet local shrimp filling. Refry until hot and crunchy — a convenient frozen specialty gift.",
     "tags": []
@@ -246,7 +246,7 @@
     "price": 120000,
     "weight": "Gift box",
     "weightGrams": 350,
-    "image": "/products/tea-pandan-leaf.jpg",
+    "image": "/products/hop-qua-tra-sam-dua-real.jpg",
     "description": "Hộp quà trà sâm dứa đóng đẹp — gồm trà túi truyền thống sẵn sàng biếu Tết hoặc khách du lịch mang về. Thanh mát, dễ dùng.",
     "descriptionEn": "Beautifully boxed pandan-ginseng tea — traditional bagged tea ready for Tet or traveler gifting. Refreshing and easy to brew.",
     "tags": [
@@ -262,7 +262,7 @@
     "category": "Tea & Coffee",
     "price": 70000,
     "weight": "200g",
-    "image": "/products/tea-ginger.jpg",
+    "image": "/products/tra-gung-mat-ong-real.jpg",
     "description": "Trà gừng mật ong ấm bụng, thơm cay nhẹ. Pha nóng ngày mưa Đà Nẵng hoặc làm quà ý nghĩa cho người lớn tuổi.",
     "descriptionEn": "Warming ginger honey tea with a gentle spicy aroma. Brew hot on rainy Da Nang days, or gift to elders who love comforting drinks.",
     "tags": [
@@ -277,7 +277,7 @@
     "category": "Traditional Cakes",
     "price": 55000,
     "weight": "300g",
-    "image": "/products/sesame-cookie.jpg",
+    "image": "/products/banh-kho-me-cam-le-real.jpg",
     "description": "Bánh khô mè làng Cẩm Lệ — giòn xốp, thơm mè rang và thoảng gừng. Đặc sản tuổi thơ xứ Quảng, đóng hộp đẹp để mang về.",
     "descriptionEn": "Cam Le sesame crisp cakes — light, crunchy, with toasted sesame and a hint of ginger. A Quang Nam–Da Nang childhood classic, gift-boxed.",
     "tags": [
@@ -370,7 +370,7 @@
     "price": 65000,
     "weight": "10 pieces",
     "weightGrams": 300,
-    "image": "/products/nem-chua-cut.jpg",
+    "image": "/products/nem-chua-real.jpg",
     "description": "Nem chua Đà Nẵng chua dịu, thơm tỏi ớt và lá đinh lăng. Ăn liền với rau sống — món lạnh làm quà rất được chuộng.",
     "descriptionEn": "Da Nang fermented pork rolls — gently tangy with garlic, chili, and herbs. Ready to eat with fresh greens — a popular cold-cut gift.",
     "tags": []
@@ -382,7 +382,7 @@
     "category": "Cold Cuts",
     "price": 90000,
     "weight": "500g",
-    "image": "/products/cha-lua.jpg",
+    "image": "/products/cha-lua-real.jpg",
     "description": "Chả lụa dai thơm, gói lá chuối truyền thống. Cắt lát ăn bánh mì, bún hoặc đãi khách — món lạnh không thể thiếu.",
     "descriptionEn": "Classic banana-leaf pork loaf with a springy bite. Slice for sandwiches, noodles, or hosting — an essential cold cut.",
     "tags": []
@@ -427,7 +427,7 @@
     "price": 75000,
     "weight": "500ml",
     "weightGrams": 600,
-    "image": "/products/nuoc-mam-generic.jpg",
+    "image": "/products/nuoc-mam-nam-o-real.jpg",
     "description": "Nước mắm Nam Ô nổi tiếng Đà Nẵng, ủ từ cá cơm than theo cách truyền thống. Vàng óng, thơm sạch — chai quà ý nghĩa mang về.",
     "descriptionEn": "Famous Nam O fish sauce from Da Nang, aged from black anchovies the traditional way. Golden and clean-tasting — a meaningful bottle to bring home.",
     "tags": [
@@ -443,7 +443,7 @@
     "category": "Tea & Coffee",
     "price": 110000,
     "weight": "250g",
-    "image": "/products/coffee-beans.jpg",
+    "image": "/products/ca-phe-rang-xay-real.jpg",
     "description": "Cà phê rang xay đậm vị Đà Nẵng — hậu ngọt, thơm chocolate nhẹ. Pha phin sáng sớm hoặc làm quà cho người mê cà phê.",
     "descriptionEn": "Bold Da Nang-style roast ground coffee with a sweet finish and soft chocolate notes. Brew in a phin at sunrise or gift to coffee lovers.",
     "tags": [
@@ -460,7 +460,7 @@
     "price": 68000,
     "weight": "Box of 10",
     "weightGrams": 350,
-    "image": "/products/banh-in.jpg",
+    "image": "/products/banh-in-real.jpg",
     "description": "Bánh in đậu xanh hoa văn đẹp, ngọt thanh — món bánh lễ Tết quen thuộc tại các gian đặc sản Đà Nẵng.",
     "descriptionEn": "Decorated pressed mung bean cakes with gentle sweetness — a festive classic on Da Nang specialty shelves.",
     "tags": [
@@ -551,7 +551,7 @@
     "category": "Cold Cuts",
     "price": 95000,
     "weight": "500g",
-    "image": "/products/cha-lua.jpg",
+    "image": "/products/cha-ca-real.jpg",
     "description": "Chả cá Đà Nẵng dai giòn, thơm cá biển tươi. Ăn với bún, bánh mì hoặc đãi khách — món lạnh làm quà tiện lợi.",
     "descriptionEn": "Springy Da Nang fish cake with fresh coastal fish aroma. Serve with noodles, sandwiches, or guests — a convenient cold-cut gift.",
     "tags": []
@@ -578,7 +578,7 @@
     "category": "Condiments",
     "price": 35000,
     "weight": "200g",
-    "image": "/products/muoi-ot.jpg",
+    "image": "/products/muoi-ot-xanh-real.jpg",
     "description": "Muối ớt xanh xay tay — cay thơm, chấm hải sản nướng hoặc trái cây. Gia vị nhỏ gọn rất hợp làm quà kèm đặc sản khô.",
     "descriptionEn": "Hand-pounded green chili salt — fragrant heat for grilled seafood or fruit. A compact condiment gift that pairs with dried specialties.",
     "tags": [
@@ -594,7 +594,7 @@
     "price": 165000,
     "weight": "Gift set",
     "weightGrams": 400,
-    "image": "/products/coffee-phin.jpg",
+    "image": "/products/ca-phe-phin-qua-tang-real.jpg",
     "description": "Set quà cà phê phin Đà Nẵng gồm bột rang xay và phin inox nhỏ. Đậm đà, hậu ngọt — sẵn sàng biếu đồng nghiệp hoặc khách du lịch.",
     "descriptionEn": "Da Nang phin coffee gift set with ground roast and a compact stainless phin. Bold and sweet-finished — ready for colleagues or travelers.",
     "tags": [
@@ -657,7 +657,7 @@
     "price": 95000,
     "weight": "Gift set",
     "weightGrams": 700,
-    "image": "/products/banh-trang-cuon.jpg",
+    "image": "/products/banh-trang-cuon-set-real.jpg",
     "description": "Set quà bánh tráng cuốn thịt heo: bánh tráng Đại Lộc kèm gợi ý dùng với mắm nêm. Đóng hộp đẹp cho khách mang về sau chuyến Đà Nẵng.",
     "descriptionEn": "Pork-roll rice paper gift set: Đại Lộc sheets with pairing notes for fermented sauce. Neatly boxed for travelers leaving Da Nang.",
     "tags": [

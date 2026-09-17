@@ -1,11 +1,13 @@
 Product images:
 
-- `*-real.jpg` and files under `real/`: original Duy Nhân Chợ Cồn shop photos
-  provided by the store owner, color-enhanced / glowed up for the catalog.
-  Matched to catalog items by package label name and product texture.
+- `*-real.jpg`: catalog photos for Duy Nhân shop.
+  - Owner-supplied Chợ Cồn packaging photos (glowed) for most dried seafood,
+    snacks, mắm, rice paper, and tea.
+  - Remaining items use glowed catalog shots based on online specialty-shop
+    references (Nam O fish sauce, Tré Đà Nẵng, bánh khô mè Cẩm Lệ, coffee/phin,
+    cold cuts, etc.) matched to the same square product-photo structure.
 
-- Remaining Wikimedia Commons (CC-licensed) stand-ins are kept only for items
-  without a matching shop photo yet (cold cuts, Nam O fish sauce, coffee gift
-  sets, some cakes, etc.).
+- `real/all/`: color-enhanced copies of all original owner uploads.
+- `real/refs/`: online reference stills used while producing missing-item glows.
 
-Shop stall brand photos live in /brand/shop-stall-*.jpg.
+Older Wikimedia Commons stand-ins may remain as unused files in this folder.
