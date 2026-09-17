@@ -39,6 +39,17 @@ export default function SiteFooter() {
                 >
                   {contact.phoneDisplay}
                 </a>
+                {language === "VI" && (
+                  <>
+                    <span className="text-foam/60"> · </span>
+                    <a
+                      href="tel:+84983871071"
+                      className="font-medium transition-colors hover:text-white"
+                    >
+                      0983 871 071
+                    </a>
+                  </>
+                )}
                 <span className="text-foam/60"> · </span>
                 <a
                   href={contact.chatUrl}
