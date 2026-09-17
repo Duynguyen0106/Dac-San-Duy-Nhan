@@ -611,7 +611,7 @@ function ShopPageContent() {
             <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-2xl">
                 <p className="text-sm font-medium uppercase tracking-[0.16em] text-sun">
-                  Duy Nhân · Kiốt 06
+                  Duy Nhân · Kiốt số 6
                 </p>
                 <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
                   {isVi ? "Cửa Hàng Đặc Sản" : "Specialty Shop"}
