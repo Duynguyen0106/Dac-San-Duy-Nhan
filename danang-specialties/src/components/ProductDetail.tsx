@@ -67,24 +67,28 @@ export default function ProductDetail({
       <Header />
 
       <main className="flex-1 bg-[radial-gradient(ellipse_at_top,_#eaf4f2_0%,_#f3f7f6_55%,_#efe8dc_100%)]">
-        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
-          <nav className="mb-6 text-sm text-mist">
+        <div className="mx-auto max-w-6xl px-4 py-8 pb-10 sm:px-6 sm:py-12">
+          <nav className="mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-mist">
             <Link href="/" className="hover:text-sea">
               {t("common.home")}
             </Link>
-            <span className="mx-2">/</span>
+            <span aria-hidden>/</span>
             <Link href="/shop" className="hover:text-sea">
               {t("common.shop")}
             </Link>
-            <span className="mx-2">/</span>
+            <span aria-hidden>/</span>
             <Link
               href={`/shop/${categoryToSlug(product.category as ShopCategory)}`}
               className="hover:text-sea"
             >
               {categoryLabel}
             </Link>
-            <span className="mx-2">/</span>
-            <span className="text-sea-deep">{productName}</span>
+            <span aria-hidden className="hidden sm:inline">
+              /
+            </span>
+            <span className="w-full truncate text-sea-deep sm:w-auto">
+              {productName}
+            </span>
           </nav>
 
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">

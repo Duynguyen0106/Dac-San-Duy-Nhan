@@ -379,7 +379,7 @@ export default function AdminPage() {
     <div className="flex min-h-full flex-col bg-background text-foreground">
       <Header />
 
-      <main className="flex-1 bg-[linear-gradient(180deg,#f3f7f6_0%,#e8f1ef_50%,#efe8dc_100%)]">
+      <main className="flex-1 bg-[linear-gradient(180deg,#f3f7f6_0%,#e8f1ef_50%,#efe8dc_100%)] pb-8">
         <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -390,7 +390,7 @@ export default function AdminPage() {
                 <ArrowLeft className="h-4 w-4" />
                 {t("common.shop")}
               </Link>
-              <h1 className="mt-2 font-display text-3xl font-semibold text-sea-deep">
+              <h1 className="mt-2 font-display text-2xl font-semibold text-sea-deep sm:text-3xl">
                 {isVi ? "Quản lý sản phẩm" : "Manage products"}
               </h1>
               <p className="mt-1 text-sm text-mist">
@@ -399,11 +399,11 @@ export default function AdminPage() {
                   : "Add, edit, delete products — upload photos, and create Facebook posts for each item."}
               </p>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:flex-wrap">
               <button
                 type="button"
                 onClick={startCreate}
-                className="inline-flex items-center gap-2 bg-sea px-4 py-2.5 text-sm font-semibold text-foam hover:bg-sea-deep"
+                className="inline-flex items-center justify-center gap-2 bg-sea px-4 py-2.5 text-sm font-semibold text-foam hover:bg-sea-deep"
               >
                 <Plus className="h-4 w-4" />
                 {isVi ? "Thêm sản phẩm" : "Add product"}
@@ -411,7 +411,7 @@ export default function AdminPage() {
               <button
                 type="button"
                 onClick={handleLogout}
-                className="inline-flex items-center gap-2 border border-line bg-card px-4 py-2.5 text-sm font-medium text-sea-deep hover:border-sea"
+                className="inline-flex items-center justify-center gap-2 border border-line bg-card px-4 py-2.5 text-sm font-medium text-sea-deep hover:border-sea"
               >
                 <LogOut className="h-4 w-4" />
                 {isVi ? "Đăng xuất" : "Log out"}
@@ -718,7 +718,7 @@ export default function AdminPage() {
                         </span>
                       </div>
                     </div>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap">
                       <button
                         type="button"
                         onClick={() => {
@@ -727,7 +727,7 @@ export default function AdminPage() {
                             .getElementById("admin-facebook-tool")
                             ?.scrollIntoView({ behavior: "smooth", block: "start" });
                         }}
-                        className="inline-flex items-center gap-1.5 border border-[#1877F2]/30 px-3 py-2 text-sm font-medium text-[#1877F2] hover:bg-[#1877F2]/5"
+                        className="inline-flex items-center justify-center gap-1.5 border border-[#1877F2]/30 px-2 py-2 text-sm font-medium text-[#1877F2] hover:bg-[#1877F2]/5 sm:px-3"
                       >
                         <FacebookGlyph className="h-3.5 w-3.5" />
                         FB
@@ -735,7 +735,7 @@ export default function AdminPage() {
                       <button
                         type="button"
                         onClick={() => startEdit(product)}
-                        className="inline-flex items-center gap-1.5 border border-line px-3 py-2 text-sm font-medium text-sea-deep hover:border-sea"
+                        className="inline-flex items-center justify-center gap-1.5 border border-line px-2 py-2 text-sm font-medium text-sea-deep hover:border-sea sm:px-3"
                       >
                         <Pencil className="h-3.5 w-3.5" />
                         {isVi ? "Sửa" : "Edit"}
@@ -743,7 +743,7 @@ export default function AdminPage() {
                       <button
                         type="button"
                         onClick={() => handleDelete(product)}
-                        className="inline-flex items-center gap-1.5 border border-red-200 px-3 py-2 text-sm font-medium text-red-700 hover:bg-red-50"
+                        className="inline-flex items-center justify-center gap-1.5 border border-red-200 px-2 py-2 text-sm font-medium text-red-700 hover:bg-red-50 sm:px-3"
                       >
                         <Trash2 className="h-3.5 w-3.5" />
                         {isVi ? "Xóa" : "Delete"}

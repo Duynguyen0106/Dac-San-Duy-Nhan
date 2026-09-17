@@ -11,7 +11,7 @@ export default function SiteFooter() {
   const isVi = language === "VI";
 
   return (
-    <footer className="border-t border-line bg-sea-deep text-foam">
+    <footer className="site-footer-pad border-t border-line bg-sea-deep text-foam">
       <div className="mx-auto grid max-w-6xl gap-6 px-4 py-8 sm:grid-cols-[1fr_auto] sm:px-6 sm:py-10">
         <div>
           <p className="font-display text-lg font-semibold">

@@ -1,20 +1,23 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Phone, ShoppingCart } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import { getShopContact } from "@/lib/shopContact";
 
 export default function Header() {
+  const pathname = usePathname();
   const { t, language, setLanguage } = useTranslation();
   const { itemCount, openCart } = useCart();
   const contact = getShopContact(language);
+  const isAdmin = pathname?.startsWith("/admin") ?? false;
 
   return (
     <header className="sticky top-0 z-50 border-b border-line/70 bg-background/90 backdrop-blur-md">
       <div className="border-b border-line/50 bg-foam/60">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-4 gap-y-1 px-4 py-1.5 text-xs text-sea-deep sm:px-6">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-1.5 text-xs text-sea-deep sm:px-6">
           <a
             href={
               contact.chatChannel === "whatsapp"
@@ -27,65 +30,72 @@ export default function Header() {
                 ? "noopener noreferrer"
                 : undefined
             }
-            className="inline-flex items-center gap-1.5 font-medium transition-colors hover:text-sea"
+            className="inline-flex min-w-0 items-center gap-1.5 font-medium transition-colors hover:text-sea"
           >
-            <Phone className="h-3.5 w-3.5" />
-            <span>{contact.phoneDisplay}</span>
+            <Phone className="h-3.5 w-3.5 shrink-0" />
+            <span className="truncate">{contact.phoneDisplay}</span>
             <span className="hidden text-mist sm:inline">
               · {contact.chatLabel}
             </span>
           </a>
-          <p className="max-w-full truncate text-mist sm:max-w-[70%]">
+          <p className="hidden min-w-0 truncate text-mist md:block md:max-w-[55%]">
             {contact.address}
           </p>
         </div>
       </div>
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:h-[4.5rem] sm:px-6">
-        <div className="flex min-w-0 items-center gap-4 sm:gap-6">
-          <Link href="/" className="flex min-w-0 items-center gap-3">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4 sm:h-[4.5rem] sm:gap-4 sm:px-6">
+        <div className="flex min-w-0 items-center gap-3 sm:gap-6">
+          <Link href="/" className="flex min-w-0 items-center gap-2.5 sm:gap-3">
             <span
               aria-hidden
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-sea text-sm font-bold tracking-wide text-foam"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-sea text-sm font-bold tracking-wide text-foam sm:h-10 sm:w-10"
             >
               DN
             </span>
             <span className="truncate font-display text-base font-semibold tracking-tight text-sea-deep sm:text-lg">
-              {t("common.brand")}
+              <span className="sm:hidden">{t("common.brandShort")}</span>
+              <span className="hidden sm:inline">{t("common.brand")}</span>
             </span>
           </Link>
-          <Link
-            href="/shop"
-            className="hidden text-sm font-medium text-sea-deep transition-colors hover:text-sea sm:inline"
-          >
-            {t("common.shop")}
-          </Link>
-          <Link
-            href="/how-to-order"
-            className="hidden text-sm font-medium text-sea-deep transition-colors hover:text-sea lg:inline"
-          >
-            {t("common.howToOrder")}
-          </Link>
-          <Link
-            href="/shipping"
-            className="hidden text-sm font-medium text-sea-deep transition-colors hover:text-sea xl:inline"
-          >
-            {t("common.shipping")}
-          </Link>
-          <Link
-            href="/tips"
-            className="hidden text-sm font-medium text-sea-deep transition-colors hover:text-sea lg:inline"
-          >
-            {t("common.tips")}
-          </Link>
+          {!isAdmin && (
+            <>
+              <Link
+                href="/shop"
+                className="hidden text-sm font-medium text-sea-deep transition-colors hover:text-sea md:inline"
+              >
+                {t("common.shop")}
+              </Link>
+              <Link
+                href="/how-to-order"
+                className="hidden text-sm font-medium text-sea-deep transition-colors hover:text-sea lg:inline"
+              >
+                {t("common.howToOrder")}
+              </Link>
+              <Link
+                href="/shipping"
+                className="hidden text-sm font-medium text-sea-deep transition-colors hover:text-sea xl:inline"
+              >
+                {t("common.shipping")}
+              </Link>
+              <Link
+                href="/tips"
+                className="hidden text-sm font-medium text-sea-deep transition-colors hover:text-sea lg:inline"
+              >
+                {t("common.tips")}
+              </Link>
+            </>
+          )}
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Link
-            href="/shop"
-            className="text-sm font-medium text-sea-deep transition-colors hover:text-sea sm:hidden"
-          >
-            {t("common.shop")}
-          </Link>
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
+          {!isAdmin && (
+            <Link
+              href="/shop"
+              className="px-1.5 text-sm font-medium text-sea-deep transition-colors hover:text-sea md:hidden"
+            >
+              {t("common.shop")}
+            </Link>
+          )}
           <div
             role="group"
             aria-label={t("common.language")}
@@ -94,7 +104,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setLanguage("VI")}
-              className={`px-2.5 py-1.5 transition-colors sm:px-3 ${
+              className={`px-2 py-1.5 transition-colors sm:px-3 ${
                 language === "VI"
                   ? "bg-sea text-foam"
                   : "text-sea-deep hover:bg-foam"
@@ -105,7 +115,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setLanguage("EN")}
-              className={`px-2.5 py-1.5 transition-colors sm:px-3 ${
+              className={`px-2 py-1.5 transition-colors sm:px-3 ${
                 language === "EN"
                   ? "bg-sea text-foam"
                   : "text-sea-deep hover:bg-foam"
@@ -115,17 +125,19 @@ export default function Header() {
             </button>
           </div>
 
-          <button
-            type="button"
-            onClick={openCart}
-            aria-label={t("common.cart")}
-            className="relative rounded-md border border-line bg-card p-2 text-sea-deep transition-colors hover:border-sea hover:text-sea"
-          >
-            <ShoppingCart className="h-5 w-5" strokeWidth={1.75} />
-            <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-sm bg-sun px-1 text-[10px] font-semibold text-white">
-              {itemCount}
-            </span>
-          </button>
+          {!isAdmin && (
+            <button
+              type="button"
+              onClick={openCart}
+              aria-label={t("common.cart")}
+              className="relative rounded-md border border-line bg-card p-2 text-sea-deep transition-colors hover:border-sea hover:text-sea"
+            >
+              <ShoppingCart className="h-5 w-5" strokeWidth={1.75} />
+              <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-sm bg-sun px-1 text-[10px] font-semibold text-white">
+                {itemCount}
+              </span>
+            </button>
+          )}
         </div>
       </div>
     </header>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { MessageCircle, X } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { SHOP_CONTACT } from "@/lib/shopContact";
@@ -65,12 +66,15 @@ function ChannelIcon({ icon }: { icon: ChatChannel["icon"] }) {
 
 /** Floating shortcuts for Zalo, Facebook Messenger, and WhatsApp. */
 export default function ChatShortcuts() {
+  const pathname = usePathname();
   const { language } = useTranslation();
   const [open, setOpen] = useState(false);
   const isVi = language === "VI";
 
+  if (pathname?.startsWith("/admin")) return null;
+
   return (
-    <div className="fixed bottom-20 right-4 z-[60] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
+    <div className="fixed bottom-[calc(5.5rem+env(safe-area-inset-bottom,0px))] right-3 z-[45] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
       <div
         className={`flex flex-col items-end gap-2 transition-all duration-200 ${
           open
@@ -108,12 +112,12 @@ export default function ChatShortcuts() {
               ? "Mở chat nhanh"
               : "Open chat shortcuts"
         }
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-sun text-white shadow-[0_10px_30px_rgba(196,98,36,0.35)] transition-transform hover:scale-[1.04] hover:bg-sun-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sun"
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-sun text-white shadow-[0_10px_30px_rgba(196,98,36,0.35)] transition-transform hover:scale-[1.04] hover:bg-sun-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sun sm:h-14 sm:w-14"
       >
         {open ? (
-          <X className="h-6 w-6" strokeWidth={2.25} />
+          <X className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={2.25} />
         ) : (
-          <MessageCircle className="h-6 w-6" strokeWidth={2.25} />
+          <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={2.25} />
         )}
       </button>
     </div>
