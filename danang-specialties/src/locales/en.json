@@ -46,16 +46,18 @@
     "addToCart": "Add to Cart",
     "viewDetails": "View details",
     "descriptions": {
-      "1": "Fragrant dried golden anchovy, a Da Nang specialty. Firm texture and natural sweetness — great fried with chili salt or as a snack.",
-      "2": "Da Nang beef jerky that is tender and savory. Mild heat and rich aroma — ideal as a gift or everyday snack.",
-      "3": "Refreshing ginseng pineapple tea with fragrant ginseng and gentle pineapple sweetness. Cooling and good for wellness.",
-      "4": "Premium dried squid from Central Vietnam seas. Thick, naturally sweet meat — delicious grilled or rehydrated and torn by hand.",
-      "5": "Thin, chewy Da Nang rice paper for pork rolls with fresh herbs. A famous street-food specialty of the coastal city."
+      "1": "Duy Nhân pandan tea with a gentle aroma and light natural sweetness. Brew hot or iced — a refreshing Da Nang gift in every cup.",
+      "2": "Duy Nhân beef jerky with a tender chew and well-balanced seasoning. Savory, lightly spicy, and perfect for snacking or gifting.",
+      "3": "Sun-dried squid, shredded and ready to enjoy — naturally sweet with a satisfying chew. Great straight from the pack, lightly grilled, or with a cold drink.",
+      "4": "Premium dried golden threadfin bream with firm flesh and deep coastal sweetness. Delicious chili-salt fried or served as a savory snack.",
+      "5": "Soft, fragrant mung bean cakes with a classic nutty sweetness. A box of 6 — gentle, not overly sweet, and ideal as a Da Nang souvenir.",
+      "6": "Seasoned dried anchovy with a fragrant, savory-sweet balance. Crispy when pan-fried — a coastal snack the whole family loves."
     },
     "categories": {
       "Dried Seafood": "Dried Seafood",
       "Snacks": "Snacks",
-      "Tea": "Tea"
+      "Tea": "Tea",
+      "Traditional Cakes": "Traditional Cakes"
     }
   }
 }

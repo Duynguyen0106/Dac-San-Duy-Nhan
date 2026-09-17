@@ -7,8 +7,11 @@ export type Product = {
   category: string;
   price: number;
   weight: string;
+  /** Optional grams override when `weight` is not a simple g/kg string (e.g. "Box of 6"). */
+  weightGrams?: number;
   image: string;
   description: string;
+  descriptionEn: string;
 };
 
 export const formatPrice = (price: number, language: Language = "VI") =>
@@ -38,10 +41,22 @@ export const formatWeight = (grams: number, language: Language = "VI"): string =
   return language === "VI" ? `${grams}g` : `${grams}g`;
 };
 
+/** Resolve product weight in grams for shipping totals. */
+export const getProductWeightGrams = (product: {
+  weight: string;
+  weightGrams?: number;
+}): number => {
+  if (typeof product.weightGrams === "number") {
+    return product.weightGrams;
+  }
+  return parseWeightGrams(product.weight);
+};
+
 export const SHOP_CATEGORIES = [
   "Dried Seafood",
   "Snacks",
   "Tea",
+  "Traditional Cakes",
 ] as const;
 
 export type ShopCategory = (typeof SHOP_CATEGORIES)[number];
@@ -53,4 +68,5 @@ export const categoryLabels: Record<
   "Dried Seafood": { vi: "Hải Sản Khô", en: "Dried Seafood" },
   Snacks: { vi: "Ăn Vặt", en: "Snacks" },
   Tea: { vi: "Trà", en: "Tea" },
+  "Traditional Cakes": { vi: "Bánh Truyền Thống", en: "Traditional Cakes" },
 };

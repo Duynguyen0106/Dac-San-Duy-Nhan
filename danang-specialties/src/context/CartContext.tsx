@@ -9,7 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import {
-  parseWeightGrams,
+  getProductWeightGrams,
   type Product,
 } from "@/lib/products";
 
@@ -104,7 +104,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     () =>
       items.reduce(
         (sum, item) =>
-          sum + parseWeightGrams(item.product.weight) * item.quantity,
+          sum + getProductWeightGrams(item.product) * item.quantity,
         0,
       ),
     [items],

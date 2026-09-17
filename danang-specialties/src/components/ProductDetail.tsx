@@ -29,8 +29,9 @@ export default function ProductDetail({ product }: ProductDetailProps) {
   };
 
   const productName = isVi ? product.name : product.nameEn;
-  const productDescription =
-    t(`product.descriptions.${product.id}`) || product.description;
+  const productDescription = isVi
+    ? product.description
+    : product.descriptionEn;
   const categoryLabel =
     t(`product.categories.${product.category}`) || product.category;
 

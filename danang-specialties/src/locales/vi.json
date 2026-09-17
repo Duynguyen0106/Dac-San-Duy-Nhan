@@ -46,16 +46,18 @@
     "addToCart": "Thêm vào giỏ",
     "viewDetails": "Xem chi tiết",
     "descriptions": {
-      "1": "Cá chỉ vàng khô thơm ngon, đặc sản Đà Nẵng. Thịt chắc, vị ngọt tự nhiên, thích hợp rang muối ớt hoặc làm món nhắm.",
-      "2": "Bò khô Đà Nẵng mềm dai, ướp gia vị đậm đà. Hương vị cay nhẹ, thơm nức, lý tưởng làm quà biếu hoặc ăn vặt.",
-      "3": "Trà sâm dứa thanh mát, kết hợp hương thơm của sâm và vị ngọt dịu của dứa. Giúp giải nhiệt, tốt cho sức khỏe.",
-      "4": "Mực khô Đà Nẵng chọn lọc từ hải sản biển miền Trung. Thịt dày, ngọt tự nhiên, nướng hoặc nhúng nước rồi xé ăn đều ngon.",
-      "5": "Bánh tráng Đà Nẵng mỏng dai, dùng kèm thịt heo quay và rau sống. Đặc sản ẩm thực đường phố nổi tiếng của thành phố biển."
+      "1": "Trà sâm dứa Duy Nhân thơm dịu, vị ngọt thanh dễ uống. Pha nóng hay lạnh đều ngon — món quà thanh mát mang hương Đà Nẵng.",
+      "2": "Bò khô Duy Nhân mềm dai, ướp gia vị đậm đà vừa miệng. Thơm nức, cay nhẹ — hoàn hảo để nhâm nhi hay biếu người thân.",
+      "3": "Mực một nắng xé sợi sẵn, ngọt biển tự nhiên và giòn dai hấp dẫn. Ăn liền, nướng nhẹ hoặc nhâm nhi cùng bia đều tuyệt.",
+      "4": "Cá chỉ vàng khô chọn lọc, thịt chắc và vị ngọt sâu đặc trưng miền Trung. Rang muối ớt hoặc làm món nhắm đều ngon khó cưỡng.",
+      "5": "Bánh đậu xanh mềm mịn, thơm bùi vị đậu quen thuộc. Hộp 6 cái tiện biếu — ngọt dịu, vừa miệng, rất hợp làm quà Đà Nẵng.",
+      "6": "Cá thiểu tẩm gia vị thơm lừng, vị mặn ngọt hài hòa. Giòn rụm khi rang — món ăn vặt biển cả được yêu thích mọi nhà."
     },
     "categories": {
       "Dried Seafood": "Hải Sản Khô",
       "Snacks": "Ăn Vặt",
-      "Tea": "Trà"
+      "Tea": "Trà",
+      "Traditional Cakes": "Bánh Truyền Thống"
     }
   }
 }

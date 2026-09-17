@@ -7,7 +7,7 @@ import { useCart } from "@/context/CartContext";
 import {
   formatPrice,
   formatWeight,
-  parseWeightGrams,
+  getProductWeightGrams,
   type Language,
 } from "@/lib/products";
 
@@ -108,7 +108,7 @@ export default function CartDrawer({ language = "VI" }: CartDrawerProps) {
             <ul className="space-y-4">
               {items.map(({ product, quantity }) => {
                 const lineWeight =
-                  parseWeightGrams(product.weight) * quantity;
+                  getProductWeightGrams(product) * quantity;
                 return (
                   <li
                     key={product.id}
