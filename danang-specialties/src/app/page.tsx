@@ -50,7 +50,7 @@ const formatPrice = (price: number, language: Language) =>
 const bestSellers = products.slice(0, 4);
 
 const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1559592413-7e0496ff6c4c?auto=format&fit=crop&w=2400&q=80";
+  "https://images.unsplash.com/photo-1674296067534-0f9769040781?auto=format&fit=crop&w=2400&q=80";
 
 export default function Home() {
   const [language, setLanguage] = useState<Language>("VI");
@@ -76,8 +76,8 @@ export default function Home() {
               className="animate-gentle-zoom object-cover"
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-sea-deep/85 via-sea-deep/55 to-sea/25" />
-            <div className="absolute inset-0 bg-gradient-to-t from-sea-deep/50 via-transparent to-sea-deep/20" />
+            <div className="absolute inset-0 bg-gradient-to-r from-sea-deep/80 via-sea-deep/45 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-sea-deep/55 via-transparent to-sea-deep/15" />
           </div>
 
           <div className="relative mx-auto flex min-h-[calc(100svh-4rem)] max-w-6xl flex-col justify-end px-4 pb-16 pt-24 sm:min-h-[calc(100svh-4.5rem)] sm:px-6 sm:pb-24">
