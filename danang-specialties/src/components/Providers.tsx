@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { CartProvider } from "@/context/CartContext";
+import { FavoritesProvider } from "@/context/FavoritesContext";
 import CartDrawer from "@/components/CartDrawer";
 import type { Language } from "@/lib/products";
 
@@ -52,8 +53,10 @@ export default function Providers({ children }: { children: ReactNode }) {
   return (
     <LanguageProvider>
       <CartProvider>
-        {children}
-        <CartDrawerHost />
+        <FavoritesProvider>
+          {children}
+          <CartDrawerHost />
+        </FavoritesProvider>
       </CartProvider>
     </LanguageProvider>
   );

@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle, Minus, Plus, ShoppingBag } from "lucide-react";
+import { Heart, MessageCircle, Minus, Plus, ShoppingBag } from "lucide-react";
 import Header from "@/components/Header";
 import SiteFooter from "@/components/SiteFooter";
 import { useCart } from "@/context/CartContext";
+import { useFavorites } from "@/context/FavoritesContext";
+import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import { useTranslation } from "@/hooks/useTranslation";
 import { formatPrice, type Product } from "@/lib/products";
 import { SHOP_CONTACT } from "@/lib/shopContact";
@@ -18,8 +20,15 @@ type ProductDetailProps = {
 export default function ProductDetail({ product }: ProductDetailProps) {
   const { t, language } = useTranslation();
   const { addItem } = useCart();
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const { trackView } = useRecentlyViewed();
   const [quantity, setQuantity] = useState(1);
   const isVi = language === "VI";
+  const favorited = isFavorite(product.id);
+
+  useEffect(() => {
+    trackView(product.id);
+  }, [product.id, trackView]);
 
   const decrease = () => setQuantity((q) => Math.max(1, q - 1));
   const increase = () => setQuantity((q) => Math.min(99, q + 1));
@@ -64,6 +73,31 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 unoptimized
               />
+              <button
+                type="button"
+                onClick={() => toggleFavorite(product.id)}
+                aria-pressed={favorited}
+                aria-label={
+                  favorited
+                    ? isVi
+                      ? "Bỏ yêu thích"
+                      : "Remove from favorites"
+                    : isVi
+                      ? "Thêm yêu thích"
+                      : "Add to favorites"
+                }
+                className={`absolute right-4 top-4 flex h-10 w-10 items-center justify-center border transition-colors ${
+                  favorited
+                    ? "border-sun bg-sun text-white"
+                    : "border-line/80 bg-card/90 text-sea-deep hover:border-sun hover:text-sun"
+                }`}
+              >
+                <Heart
+                  className="h-4 w-4"
+                  fill={favorited ? "currentColor" : "none"}
+                  strokeWidth={1.75}
+                />
+              </button>
             </div>
 
             <div className="flex flex-col">
