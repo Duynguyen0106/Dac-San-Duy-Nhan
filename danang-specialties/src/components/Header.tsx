@@ -2,14 +2,12 @@
 
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
-import type { Language } from "@/lib/products";
+import { useCart } from "@/context/CartContext";
+import { useLanguage } from "@/components/Providers";
 
-type HeaderProps = {
-  language: Language;
-  onLanguageChange: (language: Language) => void;
-};
-
-export default function Header({ language, onLanguageChange }: HeaderProps) {
+export default function Header() {
+  const { language, setLanguage } = useLanguage();
+  const { itemCount, openCart } = useCart();
   const isVi = language === "VI";
 
   return (
@@ -40,7 +38,7 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
             href="/shop"
             className="text-sm font-medium text-sea-deep transition-colors hover:text-sea sm:hidden"
           >
-            {isVi ? "Shop" : "Shop"}
+            Shop
           </Link>
           <div
             role="group"
@@ -49,7 +47,7 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
           >
             <button
               type="button"
-              onClick={() => onLanguageChange("VI")}
+              onClick={() => setLanguage("VI")}
               className={`px-2.5 py-1.5 transition-colors sm:px-3 ${
                 language === "VI"
                   ? "bg-sea text-foam"
@@ -60,7 +58,7 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
             </button>
             <button
               type="button"
-              onClick={() => onLanguageChange("EN")}
+              onClick={() => setLanguage("EN")}
               className={`px-2.5 py-1.5 transition-colors sm:px-3 ${
                 language === "EN"
                   ? "bg-sea text-foam"
@@ -73,12 +71,13 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
 
           <button
             type="button"
+            onClick={openCart}
             aria-label={isVi ? "Giỏ hàng" : "Shopping cart"}
             className="relative rounded-md border border-line bg-card p-2 text-sea-deep transition-colors hover:border-sea hover:text-sea"
           >
             <ShoppingCart className="h-5 w-5" strokeWidth={1.75} />
             <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-sm bg-sun px-1 text-[10px] font-semibold text-white">
-              0
+              {itemCount}
             </span>
           </button>
         </div>

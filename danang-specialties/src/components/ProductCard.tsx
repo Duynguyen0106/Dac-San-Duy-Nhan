@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ShoppingCart } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 import { formatPrice, type Language, type Product } from "@/lib/products";
 
 type ProductCardProps = {
@@ -13,11 +15,15 @@ export default function ProductCard({
   product,
   language = "VI",
 }: ProductCardProps) {
+  const { addItem } = useCart();
   const isVi = language === "VI";
 
   return (
     <article className="flex flex-col overflow-hidden border border-line bg-card transition-transform duration-300 hover:-translate-y-1">
-      <Link href={`/products/${product.id}`} className="relative block aspect-square overflow-hidden bg-foam">
+      <Link
+        href={`/products/${product.id}`}
+        className="relative block aspect-square overflow-hidden bg-foam"
+      >
         <Image
           src={product.image}
           alt={isVi ? product.name : product.nameEn}
@@ -37,12 +43,22 @@ export default function ProductCard({
         <p className="mt-3 text-base font-semibold text-sea">
           {formatPrice(product.price, language)}
         </p>
-        <Link
-          href={`/products/${product.id}`}
-          className="mt-4 inline-flex w-full items-center justify-center bg-sea px-4 py-2.5 text-center text-sm font-semibold text-foam transition-colors hover:bg-sea-deep"
-        >
-          {isVi ? "Xem chi tiết" : "View details"}
-        </Link>
+        <div className="mt-4 flex flex-col gap-2">
+          <button
+            type="button"
+            onClick={() => addItem(product, 1)}
+            className="inline-flex w-full items-center justify-center gap-2 bg-sea px-4 py-2.5 text-sm font-semibold text-foam transition-colors hover:bg-sea-deep"
+          >
+            <ShoppingCart className="h-4 w-4" />
+            {isVi ? "Thêm vào giỏ" : "Add to Cart"}
+          </button>
+          <Link
+            href={`/products/${product.id}`}
+            className="inline-flex w-full items-center justify-center border border-line px-4 py-2 text-center text-sm font-medium text-sea-deep transition-colors hover:border-sea hover:text-sea"
+          >
+            {isVi ? "Xem chi tiết" : "View details"}
+          </Link>
+        </div>
       </div>
     </article>
   );

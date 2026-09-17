@@ -1,13 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Fish, Cookie, CupSoda, Drumstick } from "lucide-react";
 import Header from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
+import { useLanguage } from "@/components/Providers";
 import { products } from "@/data/products";
-import { type Language } from "@/lib/products";
 
 const categories = [
   {
@@ -50,12 +49,12 @@ const HERO_IMAGE =
   "https://images.unsplash.com/photo-1674296067534-0f9769040781?auto=format&fit=crop&w=2400&q=80";
 
 export default function Home() {
-  const [language, setLanguage] = useState<Language>("VI");
+  const { language } = useLanguage();
   const isVi = language === "VI";
 
   return (
     <div className="flex min-h-full flex-col bg-background text-foreground">
-      <Header language={language} onLanguageChange={setLanguage} />
+      <Header />
 
       <main className="flex-1">
         {/* Hero — full-bleed coastal scene */}

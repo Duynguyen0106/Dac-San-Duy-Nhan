@@ -4,18 +4,18 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
+import { useLanguage } from "@/components/Providers";
 import { products } from "@/data/products";
 import {
   SHOP_CATEGORIES,
   categoryLabels,
-  type Language,
   type ShopCategory,
 } from "@/lib/products";
 
 type CategoryFilter = "All" | ShopCategory;
 
 export default function ShopPage() {
-  const [language, setLanguage] = useState<Language>("VI");
+  const { language } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>("All");
   const isVi = language === "VI";
 
@@ -34,7 +34,7 @@ export default function ShopPage() {
 
   return (
     <div className="flex min-h-full flex-col bg-background text-foreground">
-      <Header language={language} onLanguageChange={setLanguage} />
+      <Header />
 
       <main className="flex-1 bg-[linear-gradient(180deg,#f3f7f6_0%,#e8f1ef_45%,#efe8dc_100%)]">
         <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">

@@ -5,11 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { MessageCircle, Minus, Plus, ShoppingBag } from "lucide-react";
 import Header from "@/components/Header";
-import {
-  formatPrice,
-  type Language,
-  type Product,
-} from "@/lib/products";
+import { useLanguage } from "@/components/Providers";
+import { useCart } from "@/context/CartContext";
+import { formatPrice, type Product } from "@/lib/products";
 
 const ZALO_URL = "https://zalo.me/0905747413";
 
@@ -18,16 +16,21 @@ type ProductDetailProps = {
 };
 
 export default function ProductDetail({ product }: ProductDetailProps) {
-  const [language, setLanguage] = useState<Language>("VI");
+  const { language } = useLanguage();
+  const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
   const isVi = language === "VI";
 
   const decrease = () => setQuantity((q) => Math.max(1, q - 1));
   const increase = () => setQuantity((q) => Math.min(99, q + 1));
 
+  const handleBuyNow = () => {
+    addItem(product, quantity);
+  };
+
   return (
     <div className="flex min-h-full flex-col bg-background text-foreground">
-      <Header language={language} onLanguageChange={setLanguage} />
+      <Header />
 
       <main className="flex-1 bg-[radial-gradient(ellipse_at_top,_#eaf4f2_0%,_#f3f7f6_55%,_#efe8dc_100%)]">
         <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
@@ -120,6 +123,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <button
                   type="button"
+                  onClick={handleBuyNow}
                   className="inline-flex flex-1 items-center justify-center gap-2 bg-sun px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-sun-hover"
                 >
                   <ShoppingBag className="h-4 w-4" />
