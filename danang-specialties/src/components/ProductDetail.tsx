@@ -15,6 +15,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 import {
   formatPrice,
   categoryToSlug,
+  isProductAvailable,
   type Product,
   type ShopCategory,
 } from "@/lib/products";
@@ -48,6 +49,7 @@ export default function ProductDetail({
   const increase = () => setQuantity((q) => Math.min(99, q + 1));
 
   const handleBuyNow = () => {
+    if (!isProductAvailable(product)) return;
     addItem(product, quantity);
   };
 
@@ -58,6 +60,7 @@ export default function ProductDetail({
   const categoryLabel =
     t(`product.categories.${product.category}`) || product.category;
   const contact = getShopContact(language);
+  const available = isProductAvailable(product);
 
   return (
     <div className="flex min-h-full flex-col bg-background text-foreground">
@@ -135,6 +138,20 @@ export default function ProductDetail({
               <p className="mt-2 text-sm text-mist">
                 {t("product.weight")}:{" "}
                 <span className="font-medium text-sea-deep">{product.weight}</span>
+                {" · "}
+                <span
+                  className={`font-medium ${
+                    available ? "text-sea" : "text-red-700"
+                  }`}
+                >
+                  {available
+                    ? isVi
+                      ? "Còn hàng"
+                      : "In stock"
+                    : isVi
+                      ? "Hết hàng"
+                      : "Sold out"}
+                </span>
               </p>
 
               <p className="mt-6 text-base leading-relaxed text-foreground/85">
@@ -185,10 +202,15 @@ export default function ProductDetail({
                 <button
                   type="button"
                   onClick={handleBuyNow}
-                  className="inline-flex flex-1 items-center justify-center gap-2 bg-sun px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-sun-hover"
+                  disabled={!available}
+                  className="inline-flex flex-1 items-center justify-center gap-2 bg-sun px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-sun-hover disabled:cursor-not-allowed disabled:bg-mist/50"
                 >
                   <ShoppingBag className="h-4 w-4" />
-                  {t("product.buyNow")}
+                  {available
+                    ? t("product.buyNow")
+                    : isVi
+                      ? "Hết hàng"
+                      : "Sold out"}
                 </button>
                 <a
                   href={contact.chatUrl}

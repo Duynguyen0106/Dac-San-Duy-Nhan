@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { Product } from "@/lib/products";
+import { isProductAvailable, type Product } from "@/lib/products";
 import { SHOP_CONTACT } from "@/lib/shopContact";
 
 export const SITE_NAME = "Duy Nhân - Đặc Sản Đà Nẵng";
@@ -209,7 +209,9 @@ export function buildProductJsonLd(
       url: absoluteUrl(`/products/${product.id}`),
       priceCurrency: "VND",
       price: product.price,
-      availability: "https://schema.org/InStock",
+      availability: isProductAvailable(product)
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
       itemCondition: "https://schema.org/NewCondition",
       seller: {
         "@type": "Organization",
