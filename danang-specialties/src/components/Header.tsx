@@ -1,8 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
-
-type Language = "VI" | "EN";
+import type { Language } from "@/lib/products";
 
 type HeaderProps = {
   language: Language;
@@ -10,22 +10,38 @@ type HeaderProps = {
 };
 
 export default function Header({ language, onLanguageChange }: HeaderProps) {
+  const isVi = language === "VI";
+
   return (
     <header className="sticky top-0 z-50 border-b border-line/70 bg-background/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:h-[4.5rem] sm:px-6">
-        <a href="/" className="flex min-w-0 items-center gap-3">
-          <span
-            aria-hidden
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-sea text-sm font-bold tracking-wide text-foam"
+        <div className="flex min-w-0 items-center gap-4 sm:gap-6">
+          <Link href="/" className="flex min-w-0 items-center gap-3">
+            <span
+              aria-hidden
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-sea text-sm font-bold tracking-wide text-foam"
+            >
+              DN
+            </span>
+            <span className="truncate font-display text-base font-semibold tracking-tight text-sea-deep sm:text-lg">
+              Duy Nhân - Đặc Sản Đà Nẵng
+            </span>
+          </Link>
+          <Link
+            href="/shop"
+            className="hidden text-sm font-medium text-sea-deep transition-colors hover:text-sea sm:inline"
           >
-            DN
-          </span>
-          <span className="truncate font-display text-base font-semibold tracking-tight text-sea-deep sm:text-lg">
-            Duy Nhân - Đặc Sản Đà Nẵng
-          </span>
-        </a>
+            {isVi ? "Cửa hàng" : "Shop"}
+          </Link>
+        </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
+          <Link
+            href="/shop"
+            className="text-sm font-medium text-sea-deep transition-colors hover:text-sea sm:hidden"
+          >
+            {isVi ? "Shop" : "Shop"}
+          </Link>
           <div
             role="group"
             aria-label="Language"
@@ -57,7 +73,7 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
 
           <button
             type="button"
-            aria-label={language === "VI" ? "Giỏ hàng" : "Shopping cart"}
+            aria-label={isVi ? "Giỏ hàng" : "Shopping cart"}
             className="relative rounded-md border border-line bg-card p-2 text-sea-deep transition-colors hover:border-sea hover:text-sea"
           >
             <ShoppingCart className="h-5 w-5" strokeWidth={1.75} />
