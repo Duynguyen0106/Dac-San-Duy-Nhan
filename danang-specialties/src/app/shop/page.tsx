@@ -126,9 +126,15 @@ function ShopPageContent() {
     isShopCategory(categoryFromUrl) ? categoryFromUrl : "All",
   );
   const [query, setQuery] = useState(queryFromUrl);
-  const [sort, setSort] = useState<ShopSortOption>(
-    isSortOption(sortFromUrl) ? sortFromUrl : "featured",
-  );
+  const [sort, setSort] = useState<ShopSortOption>(() => {
+    if (
+      CONTACT_PRICING_ENABLED &&
+      (sortFromUrl === "price-asc" || sortFromUrl === "price-desc")
+    ) {
+      return "featured";
+    }
+    return isSortOption(sortFromUrl) ? sortFromUrl : "featured";
+  });
   const [view, setView] = useState<ShopViewMode>(
     viewFromUrl === "list" ? "list" : "grid",
   );
@@ -147,7 +153,14 @@ function ShopPageContent() {
       isShopCategory(categoryFromUrl) ? categoryFromUrl : "All",
     );
     setQuery(queryFromUrl);
-    setSort(isSortOption(sortFromUrl) ? sortFromUrl : "featured");
+    setSort(
+      CONTACT_PRICING_ENABLED &&
+        (sortFromUrl === "price-asc" || sortFromUrl === "price-desc")
+        ? "featured"
+        : isSortOption(sortFromUrl)
+          ? sortFromUrl
+          : "featured",
+    );
     setView(viewFromUrl === "list" ? "list" : "grid");
     setMinPrice(minFromUrl != null ? String(minFromUrl) : "");
     setMaxPrice(maxFromUrl != null ? String(maxFromUrl) : "");
