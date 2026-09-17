@@ -20,7 +20,7 @@
     "heroSubtitle": "Từ kiốt số 6, 90 Hùng Vương — đặc sản chính gốc, đóng gói mang về nhà và đi xa.",
     "shopNow": "Mua Ngay",
     "categoriesTitle": "Danh Mục Nổi Bật",
-    "categoriesSubtitle": "Mười nhóm đặc sản — từ hải sản khô, bánh kẹo, tinh dầu đến giỏ quà biếu.",
+    "categoriesSubtitle": "Chín nhóm đặc sản — từ hải sản khô, bánh kẹo, mắm Nam Ô đến giỏ quà biếu.",
     "giftTitle": "Gợi Ý Cho Khách Du Lịch",
     "giftSubtitle": "Món dễ mang theo, bền trên đường về — chọn nhanh trước giờ bay.",
     "giftCta": "Xem gợi ý mang về",
@@ -62,11 +62,7 @@
       },
       "dried-fruit-nuts": {
         "name": "Hoa Quả & Hạt",
-        "description": "Xoài sấy, chuối sấy, hạt điều, macca và mứt tắc."
-      },
-      "oils-souvenirs": {
-        "name": "Tinh Dầu & Lưu Niệm",
-        "description": "Tinh dầu tràm, cao sao vàng, tỏi đen, nấm lim và mật nho."
+        "description": "Xoài sấy, chuối sấy, hạt điều rang muối và mứt tắc."
       },
       "gifts": {
         "name": "Quà Tặng",
@@ -93,7 +89,6 @@
       "Cakes & Candy": "Bánh & Kẹo",
       "Rice Paper": "Bánh Tráng",
       "Dried Fruit & Nuts": "Hoa Quả & Hạt",
-      "Oils & Souvenirs": "Tinh Dầu & Lưu Niệm",
       "Gifts": "Quà Tặng"
     }
   }

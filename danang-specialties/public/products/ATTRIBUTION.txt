@@ -9,7 +9,9 @@ Product images (`*-real.jpg`):
 Online specialty catalogs (e.g. category coverage on dacsanlamqua.com) informed
 product naming and assortment only — images and branding remain Duy Nhân.
 
-2026 catalog expansion: added assortment gaps inspired by dacsanlamqua.com
-top-level groups (dried goods, cakes/candy, tea, condiments, fruit/nuts,
-Da Nang souvenirs/oils, gift baskets). New SKUs reuse existing Duy Nhân
-packaging photos by nearest category until dedicated shots are uploaded.
+2026 catalog expansion: only keep SKUs with accurate photos (packaging label
+matches name, or same product family). Removed mismatched placeholder photos
+(oils/souvenirs, wrong nut types, meat/seafood species swaps). Names on
+remaining items were aligned to visible packaging labels where needed.
+Generated packaging shots (muc-rim-me-generated, keo-me-xung-mem-generated)
+are Duy Nhân–style catalog fills, not competitor copies.

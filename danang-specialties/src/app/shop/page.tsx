@@ -20,7 +20,6 @@ import {
   ScrollText,
   Search,
   SlidersHorizontal,
-  Sparkles,
   Drumstick,
   X,
 } from "lucide-react";
@@ -60,7 +59,6 @@ const CATEGORY_ICONS: Record<
   "Cakes & Candy": Cookie,
   "Rice Paper": ScrollText,
   "Dried Fruit & Nuts": Package,
-  "Oils & Souvenirs": Sparkles,
   Gifts: Gift,
 };
 

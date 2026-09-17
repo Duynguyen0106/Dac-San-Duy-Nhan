@@ -77,7 +77,6 @@ export const SHOP_CATEGORIES = [
   "Cakes & Candy",
   "Rice Paper",
   "Dried Fruit & Nuts",
-  "Oils & Souvenirs",
   "Gifts",
 ] as const;
 
@@ -95,7 +94,6 @@ export const categoryLabels: Record<
   "Cakes & Candy": { vi: "Bánh & Kẹo", en: "Cakes & Candy" },
   "Rice Paper": { vi: "Bánh Tráng", en: "Rice Paper" },
   "Dried Fruit & Nuts": { vi: "Hoa Quả & Hạt", en: "Dried Fruit & Nuts" },
-  "Oils & Souvenirs": { vi: "Tinh Dầu & Lưu Niệm", en: "Oils & Souvenirs" },
   Gifts: { vi: "Quà Tặng", en: "Gift Sets" },
 };
 
@@ -109,7 +107,6 @@ export const HOME_CATEGORY_TO_SHOP: Record<string, ShopCategory> = {
   "cakes-candy": "Cakes & Candy",
   "rice-paper": "Rice Paper",
   "dried-fruit-nuts": "Dried Fruit & Nuts",
-  "oils-souvenirs": "Oils & Souvenirs",
   gifts: "Gifts",
 };
 
