@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import path from "path";
 import { requireAdmin } from "@/lib/adminAuth";
 import {
   ALLOWED_IMAGE_TYPES,
@@ -56,8 +57,12 @@ export async function POST(request: Request) {
 
   try {
     const url = await saveProductImage(bytes, filename);
+    // Serve via API so newly uploaded files work under `next start`
+    // (public/ is snapshotted at boot) and remain usable after commit.
+    const servedUrl = `/api/media/products/${path.basename(url)}`;
     return NextResponse.json({
-      url,
+      url: servedUrl,
+      path: url,
       filename,
       size: file.size,
       type: file.type,
