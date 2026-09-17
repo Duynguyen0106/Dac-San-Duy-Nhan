@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 import { CartProvider } from "@/context/CartContext";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 import CartDrawer from "@/components/CartDrawer";
+import AskButton from "@/components/AskButton";
 import type { Language } from "@/lib/products";
 
 type LanguageContextValue = {
@@ -77,6 +78,7 @@ export default function Providers({ children }: { children: ReactNode }) {
         <FavoritesProvider>
           {children}
           <CartDrawerHost />
+          <AskButton />
         </FavoritesProvider>
       </CartProvider>
     </LanguageProvider>

@@ -34,10 +34,10 @@ export default function SiteFooter() {
                   {t("common.phoneLabel")}
                 </span>
                 <a
-                  href={contact.phoneTel}
+                  href={language === "VI" ? contact.askUrl : contact.phoneTel}
                   className="font-medium transition-colors hover:text-white"
                 >
-                  {contact.phoneDisplay}
+                  {language === "VI" ? contact.askDisplay : contact.phoneDisplay}
                 </a>
                 {language === "VI" && (
                   <>
@@ -52,13 +52,32 @@ export default function SiteFooter() {
                 )}
                 <span className="text-foam/60"> · </span>
                 <a
-                  href={contact.chatUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={contact.askUrl}
+                  target={
+                    contact.askChannel === "whatsapp" ? "_blank" : undefined
+                  }
+                  rel={
+                    contact.askChannel === "whatsapp"
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
                   className="transition-colors hover:text-white"
                 >
-                  {contact.chatLabel}
+                  {contact.askLabel}
                 </a>
+                {language === "VI" && (
+                  <>
+                    <span className="text-foam/60"> · </span>
+                    <a
+                      href={contact.chatUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors hover:text-white"
+                    >
+                      {contact.chatLabel}
+                    </a>
+                  </>
+                )}
               </span>
             </p>
           </div>

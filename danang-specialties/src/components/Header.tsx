@@ -16,23 +16,19 @@ export default function Header() {
       <div className="border-b border-line/50 bg-foam/60">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-4 gap-y-1 px-4 py-1.5 text-xs text-sea-deep sm:px-6">
           <a
-            href={
-              contact.chatChannel === "whatsapp"
-                ? contact.chatUrl
-                : contact.phoneTel
-            }
-            target={contact.chatChannel === "whatsapp" ? "_blank" : undefined}
+            href={contact.askUrl}
+            target={contact.askChannel === "whatsapp" ? "_blank" : undefined}
             rel={
-              contact.chatChannel === "whatsapp"
+              contact.askChannel === "whatsapp"
                 ? "noopener noreferrer"
                 : undefined
             }
             className="inline-flex items-center gap-1.5 font-medium transition-colors hover:text-sea"
           >
             <Phone className="h-3.5 w-3.5" />
-            <span>{contact.phoneDisplay}</span>
+            <span>{contact.askDisplay}</span>
             <span className="hidden text-mist sm:inline">
-              · {contact.chatLabel}
+              · {contact.askLabel}
             </span>
           </a>
           <p className="max-w-full truncate text-mist sm:max-w-[70%]">

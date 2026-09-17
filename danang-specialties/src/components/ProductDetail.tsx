@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, MessageCircle, Minus, Plus, ShoppingBag } from "lucide-react";
+import { Heart, MessageCircle, Minus, Phone, Plus, ShoppingBag } from "lucide-react";
 import Header from "@/components/Header";
 import SiteFooter from "@/components/SiteFooter";
 import { useCart } from "@/context/CartContext";
@@ -160,26 +160,47 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 </div>
               </div>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <button
                   type="button"
                   onClick={handleBuyNow}
-                  className="inline-flex flex-1 items-center justify-center gap-2 bg-sun px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-sun-hover"
+                  className="inline-flex flex-1 items-center justify-center gap-2 bg-sun px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-sun-hover sm:min-w-[10rem]"
                 >
                   <ShoppingBag className="h-4 w-4" />
                   {t("product.buyNow")}
                 </button>
                 <a
-                  href={contact.chatUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex flex-1 items-center justify-center gap-2 border border-sea bg-card px-6 py-3.5 text-sm font-semibold text-sea transition-colors hover:bg-sea hover:text-foam"
+                  href={contact.askUrl}
+                  target={
+                    contact.askChannel === "whatsapp" ? "_blank" : undefined
+                  }
+                  rel={
+                    contact.askChannel === "whatsapp"
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
+                  className="inline-flex flex-1 items-center justify-center gap-2 border border-sun bg-card px-6 py-3.5 text-sm font-semibold text-sun transition-colors hover:bg-sun hover:text-white sm:min-w-[10rem]"
                 >
-                  <MessageCircle className="h-4 w-4" />
-                  {language === "VI"
-                    ? `Chat ${contact.chatLabel}`
-                    : `Chat on ${contact.chatLabel}`}
+                  {contact.askChannel === "call" ? (
+                    <Phone className="h-4 w-4" />
+                  ) : (
+                    <MessageCircle className="h-4 w-4" />
+                  )}
+                  {contact.askChannel === "call"
+                    ? t("product.callNow")
+                    : t("product.askWhatsApp")}
                 </a>
+                {language === "VI" && (
+                  <a
+                    href={contact.chatUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex flex-1 items-center justify-center gap-2 border border-sea bg-card px-6 py-3.5 text-sm font-semibold text-sea transition-colors hover:bg-sea hover:text-foam sm:min-w-[10rem]"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    {t("product.chatZalo")}
+                  </a>
+                )}
               </div>
             </div>
           </div>

@@ -1,7 +1,12 @@
 import type { Language } from "@/lib/products";
 
 export const SHOP_CONTACT = {
-  /** Local Vietnam line (Vietnamese / Zalo). */
+  /** Local Vietnam line for immediate calls / questions (VI). */
+  phoneViCall: "0905748413",
+  phoneViCallDisplay: "0905 748 413",
+  phoneViCallTel: "tel:+84905748413",
+
+  /** Local Vietnam Zalo / shop line. */
   phoneVi: "0905747413",
   phoneViDisplay: "0905 747 413",
   phoneViTel: "tel:+84905747413",
@@ -24,6 +29,7 @@ export const SHOP_CONTACT = {
 } as const;
 
 export type ShopChatChannel = "zalo" | "whatsapp";
+export type ShopAskChannel = "call" | "whatsapp";
 
 export type LocalizedShopContact = {
   language: Language;
@@ -33,6 +39,11 @@ export type LocalizedShopContact = {
   chatUrl: string;
   chatLabel: string;
   chatChannel: ShopChatChannel;
+  /** Instant ask: phone call (VI) or WhatsApp (EN). */
+  askUrl: string;
+  askLabel: string;
+  askChannel: ShopAskChannel;
+  askDisplay: string;
   address: string;
   hours: string;
 };
@@ -54,6 +65,10 @@ export function getShopContact(language: Language): LocalizedShopContact {
       chatUrl: SHOP_CONTACT.whatsappUrl,
       chatLabel: "WhatsApp",
       chatChannel: "whatsapp",
+      askUrl: SHOP_CONTACT.whatsappUrl,
+      askLabel: "WhatsApp",
+      askChannel: "whatsapp",
+      askDisplay: SHOP_CONTACT.phoneEnDisplay,
       address: SHOP_CONTACT.addressEn,
       hours: SHOP_CONTACT.hoursEn,
     };
@@ -67,6 +82,10 @@ export function getShopContact(language: Language): LocalizedShopContact {
     chatUrl: SHOP_CONTACT.zaloUrl,
     chatLabel: "Zalo",
     chatChannel: "zalo",
+    askUrl: SHOP_CONTACT.phoneViCallTel,
+    askLabel: "Gọi ngay",
+    askChannel: "call",
+    askDisplay: SHOP_CONTACT.phoneViCallDisplay,
     address: SHOP_CONTACT.addressVi,
     hours: SHOP_CONTACT.hoursVi,
   };
