@@ -21,6 +21,7 @@ export default function AdminLeadsPanel({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [updatingId, setUpdatingId] = useState<string | null>(null);
+  const [notifyConfigured, setNotifyConfigured] = useState(false);
 
   const loadLeads = useCallback(async () => {
     if (!enabled) return;
@@ -29,8 +30,12 @@ export default function AdminLeadsPanel({
     try {
       const response = await fetch("/api/admin/leads", { cache: "no-store" });
       if (!response.ok) throw new Error("Failed to load leads.");
-      const data = (await response.json()) as { leads: OrderLead[] };
+      const data = (await response.json()) as {
+        leads: OrderLead[];
+        notifyConfigured?: boolean;
+      };
       setLeads(data.leads);
+      setNotifyConfigured(Boolean(data.notifyConfigured));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load leads.");
     } finally {
@@ -77,6 +82,14 @@ export default function AdminLeadsPanel({
             {isVi
               ? `${pendingCount} đang chờ · khách lưu khi chat chưa kịp trả lời`
               : `${pendingCount} pending · saved when chat isn’t answered yet`}
+            {" · "}
+            {notifyConfigured
+              ? isVi
+                ? "đã bật webhook/email"
+                : "webhook/email on"
+              : isVi
+                ? "chưa cấu hình báo đơn (LEAD_WEBHOOK_URL / Resend)"
+                : "lead alerts not configured (LEAD_WEBHOOK_URL / Resend)"}
           </p>
         </div>
         <button
