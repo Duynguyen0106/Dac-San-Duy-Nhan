@@ -20,7 +20,7 @@
     "heroSubtitle": "From kiosk No. 6 at 90 Hung Vuong — authentic specialties packed for home and travel.",
     "shopNow": "Shop Now",
     "categoriesTitle": "Featured Categories",
-    "categoriesSubtitle": "Nine specialty groups — from dried seafood and cakes to Nam O sauce and gift baskets.",
+    "categoriesSubtitle": "Ten specialty groups — from dried seafood and cakes to oils, souvenirs, and gift baskets.",
     "giftTitle": "Best for Travelers",
     "giftSubtitle": "Shelf-stable gifts that pack well for the flight home.",
     "giftCta": "Browse travel picks",
@@ -62,7 +62,11 @@
       },
       "dried-fruit-nuts": {
         "name": "Dried Fruit & Nuts",
-        "description": "Dried mango, banana, cashews, and honey cumquat candy."
+        "description": "Dried mango, banana, cashews, macadamia, and honey cumquat candy."
+      },
+      "oils-souvenirs": {
+        "name": "Oils & Souvenirs",
+        "description": "Cajeput oil, golden balm, black garlic, lim mushroom, and grape molasses."
       },
       "gifts": {
         "name": "Gift Sets",
@@ -89,6 +93,7 @@
       "Cakes & Candy": "Cakes & Candy",
       "Rice Paper": "Rice Paper",
       "Dried Fruit & Nuts": "Dried Fruit & Nuts",
+      "Oils & Souvenirs": "Oils & Souvenirs",
       "Gifts": "Gift Sets"
     }
   }

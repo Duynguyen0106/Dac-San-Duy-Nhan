@@ -55,8 +55,12 @@ const CATEGORY_BLURBS: Record<
     en: "Dai Loc sheets, sesame toast, shrimp scallion, and roll sets.",
   },
   "Dried Fruit & Nuts": {
-    vi: "Xoài sấy, chuối sấy, hạt điều và mứt tắc mật ong.",
-    en: "Dried mango, banana chips, cashews, and honey cumquat candy.",
+    vi: "Xoài sấy, chuối sấy, hạt điều, macca và mứt tắc mật ong.",
+    en: "Dried mango, banana chips, cashews, macadamia, and honey cumquat candy.",
+  },
+  "Oils & Souvenirs": {
+    vi: "Tinh dầu tràm, cao sao vàng, tỏi đen, nấm lim và mật nho.",
+    en: "Cajeput oil, golden balm, black garlic, lim mushroom, and grape molasses.",
   },
   Gifts: {
     vi: "Hộp trà, set Nam Ô và giỏ quà Tết — chọn sẵn để biếu.",

@@ -12,6 +12,7 @@ import {
   ScrollText,
   Package,
   Gift,
+  Sparkles,
 } from "lucide-react";
 import Header from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
@@ -28,6 +29,7 @@ const categoryMeta = [
   { id: "cakes-candy", icon: Cookie },
   { id: "rice-paper", icon: ScrollText },
   { id: "dried-fruit-nuts", icon: Package },
+  { id: "oils-souvenirs", icon: Sparkles },
   { id: "gifts", icon: Gift },
 ] as const;
 

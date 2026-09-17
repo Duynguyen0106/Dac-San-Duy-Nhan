@@ -1102,5 +1102,849 @@
     ],
     "weightGrams": 2000,
     "id": 73
+  },
+  {
+    "name": "Khô Cá Sặc Một Nắng",
+    "nameEn": "One-Sun Dried Snakehead",
+    "category": "Dried Seafood",
+    "price": 125000,
+    "weight": "250g",
+    "image": "/products/ca-thu-real.jpg",
+    "description": "Cá sặc một nắng chắc thịt, hương biển rõ — rim, kho hoặc nướng tiêu.",
+    "descriptionEn": "One-sun dried snakehead — firm flesh for braising or grilling.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 74
+  },
+  {
+    "name": "Khô Cá Khoai",
+    "nameEn": "Dried Potato Fish Sheets",
+    "category": "Dried Seafood",
+    "price": 115000,
+    "weight": "250g",
+    "image": "/products/ca-bo-tam-real.jpg",
+    "description": "Khô cá khoai mỏng, dễ nướng hoặc chiên giòn mang về làm quà.",
+    "descriptionEn": "Thin dried potato-fish sheets — toast or fry crisp for gifts.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 75
+  },
+  {
+    "name": "Cá Kèo Rim",
+    "nameEn": "Glazed Mudskipper",
+    "category": "Dried Seafood",
+    "price": 119000,
+    "weight": "200g",
+    "image": "/products/ca-bong-real.jpg",
+    "description": "Cá kèo rim mặn ngọt sẵn, ăn liền — vị đặc sản miền Trung.",
+    "descriptionEn": "Ready-to-eat glazed mudskipper — a central Vietnam classic.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 76
+  },
+  {
+    "name": "Cá Mai Sốt Chanh",
+    "nameEn": "Anchovy with Lime Sauce",
+    "category": "Dried Seafood",
+    "price": 99000,
+    "weight": "200g",
+    "image": "/products/kho-ca-com-real.jpg",
+    "description": "Cá mai tẩm sốt chanh chua nhẹ, giòn thơm, tiện mang đi.",
+    "descriptionEn": "Lime-seasoned anchovy — bright, crisp, travel-friendly.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 77
+  },
+  {
+    "name": "Cá Đét Sốt Tỏi",
+    "nameEn": "Garlic Glazed Flatfish",
+    "category": "Dried Seafood",
+    "price": 129000,
+    "weight": "200g",
+    "image": "/products/ca-thieu-tam-real.jpg",
+    "description": "Cá đét sốt tỏi thơm lừng, thịt dai ngọt — ăn chơi hoặc nhắm.",
+    "descriptionEn": "Garlic-glazed flatfish with sweet chewy bites.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 78
+  },
+  {
+    "name": "Mực Hấp Cốt Dừa",
+    "nameEn": "Coconut Steamed Squid",
+    "category": "Dried Seafood",
+    "price": 159000,
+    "weight": "200g",
+    "image": "/products/muc-rim-me-real.jpg",
+    "description": "Mực hấp cốt dừa béo nhẹ, ngọt tự nhiên — đặc sản Đà Nẵng mang về.",
+    "descriptionEn": "Coconut-steamed squid — lightly rich Da Nang specialty.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 79
+  },
+  {
+    "name": "Mực Chấy Bơ Tỏi",
+    "nameEn": "Butter-Garlic Roasted Squid",
+    "category": "Dried Seafood",
+    "price": 165000,
+    "weight": "200g",
+    "image": "/products/muc-kho-real.jpg",
+    "description": "Mực chấy bơ tỏi thơm ngậy, ăn liền không cần chế biến thêm.",
+    "descriptionEn": "Butter-garlic roasted squid — ready to snack.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 80
+  },
+  {
+    "name": "Mực Cơm Rim Sa Tế",
+    "nameEn": "Satay Baby Squid",
+    "category": "Dried Seafood",
+    "price": 139000,
+    "weight": "200g",
+    "image": "/products/muc-rim-me-real.jpg",
+    "description": "Mực cơm rim sa tế cay nhẹ, vừa miệng — hợp làm quà nhỏ.",
+    "descriptionEn": "Satay baby squid with a mild kick — great small gift.",
+    "tags": [
+      "tourist",
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 81
+  },
+  {
+    "name": "Tép Khô Sạch",
+    "nameEn": "Clean Dried Tiny Shrimp",
+    "category": "Dried Seafood",
+    "price": 89000,
+    "weight": "200g",
+    "image": "/products/tom-kho-real.jpg",
+    "description": "Tép khô sạch chọn kỹ, nấu canh, rang muối ớt hoặc làm muối tôm.",
+    "descriptionEn": "Clean dried tiny shrimp for soups, chili salt, or shrimp salt.",
+    "tags": [
+      "shelf-stable"
+    ],
+    "id": 82
+  },
+  {
+    "name": "Tôm Rim Bơ Tỏi Lá Chanh",
+    "nameEn": "Butter-Garlic Lime-Leaf Shrimp",
+    "category": "Dried Seafood",
+    "price": 149000,
+    "weight": "200g",
+    "image": "/products/tom-kho-real.jpg",
+    "description": "Tôm rim sốt bơ tỏi lá chanh thơm phức — ăn liền đặc sản.",
+    "descriptionEn": "Butter-garlic shrimp with kaffir lime leaf — ready to eat.",
+    "tags": [
+      "gift",
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 83
+  },
+  {
+    "name": "Lươn Biển Rim Me",
+    "nameEn": "Tamarind Glazed Sea Eel",
+    "category": "Dried Seafood",
+    "price": 155000,
+    "weight": "200g",
+    "image": "/products/ca-bo-rim-me-real.jpg",
+    "description": "Lươn biển rim me chua ngọt, dai thơm — món lạ được ưa chuộng làm quà.",
+    "descriptionEn": "Tamarind sea eel — chewy, tangy, a distinctive gift.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 84
+  },
+  {
+    "name": "Rong Biển Chấy Tỏi",
+    "nameEn": "Garlic Roasted Seaweed",
+    "category": "Dried Seafood",
+    "price": 69000,
+    "weight": "100g",
+    "image": "/products/rong-bien-say-real.jpg",
+    "description": "Rong biển chấy tỏi giòn rụm, ăn liền — nhẹ ký mang máy bay.",
+    "descriptionEn": "Crispy garlic seaweed — light for cabin bags.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 85
+  },
+  {
+    "name": "Bò Khô Lát Mật Ong",
+    "nameEn": "Honey Beef Jerky Slices",
+    "category": "Snacks",
+    "price": 199000,
+    "weight": "250g",
+    "image": "/products/bo-kho-real.jpg",
+    "description": "Bò khô lát mật ong ngọt dịu, mềm vừa — bestseller làm quà Đà Nẵng.",
+    "descriptionEn": "Honey beef jerky slices — gently sweet crowd favorite.",
+    "tags": [
+      "gift",
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 86
+  },
+  {
+    "name": "Khô Gà Xé Lá Chanh",
+    "nameEn": "Lime-Leaf Shredded Chicken",
+    "category": "Snacks",
+    "price": 129000,
+    "weight": "200g",
+    "image": "/products/bo-kho-soi-real.jpg",
+    "description": "Khô gà xé lá chanh thơm cay nhẹ, ăn vặt hoặc nhắm bia.",
+    "descriptionEn": "Shredded chicken with kaffir lime leaf — aromatic snack.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 87
+  },
+  {
+    "name": "Khô Heo Chấy Bơ Tỏi",
+    "nameEn": "Butter-Garlic Roasted Pork",
+    "category": "Snacks",
+    "price": 135000,
+    "weight": "200g",
+    "image": "/products/bo-kho-vien-real.jpg",
+    "description": "Khô heo chấy bơ tỏi đậm vị, đóng gói sẵn mang về.",
+    "descriptionEn": "Butter-garlic roasted pork — packed ready for travel.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 88
+  },
+  {
+    "name": "Bò Một Nắng",
+    "nameEn": "One-Sun Dried Beef",
+    "category": "Snacks",
+    "price": 189000,
+    "weight": "200g",
+    "image": "/products/bo-kho-real.jpg",
+    "description": "Bò một nắng phơi ngắn, thịt mềm hơn bò khô lâu — nướng hoặc rim.",
+    "descriptionEn": "Lightly sun-dried beef — softer than long-cured jerky.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 89
+  },
+  {
+    "name": "Kẹo Đậu Phụng Mè Trắng",
+    "nameEn": "White Sesame Peanut Candy",
+    "category": "Cakes & Candy",
+    "price": 15000,
+    "weight": "100g",
+    "image": "/products/keo-me-xung-real.jpg",
+    "description": "Kẹo đậu phụng mè trắng giòn bùi — vị tuổi thơ Đà Nẵng.",
+    "descriptionEn": "White sesame peanut candy — classic childhood snack.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 90
+  },
+  {
+    "name": "Kẹo Đậu Phụng Mè Đen",
+    "nameEn": "Black Sesame Peanut Candy",
+    "category": "Cakes & Candy",
+    "price": 15000,
+    "weight": "100g",
+    "image": "/products/keo-me-xung-real.jpg",
+    "description": "Kẹo đậu phụng mè đen thơm đậm, ngọt vừa — dễ mang nhiều hộp nhỏ.",
+    "descriptionEn": "Black sesame peanut candy — rich aroma, easy mini gifts.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 91
+  },
+  {
+    "name": "Kẹo Đậu Dừa",
+    "nameEn": "Coconut Peanut Chews",
+    "category": "Cakes & Candy",
+    "price": 35000,
+    "weight": "200g",
+    "image": "/products/keo-chuoi-real.jpg",
+    "description": "Kẹo đậu dừa kết hợp đậu phộng và dừa — mềm dẻo dễ ăn.",
+    "descriptionEn": "Peanut-coconut chews — soft and nostalgic.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 92
+  },
+  {
+    "name": "Kẹo Dừa Dẻo",
+    "nameEn": "Soft Coconut Candy",
+    "category": "Cakes & Candy",
+    "price": 45000,
+    "weight": "250g",
+    "image": "/products/banh-dua-nuong-real.jpg",
+    "description": "Kẹo dừa dẻo đặc sản miền Trung, ngọt thanh mùi dừa rõ.",
+    "descriptionEn": "Soft coconut candy from central Vietnam.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 93
+  },
+  {
+    "name": "Bánh Dừa Nướng Thái Bình",
+    "nameEn": "Thai Binh Toasted Coconut Cake",
+    "category": "Cakes & Candy",
+    "price": 46000,
+    "weight": "250g",
+    "image": "/products/banh-dua-nuong-real.jpg",
+    "description": "Bánh dừa nướng Thái Bình đặc biệt — giòn thơm, đóng gói mang về.",
+    "descriptionEn": "Thai Binh toasted coconut cake — crisp and aromatic.",
+    "tags": [
+      "gift",
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 94
+  },
+  {
+    "name": "Bánh Khô Mè Bà Liễu",
+    "nameEn": "Ba Lieu Sesame Crisp",
+    "category": "Cakes & Candy",
+    "price": 52000,
+    "weight": "300g",
+    "image": "/products/banh-kho-me-cam-le-real.jpg",
+    "description": "Bánh khô mè Bà Liễu mỏng giòn, vị mè rang đậm — quà nhẹ ký.",
+    "descriptionEn": "Ba Lieu sesame crisp — thin, light, gift-ready.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 95
+  },
+  {
+    "name": "Bánh Pía Sầu Riêng",
+    "nameEn": "Durian Pia Cake",
+    "category": "Cakes & Candy",
+    "price": 75000,
+    "weight": "400g",
+    "image": "/products/banh-dau-xanh-real.jpg",
+    "description": "Bánh pía nhân sầu riêng thơm béo — hợp biếu người thân.",
+    "descriptionEn": "Durian-filled pia cake — rich gift favorite.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 96
+  },
+  {
+    "name": "Bánh Ít Lá Gai",
+    "nameEn": "Gai Leaf Sticky Cake",
+    "category": "Cakes & Candy",
+    "price": 65000,
+    "weight": "Box of 10",
+    "weightGrams": 500,
+    "image": "/products/banh-to-real.jpg",
+    "description": "Bánh ít lá gai nhân đậu xanh truyền thống Quảng Nam – Đà Nẵng.",
+    "descriptionEn": "Traditional gai-leaf sticky cakes with mung filling.",
+    "tags": [
+      "gift"
+    ],
+    "id": 97
+  },
+  {
+    "name": "Bánh Tráng Dừa Bình Định",
+    "nameEn": "Binh Dinh Coconut Rice Paper",
+    "category": "Rice Paper",
+    "price": 42000,
+    "weight": "200g",
+    "image": "/products/banh-trang-chuoi-real.jpg",
+    "description": "Bánh tráng dừa Bình Định ngọt nhẹ, ăn liền hoặc nướng.",
+    "descriptionEn": "Binh Dinh coconut rice paper — lightly sweet.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 98
+  },
+  {
+    "name": "Bánh Tráng Khoai Lang",
+    "nameEn": "Sweet Potato Rice Paper",
+    "category": "Rice Paper",
+    "price": 38000,
+    "weight": "200g",
+    "image": "/products/banh-trang-dai-loc-real.jpg",
+    "description": "Bánh tráng khoai lang màu tự nhiên, giòn thơm khi nướng.",
+    "descriptionEn": "Sweet-potato rice paper — toasts up fragrant and crisp.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 99
+  },
+  {
+    "name": "Bánh Tráng Đen Mè",
+    "nameEn": "Black Sesame Rice Paper",
+    "category": "Rice Paper",
+    "price": 45000,
+    "weight": "200g",
+    "image": "/products/banh-trang-me-real.jpg",
+    "description": "Bánh tráng đen mè lạ miệng — nướng hoặc cuốn đều ngon.",
+    "descriptionEn": "Black sesame rice paper — toast or roll.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 100
+  },
+  {
+    "name": "Mắm Dưa Dì Cẩn",
+    "nameEn": "Di Can Pickled Mustard Paste",
+    "category": "Condiments",
+    "price": 59000,
+    "weight": "500g",
+    "image": "/products/mam-tom-chua-real.jpg",
+    "description": "Mắm dưa Dì Cẩn chua dịu, ăn kèm thịt luộc hoặc bánh tráng.",
+    "descriptionEn": "Di Can mustard-paste pickle — with boiled pork or rice paper.",
+    "tags": [
+      "gift"
+    ],
+    "id": 101
+  },
+  {
+    "name": "Mắm Cá Cơm Dì Cẩn",
+    "nameEn": "Di Can Anchovy Paste",
+    "category": "Condiments",
+    "price": 69000,
+    "weight": "500g",
+    "image": "/products/mam-nem-real.jpg",
+    "description": "Mắm cá cơm Dì Cẩn đậm đà — kho quẹt hoặc chấm rau sống.",
+    "descriptionEn": "Di Can anchovy paste for dipping and braising.",
+    "tags": [
+      "gift"
+    ],
+    "id": 102
+  },
+  {
+    "name": "Mắm Cà Pháo Dì Cẩn",
+    "nameEn": "Di Can Eggplant Paste",
+    "category": "Condiments",
+    "price": 65000,
+    "weight": "500g",
+    "image": "/products/mam-ruoc-real.jpg",
+    "description": "Mắm cà pháo Dì Cẩn mềm, thơm — đặc sản mắm Đà Nẵng mang về.",
+    "descriptionEn": "Di Can eggplant paste — classic Da Nang condiment gift.",
+    "tags": [
+      "gift"
+    ],
+    "id": 103
+  },
+  {
+    "name": "Dưa Món Đà Nẵng",
+    "nameEn": "Da Nang Sweet Pickles",
+    "category": "Condiments",
+    "price": 45000,
+    "weight": "500g",
+    "image": "/products/mam-tom-chua-real.jpg",
+    "description": "Dưa món chua ngọt giòn — ăn kèm bánh tét, thịt kho ngày Tết.",
+    "descriptionEn": "Crunchy sweet-sour pickles for Tet meals and gifts.",
+    "tags": [
+      "gift"
+    ],
+    "id": 104
+  },
+  {
+    "name": "Củ Kiệu Ngâm Chua Ngọt",
+    "nameEn": "Sweet-Sour Pickled Leeks",
+    "category": "Condiments",
+    "price": 49000,
+    "weight": "500g",
+    "image": "/products/toi-ly-son-real.jpg",
+    "description": "Củ kiệu ngâm chua ngọt Dì Cẩn — món Tết quen thuộc.",
+    "descriptionEn": "Sweet-sour pickled leeks — Tet table classic.",
+    "tags": [
+      "gift"
+    ],
+    "id": 105
+  },
+  {
+    "name": "Hạt Macca",
+    "nameEn": "Macadamia Nuts",
+    "category": "Dried Fruit & Nuts",
+    "price": 185000,
+    "weight": "250g",
+    "image": "/products/hat-dieu-real.jpg",
+    "description": "Hạt macca béo bùi, đã tách vỏ sẵn — quà biếu sang nhẹ.",
+    "descriptionEn": "Shelled macadamia nuts — rich premium gift.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 106
+  },
+  {
+    "name": "Óc Chó Tách Vỏ",
+    "nameEn": "Shelled Walnuts",
+    "category": "Dried Fruit & Nuts",
+    "price": 165000,
+    "weight": "250g",
+    "image": "/products/hat-dieu-real.jpg",
+    "description": "Óc chó tách vỏ chọn hạt, tiện ăn liền hoặc pha ngũ cốc.",
+    "descriptionEn": "Shelled walnuts — ready to snack or mix.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 107
+  },
+  {
+    "name": "Hạnh Nhân Rang",
+    "nameEn": "Roasted Almonds",
+    "category": "Dried Fruit & Nuts",
+    "price": 145000,
+    "weight": "250g",
+    "image": "/products/hat-dieu-real.jpg",
+    "description": "Hạnh nhân rang giòn, vị tự nhiên — đóng túi mang đi.",
+    "descriptionEn": "Roasted almonds — clean crunch for travel.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 108
+  },
+  {
+    "name": "Hạt Dẻ Cười",
+    "nameEn": "Pistachios",
+    "category": "Dried Fruit & Nuts",
+    "price": 175000,
+    "weight": "250g",
+    "image": "/products/hat-dieu-real.jpg",
+    "description": "Hạt dẻ cười rang muối nhẹ, dễ bóc — hợp biếu khách.",
+    "descriptionEn": "Lightly salted pistachios — easy entertaining gift.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 109
+  },
+  {
+    "name": "Hạt Sen Sấy",
+    "nameEn": "Dried Lotus Seeds",
+    "category": "Dried Fruit & Nuts",
+    "price": 95000,
+    "weight": "200g",
+    "image": "/products/khoai-lang-real.jpg",
+    "description": "Hạt sen sấy giòn ngọt nhẹ — đặc sản hạt miền Trung.",
+    "descriptionEn": "Crisp lightly sweet dried lotus seeds.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 110
+  },
+  {
+    "name": "Mít Sấy",
+    "nameEn": "Dried Jackfruit",
+    "category": "Dried Fruit & Nuts",
+    "price": 79000,
+    "weight": "250g",
+    "image": "/products/xoai-say-deo-real.jpg",
+    "description": "Mít sấy vàng thơm, ít đường — ăn vặt mang về.",
+    "descriptionEn": "Golden dried jackfruit — lightly sweet travel snack.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 111
+  },
+  {
+    "name": "Ổi Sấy Dẻo",
+    "nameEn": "Chewy Dried Guava",
+    "category": "Dried Fruit & Nuts",
+    "price": 72000,
+    "weight": "200g",
+    "image": "/products/man-say-real.jpg",
+    "description": "Ổi sấy dẻo chua ngọt, giữ hương quả tươi.",
+    "descriptionEn": "Chewy dried guava with bright fruit notes.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 112
+  },
+  {
+    "name": "Bòn Bon Tiên Phước",
+    "nameEn": "Tien Phuoc Bon Bon Fruit",
+    "category": "Dried Fruit & Nuts",
+    "price": 120000,
+    "weight": "500g",
+    "image": "/products/mut-tac-real.jpg",
+    "description": "Bòn bon Tiên Phước (Quảng Nam) — trái đặc sản mùa, đóng hộp mang về.",
+    "descriptionEn": "Seasonal Tien Phuoc bon-bon fruit from Quang Nam.",
+    "tags": [
+      "gift"
+    ],
+    "id": 113
+  },
+  {
+    "name": "Mứt Vỏ Bưởi",
+    "nameEn": "Candied Pomelo Peel",
+    "category": "Dried Fruit & Nuts",
+    "price": 68000,
+    "weight": "200g",
+    "image": "/products/mut-tac-real.jpg",
+    "description": "Mứt vỏ bưởi thơm dịu, ít đắng — món Tết và quà nhẹ.",
+    "descriptionEn": "Candied pomelo peel — fragrant Tet-friendly sweet.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 114
+  },
+  {
+    "name": "Trà Tim Sen",
+    "nameEn": "Lotus Heart Tea",
+    "category": "Tea & Coffee",
+    "price": 95000,
+    "weight": "200g",
+    "image": "/products/tra-cung-dinh-real.jpg",
+    "description": "Trà tim sen thanh mát, dễ uống — biếu sức khỏe nhẹ nhàng.",
+    "descriptionEn": "Cooling lotus-heart tea — gentle wellness gift.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 115
+  },
+  {
+    "name": "Trà Lài Ngâu",
+    "nameEn": "Jasmine Orange-Blossom Tea",
+    "category": "Tea & Coffee",
+    "price": 88000,
+    "weight": "200g",
+    "image": "/products/tra-sam-dua-real.jpg",
+    "description": "Trà lài ngâu hương hoa dịu — pha nóng hoặc ướp lạnh.",
+    "descriptionEn": "Jasmine–orange blossom tea — floral and soft.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 116
+  },
+  {
+    "name": "Lá Chè Xanh Tiên Phước",
+    "nameEn": "Tien Phuoc Green Tea Leaves",
+    "category": "Tea & Coffee",
+    "price": 75000,
+    "weight": "200g",
+    "image": "/products/tra-gung-mat-ong-real.jpg",
+    "description": "Lá chè xanh Tiên Phước phơi khô — pha trà hoặc nấu nước giải nhiệt.",
+    "descriptionEn": "Dried Tien Phuoc green tea leaves for brewing.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 117
+  },
+  {
+    "name": "Cà Phê Chồn Hộp Quà",
+    "nameEn": "Civets Coffee Gift Box",
+    "category": "Tea & Coffee",
+    "price": 350000,
+    "weight": "250g",
+    "image": "/products/ca-phe-phin-qua-tang-real.jpg",
+    "description": "Cà phê chồn hộp quà — vị đậm hậu ngọt, biếu đối tác.",
+    "descriptionEn": "Gift-boxed civet coffee — deep finish for clients.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 118
+  },
+  {
+    "name": "Dầu Cao Sao Vàng",
+    "nameEn": "Golden Star Balm Oil",
+    "category": "Oils & Souvenirs",
+    "price": 15000,
+    "weight": "5ml",
+    "weightGrams": 30,
+    "image": "/products/hop-qua-tra-sam-dua-real.jpg",
+    "description": "Dầu cao sao vàng quen thuộc — quà nhỏ mang về cho người thân.",
+    "descriptionEn": "Classic golden-star balm oil — tiny travel souvenir.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 119
+  },
+  {
+    "name": "Tinh Dầu Tràm",
+    "nameEn": "Cajeput Essential Oil",
+    "category": "Oils & Souvenirs",
+    "price": 85000,
+    "weight": "50ml",
+    "weightGrams": 120,
+    "image": "/products/hop-qua-nam-o-real.jpg",
+    "description": "Tinh dầu tràm nguyên chất — xoa ấm, mang theo khi đi biển Đà Nẵng.",
+    "descriptionEn": "Pure cajeput oil — warming travel essential from the coast.",
+    "tags": [
+      "tourist",
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 120
+  },
+  {
+    "name": "Tinh Dầu Sả Chanh",
+    "nameEn": "Lemongrass Essential Oil",
+    "category": "Oils & Souvenirs",
+    "price": 79000,
+    "weight": "50ml",
+    "weightGrams": 120,
+    "image": "/products/hop-qua-nam-o-real.jpg",
+    "description": "Tinh dầu sả chanh thơm dịu — xông phòng hoặc lăn nhẹ.",
+    "descriptionEn": "Lemongrass oil — fresh aroma for rooms or roll-on use.",
+    "tags": [
+      "tourist",
+      "shelf-stable"
+    ],
+    "id": 121
+  },
+  {
+    "name": "Tinh Dầu Quế",
+    "nameEn": "Cinnamon Essential Oil",
+    "category": "Oils & Souvenirs",
+    "price": 82000,
+    "weight": "50ml",
+    "weightGrams": 120,
+    "image": "/products/hop-qua-tra-sam-dua-real.jpg",
+    "description": "Tinh dầu quế ấm nồng — quà lưu niệm hương miền Trung.",
+    "descriptionEn": "Warm cinnamon oil — aromatic central Vietnam souvenir.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 122
+  },
+  {
+    "name": "Tỏi Đen Một Tép",
+    "nameEn": "Single-Clove Black Garlic",
+    "category": "Oils & Souvenirs",
+    "price": 160000,
+    "weight": "200g",
+    "image": "/products/toi-ly-son-real.jpg",
+    "description": "Tỏi đen một tép (tỏi cô đơn) lên men — quà sức khỏe miền Trung.",
+    "descriptionEn": "Fermented single-clove black garlic — wellness gift.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 123
+  },
+  {
+    "name": "Nấm Lim Xanh Tiên Phước",
+    "nameEn": "Tien Phuoc Green Lim Mushroom",
+    "category": "Oils & Souvenirs",
+    "price": 280000,
+    "weight": "100g",
+    "image": "/products/gio-qua-nho-real.jpg",
+    "description": "Nấm lim xanh Tiên Phước khô — sắc thuốc quý làm quà biếu.",
+    "descriptionEn": "Dried Tien Phuoc green lim mushroom — premium herbal gift.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 124
+  },
+  {
+    "name": "Rau Câu Chân Vịt Lý Sơn",
+    "nameEn": "Ly Son Seaweed Jelly",
+    "category": "Oils & Souvenirs",
+    "price": 95000,
+    "weight": "200g",
+    "image": "/products/rong-bien-real.jpg",
+    "description": "Rau câu chân vịt Lý Sơn khô — nấu chè hoặc rau câu thanh mát.",
+    "descriptionEn": "Ly Son agar seaweed — for cooling jelly desserts.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 125
+  },
+  {
+    "name": "Mật Nho Phan Rang",
+    "nameEn": "Phan Rang Grape Molasses",
+    "category": "Oils & Souvenirs",
+    "price": 100000,
+    "weight": "750ml",
+    "weightGrams": 900,
+    "image": "/products/gio-qua-tet-real.jpg",
+    "description": "Mật nho Phan Rang hảo hạng — vị ngọt tự nhiên, biếu Tết tinh tế.",
+    "descriptionEn": "Phan Rang grape molasses — natural sweet Tet gift.",
+    "tags": [
+      "gift",
+      "shelf-stable"
+    ],
+    "id": 126
+  },
+  {
+    "name": "Giỏ Quà Phát Tài",
+    "nameEn": "Prosperity Gift Basket",
+    "category": "Gifts",
+    "price": 550000,
+    "weight": "Set",
+    "weightGrams": 2200,
+    "image": "/products/gio-qua-tet-real.jpg",
+    "description": "Giỏ quà phát tài gồm khô, trà, bánh — shop chỉnh theo ngân sách khi chat.",
+    "descriptionEn": "Prosperity basket with dried goods, tea, and cakes — customized on chat.",
+    "tags": [
+      "gift"
+    ],
+    "id": 127
+  },
+  {
+    "name": "Hộp Quà Vạn Sự Như Ý",
+    "nameEn": "Wish-You-Well Gift Box",
+    "category": "Gifts",
+    "price": 420000,
+    "weight": "Box",
+    "weightGrams": 1800,
+    "image": "/products/hop-qua-tra-sam-dua-real.jpg",
+    "description": "Hộp quà vạn sự như ý — trà, kẹo, đặc sản khô xếp sẵn mang biếu.",
+    "descriptionEn": "Wish-you-well box — tea, candy, and dried specialties.",
+    "tags": [
+      "gift"
+    ],
+    "id": 128
+  },
+  {
+    "name": "Set Quà Thăm Hỏi",
+    "nameEn": "Visit-Host Gift Set",
+    "category": "Gifts",
+    "price": 320000,
+    "weight": "Set",
+    "weightGrams": 1500,
+    "image": "/products/gio-qua-nho-real.jpg",
+    "description": "Set quà thăm hỏi gọn nhẹ: bánh kẹo + trà hoặc mắm nhỏ.",
+    "descriptionEn": "Compact host gift set — cakes/candy plus tea or small paste.",
+    "tags": [
+      "gift",
+      "tourist"
+    ],
+    "id": 129
   }
 ]
