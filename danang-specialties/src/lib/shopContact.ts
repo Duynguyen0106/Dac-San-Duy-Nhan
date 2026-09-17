@@ -5,6 +5,8 @@ export const SHOP_CONTACT = {
   phoneVi: "0905747413",
   phoneViDisplay: "0905 747 413",
   phoneViTel: "tel:+84905747413",
+  phoneViAlt: "0983871071",
+  phoneViAltDisplay: "0983 871 071",
   zaloUrl: "https://zalo.me/0905747413",
 
   /** International WhatsApp line (English). */

@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense, useEffect, useMemo, useState, type ComponentType } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
@@ -579,38 +580,50 @@ function ShopPageContent() {
       <Header />
 
       <main className="flex-1 bg-[linear-gradient(180deg,#f3f7f6_0%,#e8f1ef_40%,#efe8dc_100%)]">
-        <section className="relative overflow-hidden border-b border-line/70">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(15,92,108,0.14),_transparent_55%),radial-gradient(ellipse_at_bottom_left,_rgba(201,133,42,0.12),_transparent_50%)]"
-          />
-          <div className="relative mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
-            <nav className="mb-5 text-sm text-mist">
-              <Link href="/" className="hover:text-sea">
+        <section className="relative min-h-[16rem] overflow-hidden border-b border-line/70 sm:min-h-[18rem]">
+          <div className="absolute inset-0">
+            <Image
+              src="/brand/shop-stall-hero.jpg"
+              alt={
+                isVi
+                  ? "Quầy đặc sản Duy Nhân tại Chợ Cồn"
+                  : "Duy Nhân specialty stall at Chợ Cồn"
+              }
+              fill
+              priority
+              className="object-cover object-[center_30%]"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-sea-deep/88 via-sea-deep/65 to-sea-deep/35" />
+            <div className="absolute inset-0 bg-gradient-to-t from-sea-deep/50 via-transparent to-sea-deep/20" />
+          </div>
+          <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
+            <nav className="mb-5 text-sm text-foam/75">
+              <Link href="/" className="hover:text-white">
                 {isVi ? "Trang chủ" : "Home"}
               </Link>
               <span className="mx-2">/</span>
-              <span className="text-sea-deep">
+              <span className="text-foam">
                 {isVi ? "Cửa hàng" : "Shop"}
               </span>
             </nav>
 
             <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-2xl">
-                <p className="text-sm font-medium uppercase tracking-[0.16em] text-sea">
-                  Duy Nhân
+                <p className="text-sm font-medium uppercase tracking-[0.16em] text-sun">
+                  Duy Nhân · Kiốt 06
                 </p>
-                <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-sea-deep sm:text-4xl">
+                <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
                   {isVi ? "Cửa Hàng Đặc Sản" : "Specialty Shop"}
                 </h1>
-                <p className="mt-3 max-w-xl text-mist">
+                <p className="mt-3 max-w-xl text-foam/90">
                   {isVi
                     ? "Lọc theo danh mục, giá, yêu thích — tìm đúng món quà mang về từ chợ Cồn."
                     : "Filter by category, price, and favorites — find the right Chợ Cồn gift to bring home."}
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3 text-sm">
-                <span className="border border-line bg-card/80 px-3 py-2 text-sea-deep">
+                <span className="border border-foam/30 bg-sea-deep/40 px-3 py-2 text-foam backdrop-blur-sm">
                   {loading
                     ? "…"
                     : isVi
@@ -619,7 +632,7 @@ function ShopPageContent() {
                 </span>
                 <Link
                   href="/admin"
-                  className="font-medium text-sea underline-offset-2 hover:underline"
+                  className="font-medium text-foam underline-offset-2 hover:underline"
                 >
                   {isVi ? "Quản trị" : "Manage"}
                 </Link>
