@@ -1,0 +1,82 @@
+{
+  "common": {
+    "brand": "Duy Nhân - Da Nang Specialties",
+    "brandShort": "Duy Nhân",
+    "shop": "Shop",
+    "home": "Home",
+    "cart": "Shopping cart",
+    "language": "Language",
+    "footerTagline": "Da Nang specialties — bring the coast home.",
+    "addressLabel": "Address",
+    "phoneLabel": "Phone",
+    "hoursLabel": "Hours"
+  },
+  "home": {
+    "heroAlt": "Duy Nhân specialty stall at Chợ Cồn, Da Nang",
+    "heroHeadline": "Taste of Da Nang's Sea",
+    "heroSubtitle": "From kiosk No. 6 at 90 Hung Vuong — authentic specialties packed for home and travel.",
+    "shopNow": "Shop Now",
+    "categoriesTitle": "Featured Categories",
+    "categoriesSubtitle": "Seven Chợ Cồn–style groups — from one-sun squid and Nam O fish sauce to Đại Lộc rice paper.",
+    "giftTitle": "Best for Travelers",
+    "giftSubtitle": "Shelf-stable gifts that pack well for the flight home.",
+    "giftCta": "Browse travel picks",
+    "stallAlt": "Duy Nhân Da Nang specialties stall packed with dried seafood, cakes, and condiments",
+    "stallEyebrow": "Visit the stall",
+    "stallTitle": "Kiosk No. 6 · 90 Hung Vuong",
+    "stallSubtitle": "The same packed shelves you see in the market — now easier to browse, filter, and order online.",
+    "stallCta": "Browse the catalog",
+    "bestSellersTitle": "Best Sellers",
+    "bestSellersSubtitle": "The specialties customers choose most this week.",
+    "categories": {
+      "dried-seafood": {
+        "name": "Dried Seafood",
+        "description": "One-sun squid, golden threadfin, boneless goby, and shrimp from Quang Nam–Da Nang seas."
+      },
+      "snacks": {
+        "name": "Rim & Snacks",
+        "description": "Tamarind squid, soft-shell crab rim, beef jerky, and ready-to-eat Chợ Cồn snacks."
+      },
+      "cold-cuts": {
+        "name": "Cold Cuts",
+        "description": "Beef roll, tre, nem chua, and fish cake — Quang Nam–Da Nang cold cuts for gifting."
+      },
+      "condiments": {
+        "name": "Sauces & Condiments",
+        "description": "Di Can fermented sauces, sour shrimp paste, and legendary Nam O fish sauce."
+      },
+      "tea-coffee": {
+        "name": "Tea & Coffee",
+        "description": "Cooling pandan-ginseng tea, ginger honey brew, and bold Da Nang roast coffee."
+      },
+      "traditional-cakes": {
+        "name": "Traditional Cakes",
+        "description": "Cam Le sesame crisps, roasted coconut cakes, mung bean cakes, and sesame candy."
+      },
+      "rice-paper": {
+        "name": "Rice Paper",
+        "description": "Đại Lộc rice paper for rolls, sesame-toasted sheets, and ready snack packs."
+      }
+    }
+  },
+  "product": {
+    "weight": "Weight",
+    "quantity": "Quantity",
+    "decreaseQty": "Decrease quantity",
+    "increaseQty": "Increase quantity",
+    "buyNow": "Buy Now",
+    "chatZalo": "Chat on WhatsApp",
+    "chatNow": "Chat on WhatsApp",
+    "addToCart": "Add to Cart",
+    "viewDetails": "View details",
+    "categories": {
+      "Dried Seafood": "Dried Seafood",
+      "Snacks": "Rim & Snacks",
+      "Cold Cuts": "Cold Cuts",
+      "Condiments": "Sauces & Condiments",
+      "Tea & Coffee": "Tea & Coffee",
+      "Traditional Cakes": "Traditional Cakes",
+      "Rice Paper": "Rice Paper"
+    }
+  }
+}

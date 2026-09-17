@@ -1,0 +1,82 @@
+{
+  "common": {
+    "brand": "Duy Nhân - Đặc Sản Đà Nẵng",
+    "brandShort": "Duy Nhân",
+    "shop": "Cửa hàng",
+    "home": "Trang chủ",
+    "cart": "Giỏ hàng",
+    "language": "Ngôn ngữ",
+    "footerTagline": "Đặc sản Đà Nẵng — mang biển cả về nhà.",
+    "addressLabel": "Địa chỉ",
+    "phoneLabel": "Điện thoại",
+    "hoursLabel": "Giờ mở cửa"
+  },
+  "home": {
+    "heroAlt": "Quầy đặc sản Duy Nhân tại Chợ Cồn, Đà Nẵng",
+    "heroHeadline": "Hương Vị Biển Cả Đà Nẵng",
+    "heroSubtitle": "Từ kiốt số 6, 90 Hùng Vương — đặc sản chính gốc, đóng gói mang về nhà và đi xa.",
+    "shopNow": "Mua Ngay",
+    "categoriesTitle": "Danh Mục Nổi Bật",
+    "categoriesSubtitle": "Bảy nhóm đặc sản kiểu chợ Cồn — từ hải sản khô, mắm Nam Ô đến bánh tráng Đại Lộc.",
+    "giftTitle": "Gợi Ý Cho Khách Du Lịch",
+    "giftSubtitle": "Món dễ mang theo, bền trên đường về — chọn nhanh trước giờ bay.",
+    "giftCta": "Xem gợi ý mang về",
+    "stallAlt": "Quầy Duy Nhân đầy hải sản khô, bánh kẹo và gia vị đặc sản Đà Nẵng",
+    "stallEyebrow": "Ghé quầy thật",
+    "stallTitle": "Kiốt số 6 · 90 Hùng Vương",
+    "stallSubtitle": "Cùng những kệ hàng quen thuộc ở chợ — giờ lọc, tìm và đặt online dễ hơn.",
+    "stallCta": "Xem toàn bộ sản phẩm",
+    "bestSellersTitle": "Bán Chạy Nhất",
+    "bestSellersSubtitle": "Những món được khách lựa chọn nhiều nhất tuần này.",
+    "categories": {
+      "dried-seafood": {
+        "name": "Hải Sản Khô",
+        "description": "Mực một nắng, cá chỉ vàng, cá bống rút xương và tôm khô từ biển Quảng Nam – Đà Nẵng."
+      },
+      "snacks": {
+        "name": "Đồ Rim & Ăn Vặt",
+        "description": "Mực rim me, ghẹ sữa rim, bò khô và các món ăn liền quen thuộc ở chợ Cồn."
+      },
+      "cold-cuts": {
+        "name": "Chả & Tré",
+        "description": "Chả bò, tré, nem chua và chả cá — món lạnh đặc trưng xứ Quảng làm quà."
+      },
+      "condiments": {
+        "name": "Mắm & Nước Chấm",
+        "description": "Mắm nêm Dì Cẩn, mắm tôm chua và nước mắm Nam Ô trứ danh."
+      },
+      "tea-coffee": {
+        "name": "Trà & Cà Phê",
+        "description": "Trà sâm dứa thanh mát, trà gừng mật ong và cà phê rang xay đậm vị Đà Nẵng."
+      },
+      "traditional-cakes": {
+        "name": "Bánh Truyền Thống",
+        "description": "Bánh khô mè Cẩm Lệ, bánh dừa nướng, bánh đậu xanh và kẹo mè xửng."
+      },
+      "rice-paper": {
+        "name": "Bánh Tráng",
+        "description": "Bánh tráng Đại Lộc cuốn thịt heo, bánh tráng mè nướng và gói ăn liền."
+      }
+    }
+  },
+  "product": {
+    "weight": "Khối lượng",
+    "quantity": "Số lượng",
+    "decreaseQty": "Giảm số lượng",
+    "increaseQty": "Tăng số lượng",
+    "buyNow": "Mua Ngay",
+    "chatZalo": "Chat Zalo",
+    "chatNow": "Chat Zalo",
+    "addToCart": "Thêm vào giỏ",
+    "viewDetails": "Xem chi tiết",
+    "categories": {
+      "Dried Seafood": "Hải Sản Khô",
+      "Snacks": "Đồ Rim & Ăn Vặt",
+      "Cold Cuts": "Chả & Tré",
+      "Condiments": "Mắm & Nước Chấm",
+      "Tea & Coffee": "Trà & Cà Phê",
+      "Traditional Cakes": "Bánh Truyền Thống",
+      "Rice Paper": "Bánh Tráng"
+    }
+  }
+}
