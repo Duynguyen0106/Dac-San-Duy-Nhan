@@ -1,16 +1,24 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
 import SiteFooter from "@/components/SiteFooter";
 import { useTranslation } from "@/hooks/useTranslation";
-import { listTips } from "@/lib/tips";
+import { listTipCategories, listTips } from "@/lib/tips";
 
 export default function TipsIndexPage() {
   const { language } = useTranslation();
   const isVi = language === "VI";
   const tips = listTips();
+  const categories = listTipCategories();
+  const [activeCategory, setActiveCategory] = useState<string | "all">("all");
+
+  const filtered = useMemo(() => {
+    if (activeCategory === "all") return tips;
+    return tips.filter((tip) => tip.category === activeCategory);
+  }, [activeCategory, tips]);
 
   return (
     <div className="flex min-h-full flex-col bg-background text-foreground">
@@ -35,8 +43,39 @@ export default function TipsIndexPage() {
               : "50 guides by category: dried seafood, sweets, tea, rice paper, condiments, gifts, and how to order at Duy Nhan."}
           </p>
 
+          <div className="mt-6 flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => setActiveCategory("all")}
+              className={`border px-3 py-1.5 text-sm transition ${
+                activeCategory === "all"
+                  ? "border-sea bg-sea text-white"
+                  : "border-line bg-card text-sea-deep hover:border-sea"
+              }`}
+            >
+              {isVi ? "Tất cả" : "All"} ({tips.length})
+            </button>
+            {categories.map((category) => {
+              const count = tips.filter((tip) => tip.category === category).length;
+              return (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => setActiveCategory(category)}
+                  className={`border px-3 py-1.5 text-sm transition ${
+                    activeCategory === category
+                      ? "border-sea bg-sea text-white"
+                      : "border-line bg-card text-sea-deep hover:border-sea"
+                  }`}
+                >
+                  {category} ({count})
+                </button>
+              );
+            })}
+          </div>
+
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {tips.map((tip) => (
+            {filtered.map((tip) => (
               <Link
                 key={tip.slug}
                 href={`/tips/${tip.slug}`}
