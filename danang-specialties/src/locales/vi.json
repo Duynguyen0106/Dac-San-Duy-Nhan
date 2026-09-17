@@ -12,12 +12,20 @@
     "hoursLabel": "Giờ mở cửa"
   },
   "home": {
-    "heroAlt": "Bãi biển Đà Nẵng lúc bình minh",
+    "heroAlt": "Quầy đặc sản Duy Nhân tại Chợ Cồn, Đà Nẵng",
     "heroHeadline": "Hương Vị Biển Cả Đà Nẵng",
-    "heroSubtitle": "Đặc sản chọn lọc từ thành phố biển — mang hương vị quê nhà đến tận tay bạn.",
+    "heroSubtitle": "Từ kiốt số 6, 90 Hùng Vương — đặc sản chính gốc, đóng gói mang về nhà và đi xa.",
     "shopNow": "Mua Ngay",
     "categoriesTitle": "Danh Mục Nổi Bật",
     "categoriesSubtitle": "Bảy nhóm đặc sản kiểu chợ Cồn — từ hải sản khô, mắm Nam Ô đến bánh tráng Đại Lộc.",
+    "giftTitle": "Gợi Ý Cho Khách Du Lịch",
+    "giftSubtitle": "Món dễ mang theo, bền trên đường về — chọn nhanh trước giờ bay.",
+    "giftCta": "Xem gợi ý mang về",
+    "stallAlt": "Quầy Duy Nhân đầy hải sản khô, bánh kẹo và gia vị đặc sản Đà Nẵng",
+    "stallEyebrow": "Ghé quầy thật",
+    "stallTitle": "Kiốt số 6 · 90 Hùng Vương",
+    "stallSubtitle": "Cùng những kệ hàng quen thuộc ở chợ — giờ lọc, tìm và đặt online dễ hơn.",
+    "stallCta": "Xem toàn bộ sản phẩm",
     "bestSellersTitle": "Bán Chạy Nhất",
     "bestSellersSubtitle": "Những món được khách lựa chọn nhiều nhất tuần này.",
     "categories": {
@@ -58,6 +66,7 @@
     "increaseQty": "Tăng số lượng",
     "buyNow": "Mua Ngay",
     "chatZalo": "Chat Zalo",
+    "chatNow": "Chat Zalo",
     "addToCart": "Thêm vào giỏ",
     "viewDetails": "Xem chi tiết",
     "categories": {

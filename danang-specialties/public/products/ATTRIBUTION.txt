@@ -1,0 +1,11 @@
+Product images:
+
+- `*-real.jpg` and files under `real/`: original Duy Nhân Chợ Cồn shop photos
+  provided by the store owner, color-enhanced / glowed up for the catalog.
+  Matched to catalog items by package label name and product texture.
+
+- Remaining Wikimedia Commons (CC-licensed) stand-ins are kept only for items
+  without a matching shop photo yet (cold cuts, Nam O fish sauce, coffee gift
+  sets, some cakes, etc.).
+
+Shop stall brand photos live in /brand/shop-stall-*.jpg.

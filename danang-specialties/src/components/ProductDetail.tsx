@@ -11,7 +11,7 @@ import { useFavorites } from "@/context/FavoritesContext";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import { useTranslation } from "@/hooks/useTranslation";
 import { formatPrice, type Product } from "@/lib/products";
-import { SHOP_CONTACT } from "@/lib/shopContact";
+import { getShopContact } from "@/lib/shopContact";
 
 type ProductDetailProps = {
   product: Product;
@@ -43,6 +43,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
     : product.descriptionEn;
   const categoryLabel =
     t(`product.categories.${product.category}`) || product.category;
+  const contact = getShopContact(language);
 
   return (
     <div className="flex min-h-full flex-col bg-background text-foreground">
@@ -169,13 +170,15 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   {t("product.buyNow")}
                 </button>
                 <a
-                  href={SHOP_CONTACT.zaloUrl}
+                  href={contact.chatUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex flex-1 items-center justify-center gap-2 border border-sea bg-card px-6 py-3.5 text-sm font-semibold text-sea transition-colors hover:bg-sea hover:text-foam"
                 >
                   <MessageCircle className="h-4 w-4" />
-                  {t("product.chatZalo")}
+                  {language === "VI"
+                    ? `Chat ${contact.chatLabel}`
+                    : `Chat on ${contact.chatLabel}`}
                 </a>
               </div>
             </div>

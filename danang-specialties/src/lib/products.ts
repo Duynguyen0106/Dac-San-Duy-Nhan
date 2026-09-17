@@ -1,5 +1,7 @@
 export type Language = "VI" | "EN";
 
+export type ProductTag = "gift" | "tourist" | "shelf-stable";
+
 export type Product = {
   id: number;
   name: string;
@@ -12,6 +14,8 @@ export type Product = {
   image: string;
   description: string;
   descriptionEn: string;
+  /** Optional merchandising tags for shop filters. */
+  tags?: ProductTag[];
 };
 
 export const formatPrice = (price: number, language: Language = "VI") =>

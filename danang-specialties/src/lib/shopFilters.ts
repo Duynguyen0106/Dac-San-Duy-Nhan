@@ -10,6 +10,8 @@ export type ShopSortOption =
 
 export type CategoryFilter = "All" | ShopCategory;
 
+export type ShopQuickFilter = "gift" | "tourist" | "shelf-stable" | null;
+
 export function buildShopUrl(params: {
   category?: CategoryFilter;
   query?: string;
@@ -18,6 +20,7 @@ export function buildShopUrl(params: {
   maxPrice?: number | null;
   favoritesOnly?: boolean;
   view?: ShopViewMode;
+  quickFilter?: ShopQuickFilter;
 }): string {
   const search = new URLSearchParams();
 
@@ -42,6 +45,9 @@ export function buildShopUrl(params: {
   if (params.view && params.view === "list") {
     search.set("view", "list");
   }
+  if (params.quickFilter) {
+    search.set("pick", params.quickFilter);
+  }
 
   const query = search.toString();
   return query ? `/shop?${query}` : "/shop";
@@ -51,4 +57,11 @@ export function parseOptionalNumber(value: string | null): number | null {
   if (value == null || value === "") return null;
   const parsed = Number(value);
   return Number.isFinite(parsed) && parsed >= 0 ? parsed : null;
+}
+
+export function parseQuickFilter(value: string | null): ShopQuickFilter {
+  if (value === "gift" || value === "tourist" || value === "shelf-stable") {
+    return value;
+  }
+  return null;
 }

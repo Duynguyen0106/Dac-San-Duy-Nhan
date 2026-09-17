@@ -1,9 +1,26 @@
 import { promises as fs } from "fs";
 import path from "path";
-import type { Product, ShopCategory } from "@/lib/products";
+import type { Product, ProductTag, ShopCategory } from "@/lib/products";
 import { SHOP_CATEGORIES } from "@/lib/products";
 
 const DATA_PATH = path.join(process.cwd(), "data", "products.json");
+
+const ALLOWED_TAGS: readonly ProductTag[] = [
+  "gift",
+  "tourist",
+  "shelf-stable",
+];
+
+function normalizeTags(value: unknown): ProductTag[] | undefined {
+  if (value === undefined || value === null) return undefined;
+  if (!Array.isArray(value)) return undefined;
+  const tags = value
+    .map((tag) => String(tag))
+    .filter((tag): tag is ProductTag =>
+      (ALLOWED_TAGS as readonly string[]).includes(tag),
+    );
+  return tags.length > 0 ? [...new Set(tags)] : undefined;
+}
 
 export type ProductInput = {
   name: string;
@@ -15,6 +32,7 @@ export type ProductInput = {
   image: string;
   description: string;
   descriptionEn: string;
+  tags?: Product["tags"];
 };
 
 function isShopCategory(value: string): value is ShopCategory {
@@ -87,6 +105,11 @@ export function validateProductInput(input: Partial<ProductInput>): {
     data.weightGrams = Math.round(weightGrams);
   }
 
+  const tags = normalizeTags(input.tags);
+  if (tags) {
+    data.tags = tags;
+  }
+
   return { ok: true, data };
 }
 
@@ -130,6 +153,9 @@ export async function updateProduct(
   const updated: Product = { id, ...input };
   if (input.weightGrams === undefined) {
     delete updated.weightGrams;
+  }
+  if (input.tags === undefined) {
+    delete updated.tags;
   }
 
   products[index] = updated;

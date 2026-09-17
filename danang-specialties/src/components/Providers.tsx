@@ -22,7 +22,28 @@ export function useLanguage() {
 }
 
 function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>("VI");
+  const [language, setLanguageState] = useState<Language>("VI");
+
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem("duynhan-language");
+      if (stored === "VI" || stored === "EN") {
+        setLanguageState(stored);
+      }
+    } catch {
+      // ignore storage errors
+    }
+  }, []);
+
+  const setLanguage = (next: Language) => {
+    setLanguageState(next);
+    try {
+      window.localStorage.setItem("duynhan-language", next);
+    } catch {
+      // ignore storage errors
+    }
+  };
+
   const value = useMemo(
     () => ({ language, setLanguage }),
     [language],

@@ -16,13 +16,14 @@ import SiteFooter from "@/components/SiteFooter";
 import { useLanguage } from "@/components/Providers";
 import { useCart } from "@/context/CartContext";
 import {
-  composeZaloOrderMessage,
+  composeOrderMessage,
+  getOrderChatUrl,
   validateCheckoutForm,
   type CheckoutFormErrors,
   type CheckoutFormValues,
 } from "@/lib/checkout";
 import { formatPrice, formatWeight } from "@/lib/products";
-import { SHOP_CONTACT } from "@/lib/shopContact";
+import { getShopContact } from "@/lib/shopContact";
 
 const initialValues: CheckoutFormValues = {
   name: "",
@@ -44,6 +45,7 @@ export default function CheckoutPage() {
     clearCart,
   } = useCart();
   const isVi = language === "VI";
+  const contact = getShopContact(language);
 
   const [values, setValues] = useState<CheckoutFormValues>(initialValues);
   const [errors, setErrors] = useState<CheckoutFormErrors>({});
@@ -55,7 +57,7 @@ export default function CheckoutPage() {
     () =>
       items.length === 0
         ? ""
-        : composeZaloOrderMessage({
+        : composeOrderMessage({
             values,
             items,
             totalPrice,
@@ -97,7 +99,7 @@ export default function CheckoutPage() {
     return Object.keys(nextErrors).length === 0;
   };
 
-  const handleOrderViaZalo = async () => {
+  const handleOrderViaChat = async () => {
     closeCart();
 
     if (items.length === 0) {
@@ -120,7 +122,7 @@ export default function CheckoutPage() {
       return;
     }
 
-    const message = composeZaloOrderMessage({
+    const message = composeOrderMessage({
       values,
       items,
       totalPrice,
@@ -128,29 +130,31 @@ export default function CheckoutPage() {
       language,
     });
 
+    const chatUrl = getOrderChatUrl(language, message);
+
     try {
       await navigator.clipboard.writeText(message);
       setStatus("copied");
       setStatusMessage(
         isVi
-          ? "Đã sao chép đơn hàng. Dán tin nhắn vào Zalo để hoàn tất."
-          : "Order copied. Paste the message in Zalo to finish.",
+          ? `Đã sao chép đơn hàng. Dán tin nhắn vào ${contact.chatLabel} để hoàn tất.`
+          : `Order copied. ${contact.chatLabel} will open with your order ready to send.`,
       );
     } catch {
       setStatus("copied");
       setStatusMessage(
         isVi
-          ? "Mở Zalo và gửi nội dung đơn hàng bên dưới."
-          : "Open Zalo and send the order message shown below.",
+          ? `Mở ${contact.chatLabel} và gửi nội dung đơn hàng bên dưới.`
+          : `Open ${contact.chatLabel} and send the order message shown below.`,
       );
     }
 
-    window.open(SHOP_CONTACT.zaloUrl, "_blank", "noopener,noreferrer");
+    window.open(chatUrl, "_blank", "noopener,noreferrer");
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    void handleOrderViaZalo();
+    void handleOrderViaChat();
   };
 
   if (items.length === 0) {
@@ -356,8 +360,8 @@ export default function CheckoutPage() {
                     title={isVi ? "Chuyển khoản" : "Bank Transfer"}
                     description={
                       isVi
-                        ? "Nhận STK qua Zalo sau khi xác nhận đơn."
-                        : "Bank details shared on Zalo after confirmation."
+                        ? `Nhận STK qua ${contact.chatLabel} sau khi xác nhận đơn.`
+                        : `Bank details shared on ${contact.chatLabel} after confirmation.`
                     }
                   />
                 </div>
@@ -390,10 +394,16 @@ export default function CheckoutPage() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <button
                   type="submit"
-                  className="inline-flex flex-1 items-center justify-center gap-2 bg-[#0068FF] px-6 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                  className={`inline-flex flex-1 items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 ${
+                    contact.chatChannel === "whatsapp"
+                      ? "bg-[#25D366]"
+                      : "bg-[#0068FF]"
+                  }`}
                 >
                   <MessageCircle className="h-4 w-4" />
-                  {isVi ? "Đặt hàng qua Zalo" : "Order via Zalo"}
+                  {isVi
+                    ? `Đặt hàng qua ${contact.chatLabel}`
+                    : `Order via ${contact.chatLabel}`}
                 </button>
                 <button
                   type="button"
@@ -406,8 +416,8 @@ export default function CheckoutPage() {
 
               <p className="mt-4 text-xs leading-relaxed text-mist">
                 {isVi
-                  ? `Nút Zalo sẽ sao chép chi tiết đơn hàng và mở chat với Duy Nhân (${SHOP_CONTACT.phoneDisplay}). Bạn chỉ cần dán tin nhắn để gửi.`
-                  : `The Zalo button copies your order details and opens chat with Duy Nhân (${SHOP_CONTACT.phoneDisplay}). Paste the message to send.`}
+                  ? `Nút ${contact.chatLabel} sẽ sao chép chi tiết đơn hàng và mở chat với Duy Nhân (${contact.phoneDisplay}). Bạn chỉ cần dán tin nhắn để gửi.`
+                  : `The ${contact.chatLabel} button opens chat with Duy Nhân (${contact.phoneDisplay}) and prefills your order details so you can send in one tap.`}
               </p>
             </form>
 
@@ -457,7 +467,9 @@ export default function CheckoutPage() {
 
               <div className="border border-line bg-card p-5">
                 <h3 className="text-sm font-semibold text-sea-deep">
-                  {isVi ? "Xem trước tin nhắn Zalo" : "Zalo message preview"}
+                  {isVi
+                    ? `Xem trước tin nhắn ${contact.chatLabel}`
+                    : `${contact.chatLabel} message preview`}
                 </h3>
                 <pre className="mt-3 max-h-64 overflow-auto whitespace-pre-wrap rounded-none bg-background p-3 text-xs leading-relaxed text-sea-deep/90">
                   {messagePreview}
