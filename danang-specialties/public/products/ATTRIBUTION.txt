@@ -1,0 +1,10 @@
+Product images sourced from Wikimedia Commons (CC-licensed).
+Used for catalog accuracy after Unsplash stock photos failed visual QA
+against authentic Da Nang specialty references.
+
+Key sources include Vietnamese / Southeast Asian food photos such as:
+dried squid, tôm khô, cá khô, bò khô (jerky), giò lụa, nem chua,
+nước mắm bottles, mắm nêm bowls, bánh đậu xanh, kẹo mè xửng,
+bánh tráng drying/nướng/cuốn, Vietnamese coffee phin, sesame cookies.
+
+Replace with original Duy Nhân product photography when available.
