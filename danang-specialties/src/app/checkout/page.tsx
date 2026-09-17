@@ -356,8 +356,8 @@ export default function CheckoutPage() {
             </h1>
             <p className="mt-3 text-mist">
               {isVi
-                ? "Nhận tại kiốt, giao Việt Nam, hoặc ship quốc tế toàn cầu — phí ship ước tính theo kg, xác nhận cuối qua chat."
-                : "Pickup, Vietnam delivery, or worldwide shipping — estimate by kg, final quote confirmed on chat."}
+                ? "Nhận tại kiốt, giao Việt Nam, hoặc ship quốc tế — giá SP và phí ship shop báo qua Zalo / Messenger / WhatsApp."
+                : "Pickup, Vietnam delivery, or worldwide shipping — product and shipping prices quoted on Zalo / Messenger / WhatsApp."}
             </p>
             <Link
               href="/shipping"
