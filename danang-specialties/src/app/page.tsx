@@ -6,7 +6,7 @@ import { Fish, Cookie, CupSoda, Drumstick } from "lucide-react";
 import Header from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
 import { useTranslation } from "@/hooks/useTranslation";
-import { products } from "@/data/products";
+import { useProducts } from "@/hooks/useProducts";
 
 const categoryMeta = [
   { id: "dried-seafood", icon: Fish },
@@ -15,13 +15,13 @@ const categoryMeta = [
   { id: "traditional-cakes", icon: Cookie },
 ] as const;
 
-const bestSellers = products.slice(0, 4);
-
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1674296067534-0f9769040781?auto=format&fit=crop&w=2400&q=80";
 
 export default function Home() {
   const { t, language } = useTranslation();
+  const { products } = useProducts();
+  const bestSellers = products.slice(0, 4);
 
   return (
     <div className="flex min-h-full flex-col bg-background text-foreground">
