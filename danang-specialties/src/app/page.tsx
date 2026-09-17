@@ -22,7 +22,7 @@ const HERO_IMAGE =
 export default function Home() {
   const { t, language } = useTranslation();
   const { products } = useProducts();
-  const bestSellers = products.slice(0, 4);
+  const bestSellers = products.slice(0, 8);
 
   return (
     <div className="flex min-h-full flex-col bg-background text-foreground">
