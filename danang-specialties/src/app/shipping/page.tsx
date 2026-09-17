@@ -5,7 +5,7 @@ import { Globe2, Package, Plane, Scale, ShieldCheck } from "lucide-react";
 import Header from "@/components/Header";
 import SiteFooter from "@/components/SiteFooter";
 import { useTranslation } from "@/hooks/useTranslation";
-import { formatPrice, formatWeight } from "@/lib/products";
+import { CONTACT_PRICING_ENABLED, formatPrice, formatWeight } from "@/lib/products";
 import {
   getShippingNote,
   getZoneEta,
@@ -46,8 +46,12 @@ export default function ShippingPage() {
             </h1>
             <p className="mt-4 text-base text-mist sm:text-lg">
               {isVi
-                ? "Nhận tại kiốt, giao Việt Nam, hoặc EMS/bưu chính quốc tế. Phí ước tính theo kg — shop xác nhận chính xác qua Zalo/WhatsApp trước khi gửi."
-                : "Pickup at the kiosk, deliver in Vietnam, or ship internationally by EMS/post. Estimates are by kg — we confirm the exact quote on Zalo/WhatsApp before dispatch."}
+                ? CONTACT_PRICING_ENABLED
+                  ? "Nhận tại kiốt, giao Việt Nam, hoặc EMS/bưu chính quốc tế. Giá SP và phí ship shop báo qua Zalo/Messenger/WhatsApp khi bạn đặt."
+                  : "Nhận tại kiốt, giao Việt Nam, hoặc EMS/bưu chính quốc tế. Phí ước tính theo kg — shop xác nhận chính xác qua Zalo/WhatsApp trước khi gửi."
+                : CONTACT_PRICING_ENABLED
+                  ? "Pickup at the kiosk, deliver in Vietnam, or ship internationally by EMS/post. Product and shipping prices are quoted on Zalo/Messenger/WhatsApp when you order."
+                  : "Pickup at the kiosk, deliver in Vietnam, or ship internationally by EMS/post. Estimates are by kg — we confirm the exact quote on Zalo/WhatsApp before dispatch."}
             </p>
             <p className="mt-3 text-sm text-sea-deep/80">{getShippingNote(language)}</p>
           </div>
@@ -93,6 +97,40 @@ export default function ShippingPage() {
             ))}
           </div>
 
+          {CONTACT_PRICING_ENABLED ? (
+            <section className="mt-12 border border-line bg-card p-6">
+              <h2 className="font-display text-2xl font-semibold text-sea-deep sm:text-3xl">
+                {isVi ? "Phí ship — liên hệ báo giá" : "Shipping — contact for quote"}
+              </h2>
+              <p className="mt-3 max-w-2xl text-mist">
+                {isVi
+                  ? "Phí ship phụ thuộc cân nặng, khu vực và EMS thực tế. Gửi đơn qua Zalo / Messenger / WhatsApp — shop báo giá chính xác trước khi gửi."
+                  : "Shipping depends on weight, zone, and real EMS rates. Send your order on Zalo / Messenger / WhatsApp — we confirm the exact quote before dispatch."}
+              </p>
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                {zones.map((zone) => (
+                  <li
+                    key={zone.id}
+                    className="border border-line bg-background px-4 py-3"
+                  >
+                    <p className="font-medium text-sea-deep">
+                      {getZoneLabel(zone, language)}
+                    </p>
+                    <p className="mt-1 text-sm text-mist">
+                      {getZoneEta(zone, language)} ·{" "}
+                      {isVi ? "Liên hệ" : "Contact"}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/checkout"
+                className="mt-6 inline-block bg-sun px-4 py-2.5 text-sm font-semibold text-white hover:bg-sun-hover"
+              >
+                {isVi ? "Đặt hàng & chat báo giá" : "Order & chat for a quote"}
+              </Link>
+            </section>
+          ) : (
           <section className="mt-12">
             <div className="flex flex-wrap items-end justify-between gap-3">
               <div>
@@ -158,6 +196,7 @@ export default function ShippingPage() {
               </table>
             </div>
           </section>
+          )}
 
           <section className="mt-12 grid gap-6 lg:grid-cols-2">
             <div className="border border-line bg-card p-6">

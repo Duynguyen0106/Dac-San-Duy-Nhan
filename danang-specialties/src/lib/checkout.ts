@@ -1,7 +1,10 @@
 import type { CartItem } from "@/context/CartContext";
 import {
+  CONTACT_PRICING_ENABLED,
   formatPrice,
+  formatPublicPrice,
   formatWeight,
+  getContactPricingHint,
   type Language,
 } from "@/lib/products";
 import { getShopContact } from "@/lib/shopContact";
@@ -231,9 +234,9 @@ export function composeOrderMessage({
     isVi ? "=== ĐƠN HÀNG ===" : "=== ORDER ===",
     ...items.map((item) => {
       const name = isVi ? item.product.name : item.product.nameEn;
-      const lineTotal = formatPrice(
-        item.product.price * item.quantity,
+      const lineTotal = formatPublicPrice(
         language,
+        item.product.price * item.quantity,
       );
       return `- ${name} x${item.quantity} (${item.product.weight}) = ${lineTotal}`;
     }),
@@ -241,12 +244,16 @@ export function composeOrderMessage({
     `${isVi ? "Tổng khối lượng SP" : "Product weight"}: ${formatWeight(totalWeightGrams, language)}`,
     `${isVi ? "Cân tính phí (ước)" : "Chargeable wt (est.)"}: ${formatWeight(estimate.chargeableWeightGrams, language)}`,
     `${isVi ? "Khu vực ship" : "Shipping zone"}: ${getZoneLabel(estimate.zone, language)} (${estimate.zoneId as ShippingZoneId})`,
-    `${isVi ? "Ship ước tính" : "Est. shipping"}: ${formatPrice(estimate.shippingFee, language)}`,
-    `${isVi ? "Tạm tính SP" : "Products subtotal"}: ${formatPrice(totalPrice, language)}`,
-    `${isVi ? "Tổng ước tính" : "Est. grand total"}: ${formatPrice(estimate.grandTotal, language)}`,
-    isVi
-      ? "(Phí ship cuối cùng shop xác nhận theo cân thực tế / EMS)"
-      : "(Final shipping confirmed by shop after real EMS weighing)",
+    CONTACT_PRICING_ENABLED
+      ? `${isVi ? "Ship ước tính" : "Est. shipping"}: ${formatPublicPrice(language)}`
+      : `${isVi ? "Ship ước tính" : "Est. shipping"}: ${formatPrice(estimate.shippingFee, language)}`,
+    `${isVi ? "Tạm tính SP" : "Products subtotal"}: ${formatPublicPrice(language, totalPrice)}`,
+    `${isVi ? "Tổng ước tính" : "Est. grand total"}: ${formatPublicPrice(language, estimate.grandTotal)}`,
+    CONTACT_PRICING_ENABLED
+      ? getContactPricingHint(language)
+      : isVi
+        ? "(Phí ship cuối cùng shop xác nhận theo cân thực tế / EMS)"
+        : "(Final shipping confirmed by shop after real EMS weighing)",
   ];
 
   return lines.filter((line) => line !== null).join("\n");

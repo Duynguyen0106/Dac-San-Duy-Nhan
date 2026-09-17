@@ -16,15 +16,15 @@ export default function HowToOrderPage() {
     ? [
         {
           title: "1. Chọn món trên web",
-          body: "Vào Cửa hàng, lọc theo danh mục hoặc quà mang đi, thêm vào giỏ.",
+          body: "Vào Cửa hàng, lọc theo danh mục hoặc quà mang đi, thêm vào giỏ. Giá hiển thị Liên hệ.",
         },
         {
           title: "2. Chọn ship: kiốt / Việt Nam / quốc tế",
-          body: "Ở trang thanh toán chọn nhận tại kiốt, giao trong nước, hoặc ship toàn cầu — xem phí ước tính theo kg.",
+          body: "Ở trang thanh toán chọn nhận tại kiốt, giao trong nước, hoặc ship toàn cầu.",
         },
         {
-          title: "3. Gửi đơn qua chat",
-          body: "Zalo (VI) hoặc WhatsApp (EN) để xác nhận còn hàng và phí EMS cuối cùng.",
+          title: "3. Gửi đơn qua chat — nhận báo giá",
+          body: "Zalo / Messenger / WhatsApp: shop báo giá SP + phí ship và xác nhận còn hàng.",
         },
         {
           title: "4. Nhận hàng / tracking",
@@ -34,15 +34,15 @@ export default function HowToOrderPage() {
     : [
         {
           title: "1. Pick items online",
-          body: "Browse the shop, filter by category or travel gifts, and add to cart.",
+          body: "Browse the shop, filter by category or travel gifts, and add to cart. Prices show as Contact.",
         },
         {
           title: "2. Choose pickup / Vietnam / worldwide",
-          body: "At checkout pick kiosk pickup, domestic delivery, or international shipping — see the kg estimate.",
+          body: "At checkout pick kiosk pickup, domestic delivery, or international shipping.",
         },
         {
-          title: "3. Confirm on chat",
-          body: "WhatsApp (EN) or Zalo (VI) to confirm stock and the final EMS fee.",
+          title: "3. Confirm on chat — get a quote",
+          body: "Zalo / Messenger / WhatsApp: we confirm stock and quote product + shipping prices.",
         },
         {
           title: "4. Receive / track",
