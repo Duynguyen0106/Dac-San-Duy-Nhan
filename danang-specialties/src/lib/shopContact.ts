@@ -9,6 +9,11 @@ export const SHOP_CONTACT = {
   phoneViAltDisplay: "0983 871 071",
   zaloUrl: "https://zalo.me/0905747413",
 
+  /** Facebook Messenger (Đặc Sản Đà Nẵng Duy Nhân). */
+  messengerUrl: "https://m.me/100057455118487",
+  facebookUrl:
+    "https://www.facebook.com/people/%C4%90%E1%BA%B7c-S%E1%BA%A3n-%C4%90%C3%A0-N%E1%BA%B5ng-Duy-Nh%C3%A2n/100057455118487/",
+
   /** International WhatsApp line (English). */
   phoneEn: "447882843513",
   phoneEnDisplay: "+44 7882 843513",

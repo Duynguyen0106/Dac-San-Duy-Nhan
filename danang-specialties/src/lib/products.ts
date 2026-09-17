@@ -62,8 +62,10 @@ export const SHOP_CATEGORIES = [
   "Cold Cuts",
   "Condiments",
   "Tea & Coffee",
-  "Traditional Cakes",
+  "Cakes & Candy",
   "Rice Paper",
+  "Dried Fruit & Nuts",
+  "Gifts",
 ] as const;
 
 export type ShopCategory = (typeof SHOP_CATEGORIES)[number];
@@ -74,11 +76,13 @@ export const categoryLabels: Record<
 > = {
   "Dried Seafood": { vi: "Hải Sản Khô", en: "Dried Seafood" },
   Snacks: { vi: "Đồ Rim & Ăn Vặt", en: "Rim & Snacks" },
-  "Cold Cuts": { vi: "Chả & Tré", en: "Cold Cuts" },
-  Condiments: { vi: "Mắm & Nước Chấm", en: "Sauces & Condiments" },
+  "Cold Cuts": { vi: "Nem Chả & Tré", en: "Cold Cuts" },
+  Condiments: { vi: "Mắm & Gia Vị", en: "Sauces & Spices" },
   "Tea & Coffee": { vi: "Trà & Cà Phê", en: "Tea & Coffee" },
-  "Traditional Cakes": { vi: "Bánh Truyền Thống", en: "Traditional Cakes" },
+  "Cakes & Candy": { vi: "Bánh & Kẹo", en: "Cakes & Candy" },
   "Rice Paper": { vi: "Bánh Tráng", en: "Rice Paper" },
+  "Dried Fruit & Nuts": { vi: "Hoa Quả & Hạt", en: "Dried Fruit & Nuts" },
+  Gifts: { vi: "Quà Tặng", en: "Gift Sets" },
 };
 
 /** Map homepage category card ids to shop filter values. */
@@ -88,6 +92,8 @@ export const HOME_CATEGORY_TO_SHOP: Record<string, ShopCategory> = {
   "cold-cuts": "Cold Cuts",
   condiments: "Condiments",
   "tea-coffee": "Tea & Coffee",
-  "traditional-cakes": "Traditional Cakes",
+  "cakes-candy": "Cakes & Candy",
   "rice-paper": "Rice Paper",
+  "dried-fruit-nuts": "Dried Fruit & Nuts",
+  gifts: "Gifts",
 };

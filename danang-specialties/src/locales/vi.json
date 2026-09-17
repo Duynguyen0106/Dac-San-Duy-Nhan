@@ -17,7 +17,7 @@
     "heroSubtitle": "Từ kiốt số 6, 90 Hùng Vương — đặc sản chính gốc, đóng gói mang về nhà và đi xa.",
     "shopNow": "Mua Ngay",
     "categoriesTitle": "Danh Mục Nổi Bật",
-    "categoriesSubtitle": "Bảy nhóm đặc sản kiểu chợ Cồn — từ hải sản khô, mắm Nam Ô đến bánh tráng Đại Lộc.",
+    "categoriesSubtitle": "Chín nhóm đặc sản — từ hải sản khô, bánh kẹo, mắm Nam Ô đến giỏ quà biếu.",
     "giftTitle": "Gợi Ý Cho Khách Du Lịch",
     "giftSubtitle": "Món dễ mang theo, bền trên đường về — chọn nhanh trước giờ bay.",
     "giftCta": "Xem gợi ý mang về",
@@ -31,31 +31,39 @@
     "categories": {
       "dried-seafood": {
         "name": "Hải Sản Khô",
-        "description": "Mực một nắng, cá chỉ vàng, cá bống rút xương và tôm khô từ biển Quảng Nam – Đà Nẵng."
+        "description": "Mực một nắng, cá chỉ vàng, cá bống, tôm khô và rong biển."
       },
       "snacks": {
         "name": "Đồ Rim & Ăn Vặt",
-        "description": "Mực rim me, ghẹ sữa rim, bò khô và các món ăn liền quen thuộc ở chợ Cồn."
+        "description": "Mực rim me, ghẹ sữa rim, bò khô lát/sợi/viên và chả ram."
       },
       "cold-cuts": {
-        "name": "Chả & Tré",
-        "description": "Chả bò, tré, nem chua và chả cá — món lạnh đặc trưng xứ Quảng làm quà."
+        "name": "Nem Chả & Tré",
+        "description": "Chả bò, tré, nem chua, chả lụa và chả cá đặc sản."
       },
       "condiments": {
-        "name": "Mắm & Nước Chấm",
-        "description": "Mắm nêm Dì Cẩn, mắm tôm chua và nước mắm Nam Ô trứ danh."
+        "name": "Mắm & Gia Vị",
+        "description": "Mắm Dì Cẩn, nước mắm Nam Ô, muối ớt xanh và tỏi Lý Sơn."
       },
       "tea-coffee": {
         "name": "Trà & Cà Phê",
-        "description": "Trà sâm dứa thanh mát, trà gừng mật ong và cà phê rang xay đậm vị Đà Nẵng."
+        "description": "Trà sâm dứa, trà cung đình, trà gừng và cà phê phin."
       },
-      "traditional-cakes": {
-        "name": "Bánh Truyền Thống",
-        "description": "Bánh khô mè Cẩm Lệ, bánh dừa nướng, bánh đậu xanh và kẹo mè xửng."
+      "cakes-candy": {
+        "name": "Bánh & Kẹo",
+        "description": "Bánh khô mè Cẩm Lệ, bánh dừa nướng, đậu xanh và kẹo mè xửng."
       },
       "rice-paper": {
         "name": "Bánh Tráng",
-        "description": "Bánh tráng Đại Lộc cuốn thịt heo, bánh tráng mè nướng và gói ăn liền."
+        "description": "Bánh tráng Đại Lộc, mè nướng, tôm hành và set cuốn thịt heo."
+      },
+      "dried-fruit-nuts": {
+        "name": "Hoa Quả & Hạt",
+        "description": "Xoài sấy, chuối sấy, hạt điều rang muối và mứt tắc."
+      },
+      "gifts": {
+        "name": "Quà Tặng",
+        "description": "Hộp trà, combo Nam Ô và giỏ quà đặc sản biếu Tết."
       }
     }
   },
@@ -72,11 +80,13 @@
     "categories": {
       "Dried Seafood": "Hải Sản Khô",
       "Snacks": "Đồ Rim & Ăn Vặt",
-      "Cold Cuts": "Chả & Tré",
-      "Condiments": "Mắm & Nước Chấm",
+      "Cold Cuts": "Nem Chả & Tré",
+      "Condiments": "Mắm & Gia Vị",
       "Tea & Coffee": "Trà & Cà Phê",
-      "Traditional Cakes": "Bánh Truyền Thống",
-      "Rice Paper": "Bánh Tráng"
+      "Cakes & Candy": "Bánh & Kẹo",
+      "Rice Paper": "Bánh Tráng",
+      "Dried Fruit & Nuts": "Hoa Quả & Hạt",
+      "Gifts": "Quà Tặng"
     }
   }
 }
