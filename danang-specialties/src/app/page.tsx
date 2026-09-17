@@ -10,6 +10,8 @@ import {
   Beef,
   Droplets,
   ScrollText,
+  Package,
+  Gift,
 } from "lucide-react";
 import Header from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
@@ -24,8 +26,10 @@ const categoryMeta = [
   { id: "cold-cuts", icon: Beef },
   { id: "condiments", icon: Droplets },
   { id: "tea-coffee", icon: CupSoda },
-  { id: "traditional-cakes", icon: Cookie },
+  { id: "cakes-candy", icon: Cookie },
   { id: "rice-paper", icon: ScrollText },
+  { id: "dried-fruit-nuts", icon: Package },
+  { id: "gifts", icon: Gift },
 ] as const;
 
 const HERO_IMAGE = "/brand/shop-stall-hero.jpg";
@@ -91,7 +95,7 @@ export default function Home() {
               <p className="mt-3 text-mist">{t("home.categoriesSubtitle")}</p>
             </div>
 
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {categoryMeta.map((category, index) => {
                 const Icon = category.icon;
                 const shopCategory = HOME_CATEGORY_TO_SHOP[category.id];

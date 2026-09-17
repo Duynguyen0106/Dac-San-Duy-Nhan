@@ -56,8 +56,10 @@ const CATEGORY_ICONS: Record<
   "Cold Cuts": Beef,
   Condiments: Droplets,
   "Tea & Coffee": CupSoda,
-  "Traditional Cakes": Cookie,
+  "Cakes & Candy": Cookie,
   "Rice Paper": ScrollText,
+  "Dried Fruit & Nuts": Package,
+  Gifts: Gift,
 };
 
 function isShopCategory(value: string | null): value is ShopCategory {

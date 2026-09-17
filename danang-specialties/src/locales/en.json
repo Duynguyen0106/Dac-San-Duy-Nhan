@@ -17,7 +17,7 @@
     "heroSubtitle": "From kiosk No. 6 at 90 Hung Vuong — authentic specialties packed for home and travel.",
     "shopNow": "Shop Now",
     "categoriesTitle": "Featured Categories",
-    "categoriesSubtitle": "Seven Chợ Cồn–style groups — from one-sun squid and Nam O fish sauce to Đại Lộc rice paper.",
+    "categoriesSubtitle": "Nine specialty groups — from dried seafood and cakes to Nam O sauce and gift baskets.",
     "giftTitle": "Best for Travelers",
     "giftSubtitle": "Shelf-stable gifts that pack well for the flight home.",
     "giftCta": "Browse travel picks",
@@ -31,31 +31,39 @@
     "categories": {
       "dried-seafood": {
         "name": "Dried Seafood",
-        "description": "One-sun squid, golden threadfin, boneless goby, and shrimp from Quang Nam–Da Nang seas."
+        "description": "One-sun squid, golden threadfin, goby, shrimp, and seaweed."
       },
       "snacks": {
         "name": "Rim & Snacks",
-        "description": "Tamarind squid, soft-shell crab rim, beef jerky, and ready-to-eat Chợ Cồn snacks."
+        "description": "Tamarind squid, soft-shell crab, beef jerky styles, and cha ram."
       },
       "cold-cuts": {
         "name": "Cold Cuts",
-        "description": "Beef roll, tre, nem chua, and fish cake — Quang Nam–Da Nang cold cuts for gifting."
+        "description": "Beef roll, tre, nem chua, pork loaf, and fish cake."
       },
       "condiments": {
-        "name": "Sauces & Condiments",
-        "description": "Di Can fermented sauces, sour shrimp paste, and legendary Nam O fish sauce."
+        "name": "Sauces & Spices",
+        "description": "Di Can pastes, Nam O fish sauce, chili salt, and Ly Son garlic."
       },
       "tea-coffee": {
         "name": "Tea & Coffee",
-        "description": "Cooling pandan-ginseng tea, ginger honey brew, and bold Da Nang roast coffee."
+        "description": "Pandan-ginseng tea, Hue imperial tea, ginger brew, and phin coffee."
       },
-      "traditional-cakes": {
-        "name": "Traditional Cakes",
-        "description": "Cam Le sesame crisps, roasted coconut cakes, mung bean cakes, and sesame candy."
+      "cakes-candy": {
+        "name": "Cakes & Candy",
+        "description": "Cam Le sesame crisps, coconut cakes, mung cakes, and sesame candy."
       },
       "rice-paper": {
         "name": "Rice Paper",
-        "description": "Đại Lộc rice paper for rolls, sesame-toasted sheets, and ready snack packs."
+        "description": "Dai Loc sheets, sesame toast, shrimp scallion, and roll sets."
+      },
+      "dried-fruit-nuts": {
+        "name": "Dried Fruit & Nuts",
+        "description": "Dried mango, banana, cashews, and honey cumquat candy."
+      },
+      "gifts": {
+        "name": "Gift Sets",
+        "description": "Tea boxes, Nam O combos, and Tet specialty baskets."
       }
     }
   },
@@ -73,10 +81,12 @@
       "Dried Seafood": "Dried Seafood",
       "Snacks": "Rim & Snacks",
       "Cold Cuts": "Cold Cuts",
-      "Condiments": "Sauces & Condiments",
+      "Condiments": "Sauces & Spices",
       "Tea & Coffee": "Tea & Coffee",
-      "Traditional Cakes": "Traditional Cakes",
-      "Rice Paper": "Rice Paper"
+      "Cakes & Candy": "Cakes & Candy",
+      "Rice Paper": "Rice Paper",
+      "Dried Fruit & Nuts": "Dried Fruit & Nuts",
+      "Gifts": "Gift Sets"
     }
   }
 }
