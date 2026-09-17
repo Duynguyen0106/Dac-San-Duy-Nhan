@@ -16,9 +16,9 @@ export const SHOP_CONTACT = {
   whatsappUrl: "https://wa.me/447882843513",
 
   addressVi:
-    "Kiốt 06, Chợ Cồn, 290 Hùng Vương, P. Vĩnh Trung, Quận Thanh Khê, Đà Nẵng",
+    "Kiốt số 6, 90 đường Hùng Vương, quận Hải Châu, thành phố Đà Nẵng, 55000, Việt Nam",
   addressEn:
-    "Kiosk 06, Con Market, 290 Hung Vuong, Vinh Trung Ward, Thanh Khe District, Da Nang",
+    "Kiosk No. 6, 90 Hung Vuong Street, Hai Chau District, Da Nang 55000, Vietnam",
   hoursVi: "07:00 – 21:00",
   hoursEn: "7:00 AM – 9:00 PM",
 } as const;
