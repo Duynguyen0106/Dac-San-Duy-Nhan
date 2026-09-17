@@ -632,12 +632,6 @@ function ShopPageContent() {
                       ? `${products.length} món trong catalog`
                       : `${products.length} items in catalog`}
                 </span>
-                <Link
-                  href="/admin"
-                  className="font-medium text-foam underline-offset-2 hover:underline"
-                >
-                  {isVi ? "Quản trị" : "Manage"}
-                </Link>
               </div>
             </div>
           </div>
