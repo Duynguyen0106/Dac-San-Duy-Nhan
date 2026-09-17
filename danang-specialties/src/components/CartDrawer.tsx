@@ -217,12 +217,13 @@ export default function CartDrawer({ language = "VI" }: CartDrawerProps) {
                 {formatPrice(totalPrice, language)}
               </span>
             </div>
-            <button
-              type="button"
-              className="w-full bg-sun py-3.5 text-sm font-semibold text-white transition-colors hover:bg-sun-hover"
+            <Link
+              href="/checkout"
+              onClick={closeCart}
+              className="block w-full bg-sun py-3.5 text-center text-sm font-semibold text-white transition-colors hover:bg-sun-hover"
             >
               {isVi ? "Tiến hành đặt hàng" : "Proceed to checkout"}
-            </button>
+            </Link>
           </div>
         )}
       </aside>
