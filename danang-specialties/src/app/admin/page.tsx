@@ -12,6 +12,8 @@ import {
   Trash2,
   X,
 } from "lucide-react";
+import AdminFacebookPoster from "@/components/AdminFacebookPoster";
+import AdminImageField from "@/components/AdminImageField";
 import Header from "@/components/Header";
 import { useTranslation } from "@/hooks/useTranslation";
 import {
@@ -40,7 +42,7 @@ const emptyForm: FormState = {
   price: "",
   weight: "",
   weightGrams: "",
-  image: "https://placehold.co/400x400?text=New+Product",
+  image: "",
   description: "",
   descriptionEn: "",
 };
@@ -93,6 +95,7 @@ export default function AdminPage() {
   const [editingId, setEditingId] = useState<number | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [form, setForm] = useState<FormState>(emptyForm);
+  const [facebookFocusId, setFacebookFocusId] = useState<number | null>(null);
 
   const sortedProducts = useMemo(
     () => [...products].sort((a, b) => a.id - b.id),
@@ -192,6 +195,15 @@ export default function AdminPage() {
     event.preventDefault();
     setError(null);
     setMessage(null);
+
+    if (!form.image.trim()) {
+      setError(
+        isVi
+          ? "Vui lòng tải ảnh sản phẩm hoặc chọn từ thư viện."
+          : "Please upload a product photo or pick one from the library.",
+      );
+      return;
+    }
 
     const payload = toPayload(form);
     const isEdit = editingId !== null;
@@ -298,11 +310,13 @@ export default function AdminPage() {
             >
               {isVi ? "Đăng nhập" : "Sign in"}
             </button>
-            <p className="mt-4 text-xs text-mist">
-              {isVi
-                ? "Mặc định local: duynhan2026 (đổi bằng ADMIN_PASSWORD)."
-                : "Local default: duynhan2026 (override with ADMIN_PASSWORD)."}
-            </p>
+            {process.env.NODE_ENV === "development" && (
+              <p className="mt-4 text-xs text-mist">
+                {isVi
+                  ? "Dev local: duynhan2026 (đổi bằng ADMIN_PASSWORD)."
+                  : "Dev local: duynhan2026 (override with ADMIN_PASSWORD)."}
+              </p>
+            )}
           </form>
         </main>
       </div>
@@ -331,8 +345,8 @@ export default function AdminPage() {
               </h1>
               <p className="mt-1 text-sm text-mist">
                 {isVi
-                  ? "Thêm, sửa, xóa sản phẩm — lưu vào data/products.json."
-                  : "Add, edit, delete products — saved to data/products.json."}
+                  ? "Thêm, sửa, xóa sản phẩm — tải ảnh, và tạo bài Facebook cho từng món."
+                  : "Add, edit, delete products — upload photos, and create Facebook posts for each item."}
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -472,16 +486,13 @@ export default function AdminPage() {
                     className={inputClass}
                   />
                 </Field>
-                <Field label={isVi ? "URL ảnh" : "Image URL"}>
-                  <input
-                    required
-                    value={form.image}
-                    onChange={(e) =>
-                      setForm({ ...form, image: e.target.value })
-                    }
-                    className={inputClass}
-                  />
-                </Field>
+
+                <AdminImageField
+                  value={form.image}
+                  onChange={(image) => setForm({ ...form, image })}
+                  isVi={isVi}
+                  nameHint={form.name || form.nameEn}
+                />
               </div>
 
               <div className="mt-4 grid gap-4">
@@ -545,13 +556,13 @@ export default function AdminPage() {
                     key={product.id}
                     className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:px-5"
                   >
-                    <div className="relative h-16 w-16 shrink-0 overflow-hidden bg-foam">
+                    <div className="relative h-20 w-20 shrink-0 overflow-hidden border border-line bg-foam sm:h-24 sm:w-24">
                       <Image
                         src={product.image}
                         alt={product.name}
                         fill
                         className="object-cover"
-                        sizes="64px"
+                        sizes="96px"
                         unoptimized
                       />
                     </div>
@@ -564,7 +575,20 @@ export default function AdminPage() {
                         · {formatPrice(product.price, language)}
                       </p>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setFacebookFocusId(product.id);
+                          document
+                            .getElementById("admin-facebook-tool")
+                            ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                        }}
+                        className="inline-flex items-center gap-1.5 border border-[#1877F2]/30 px-3 py-2 text-sm font-medium text-[#1877F2] hover:bg-[#1877F2]/5"
+                      >
+                        <FacebookGlyph className="h-3.5 w-3.5" />
+                        FB
+                      </button>
                       <button
                         type="button"
                         onClick={() => startEdit(product)}
@@ -587,6 +611,15 @@ export default function AdminPage() {
               </ul>
             )}
           </div>
+
+          <div id="admin-facebook-tool">
+            <AdminFacebookPoster
+              products={sortedProducts}
+              isVi={isVi}
+              language={language}
+              focusProductId={facebookFocusId}
+            />
+          </div>
         </div>
       </main>
     </div>
@@ -608,5 +641,13 @@ function Field({
       {label}
       {children}
     </label>
+  );
+}
+
+function FacebookGlyph({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden fill="currentColor">
+      <path d="M14 8h2V5h-2c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h2.2l.8-3H13V9c0-.6.4-1 1-1z" />
+    </svg>
   );
 }

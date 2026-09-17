@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { MapPin, Phone } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
-import { getShopContact } from "@/lib/shopContact";
+import { SHOP_CONTACT, getShopContact } from "@/lib/shopContact";
 
 export default function SiteFooter() {
   const { t, language } = useTranslation();
@@ -52,15 +53,45 @@ export default function SiteFooter() {
                 )}
                 <span className="text-foam/60"> · </span>
                 <a
-                  href={contact.chatUrl}
+                  href={SHOP_CONTACT.zaloUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-colors hover:text-white"
                 >
-                  {contact.chatLabel}
+                  Zalo
+                </a>
+                <span className="text-foam/60"> · </span>
+                <a
+                  href={SHOP_CONTACT.messengerUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-white"
+                >
+                  Messenger
+                </a>
+                <span className="text-foam/60"> · </span>
+                <a
+                  href={SHOP_CONTACT.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-white"
+                >
+                  WhatsApp
                 </a>
               </span>
             </p>
+          </div>
+
+          <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+            <Link href="/how-to-order" className="text-foam/85 hover:text-white">
+              {t("common.howToOrder")}
+            </Link>
+            <Link href="/tips" className="text-foam/85 hover:text-white">
+              {t("common.tips")}
+            </Link>
+            <Link href="/shop" className="text-foam/85 hover:text-white">
+              {t("common.shop")}
+            </Link>
           </div>
         </div>
 

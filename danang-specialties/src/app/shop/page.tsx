@@ -56,8 +56,10 @@ const CATEGORY_ICONS: Record<
   "Cold Cuts": Beef,
   Condiments: Droplets,
   "Tea & Coffee": CupSoda,
-  "Traditional Cakes": Cookie,
+  "Cakes & Candy": Cookie,
   "Rice Paper": ScrollText,
+  "Dried Fruit & Nuts": Package,
+  Gifts: Gift,
 };
 
 function isShopCategory(value: string | null): value is ShopCategory {
@@ -630,12 +632,6 @@ function ShopPageContent() {
                       ? `${products.length} món trong catalog`
                       : `${products.length} items in catalog`}
                 </span>
-                <Link
-                  href="/admin"
-                  className="font-medium text-foam underline-offset-2 hover:underline"
-                >
-                  {isVi ? "Quản trị" : "Manage"}
-                </Link>
               </div>
             </div>
           </div>

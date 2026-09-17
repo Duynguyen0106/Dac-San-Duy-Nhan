@@ -60,10 +60,16 @@ export default function Header() {
             {t("common.shop")}
           </Link>
           <Link
-            href="/admin"
-            className="hidden text-sm font-medium text-mist transition-colors hover:text-sea md:inline"
+            href="/how-to-order"
+            className="hidden text-sm font-medium text-sea-deep transition-colors hover:text-sea lg:inline"
           >
-            Admin
+            {t("common.howToOrder")}
+          </Link>
+          <Link
+            href="/tips"
+            className="hidden text-sm font-medium text-sea-deep transition-colors hover:text-sea lg:inline"
+          >
+            {t("common.tips")}
           </Link>
         </div>
 
