@@ -90,3 +90,10 @@ body {
 .delay-300 {
   animation-delay: 0.3s;
 }
+
+/* Clear fixed mobile call/chat bar above the footer */
+@media (max-width: 639px) {
+  .site-footer-pad {
+    padding-bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px));
+  }
+}

@@ -61,7 +61,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-sea-deep/70 via-transparent to-sea-deep/25" />
           </div>
 
-          <div className="relative mx-auto flex min-h-[calc(100svh-4rem)] max-w-6xl flex-col justify-end px-4 pb-16 pt-24 sm:min-h-[calc(100svh-4.5rem)] sm:px-6 sm:pb-24">
+          <div className="relative mx-auto flex min-h-[calc(100svh-4rem)] max-w-6xl flex-col justify-end px-4 pb-28 pt-24 sm:min-h-[calc(100svh-4.5rem)] sm:px-6 sm:pb-24">
             <p className="animate-fade-up font-display text-3xl font-semibold tracking-tight text-foam sm:text-4xl md:text-5xl">
               {t("common.brandShort")}
             </p>
