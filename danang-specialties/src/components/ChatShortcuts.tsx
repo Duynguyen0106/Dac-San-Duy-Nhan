@@ -74,7 +74,7 @@ export default function ChatShortcuts() {
   if (pathname?.startsWith("/admin")) return null;
 
   return (
-    <div className="fixed bottom-[calc(5.5rem+env(safe-area-inset-bottom,0px))] right-3 z-[45] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
+    <div className="fixed bottom-[calc(6.25rem+env(safe-area-inset-bottom,0px))] right-3 z-[45] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
       <div
         className={`flex flex-col items-end gap-2 transition-all duration-200 ${
           open
