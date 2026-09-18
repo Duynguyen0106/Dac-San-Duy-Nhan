@@ -31,6 +31,7 @@ import { useLanguage } from "@/components/Providers";
 import { useProducts } from "@/hooks/useProducts";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import {
+  CONTACT_PRICING_ENABLED,
   SHOP_CATEGORIES,
   categoryLabels,
   formatPrice,
@@ -125,9 +126,15 @@ function ShopPageContent() {
     isShopCategory(categoryFromUrl) ? categoryFromUrl : "All",
   );
   const [query, setQuery] = useState(queryFromUrl);
-  const [sort, setSort] = useState<ShopSortOption>(
-    isSortOption(sortFromUrl) ? sortFromUrl : "featured",
-  );
+  const [sort, setSort] = useState<ShopSortOption>(() => {
+    if (
+      CONTACT_PRICING_ENABLED &&
+      (sortFromUrl === "price-asc" || sortFromUrl === "price-desc")
+    ) {
+      return "featured";
+    }
+    return isSortOption(sortFromUrl) ? sortFromUrl : "featured";
+  });
   const [view, setView] = useState<ShopViewMode>(
     viewFromUrl === "list" ? "list" : "grid",
   );
@@ -146,7 +153,14 @@ function ShopPageContent() {
       isShopCategory(categoryFromUrl) ? categoryFromUrl : "All",
     );
     setQuery(queryFromUrl);
-    setSort(isSortOption(sortFromUrl) ? sortFromUrl : "featured");
+    setSort(
+      CONTACT_PRICING_ENABLED &&
+        (sortFromUrl === "price-asc" || sortFromUrl === "price-desc")
+        ? "featured"
+        : isSortOption(sortFromUrl)
+          ? sortFromUrl
+          : "featured",
+    );
     setView(viewFromUrl === "list" ? "list" : "grid");
     setMinPrice(minFromUrl != null ? String(minFromUrl) : "");
     setMaxPrice(maxFromUrl != null ? String(maxFromUrl) : "");
@@ -233,8 +247,20 @@ function ShopPageContent() {
 
       if (quickFilter && !product.tags?.includes(quickFilter)) return false;
 
-      if (parsedMin != null && product.price < parsedMin) return false;
-      if (parsedMax != null && product.price > parsedMax) return false;
+      if (
+        !CONTACT_PRICING_ENABLED &&
+        parsedMin != null &&
+        product.price < parsedMin
+      ) {
+        return false;
+      }
+      if (
+        !CONTACT_PRICING_ENABLED &&
+        parsedMax != null &&
+        product.price > parsedMax
+      ) {
+        return false;
+      }
 
       if (!normalizedQuery) return true;
 
@@ -251,9 +277,9 @@ function ShopPageContent() {
     });
 
     next = [...next];
-    if (sort === "price-asc") {
+    if (sort === "price-asc" && !CONTACT_PRICING_ENABLED) {
       next.sort((a, b) => a.price - b.price);
-    } else if (sort === "price-desc") {
+    } else if (sort === "price-desc" && !CONTACT_PRICING_ENABLED) {
       next.sort((a, b) => b.price - a.price);
     } else if (sort === "name") {
       next.sort((a, b) => {
@@ -317,7 +343,7 @@ function ShopPageContent() {
         },
       });
     }
-    if (parsedMin != null) {
+    if (!CONTACT_PRICING_ENABLED && parsedMin != null) {
       chips.push({
         key: "min",
         label: isVi
@@ -329,7 +355,7 @@ function ShopPageContent() {
         },
       });
     }
-    if (parsedMax != null) {
+    if (!CONTACT_PRICING_ENABLED && parsedMax != null) {
       chips.push({
         key: "max",
         label: isVi
@@ -458,50 +484,63 @@ function ShopPageContent() {
         </ul>
       </div>
 
-      <div className="border border-line bg-card p-4">
-        <h3 className="text-sm font-semibold text-sea-deep">
-          {isVi ? "Khoảng giá" : "Price range"}
-        </h3>
-        <p className="mt-1 text-xs text-mist">
-          {isVi
-            ? `Catalog: ${formatPrice(priceBounds.min, language)} – ${formatPrice(priceBounds.max, language)}`
-            : `Catalog: ${formatPrice(priceBounds.min, language)} – ${formatPrice(priceBounds.max, language)}`}
-        </p>
-        <div className="mt-3 grid grid-cols-2 gap-2">
-          <label className="block text-xs text-mist">
-            {isVi ? "Từ" : "Min"}
-            <input
-              type="number"
-              min={0}
-              inputMode="numeric"
-              value={minPrice}
-              onChange={(e) => setMinPrice(e.target.value)}
-              onBlur={applyPriceFilter}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") applyPriceFilter();
-              }}
-              placeholder={String(priceBounds.min || "")}
-              className="mt-1 w-full border border-line bg-background px-2.5 py-2 text-sm text-sea-deep outline-none focus:border-sea"
-            />
-          </label>
-          <label className="block text-xs text-mist">
-            {isVi ? "Đến" : "Max"}
-            <input
-              type="number"
-              min={0}
-              inputMode="numeric"
-              value={maxPrice}
-              onChange={(e) => setMaxPrice(e.target.value)}
-              onBlur={applyPriceFilter}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") applyPriceFilter();
-              }}
-              placeholder={String(priceBounds.max || "")}
-              className="mt-1 w-full border border-line bg-background px-2.5 py-2 text-sm text-sea-deep outline-none focus:border-sea"
-            />
-          </label>
+      {!CONTACT_PRICING_ENABLED ? (
+        <div className="border border-line bg-card p-4">
+          <h3 className="text-sm font-semibold text-sea-deep">
+            {isVi ? "Khoảng giá" : "Price range"}
+          </h3>
+          <p className="mt-1 text-xs text-mist">
+            {isVi
+              ? `Catalog: ${formatPrice(priceBounds.min, language)} – ${formatPrice(priceBounds.max, language)}`
+              : `Catalog: ${formatPrice(priceBounds.min, language)} – ${formatPrice(priceBounds.max, language)}`}
+          </p>
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <label className="block text-xs text-mist">
+              {isVi ? "Từ" : "Min"}
+              <input
+                type="number"
+                min={0}
+                inputMode="numeric"
+                value={minPrice}
+                onChange={(e) => setMinPrice(e.target.value)}
+                onBlur={applyPriceFilter}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") applyPriceFilter();
+                }}
+                placeholder={String(priceBounds.min || "")}
+                className="mt-1 w-full border border-line bg-background px-2.5 py-2 text-sm text-sea-deep outline-none focus:border-sea"
+              />
+            </label>
+            <label className="block text-xs text-mist">
+              {isVi ? "Đến" : "Max"}
+              <input
+                type="number"
+                min={0}
+                inputMode="numeric"
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(e.target.value)}
+                onBlur={applyPriceFilter}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") applyPriceFilter();
+                }}
+                placeholder={String(priceBounds.max || "")}
+                className="mt-1 w-full border border-line bg-background px-2.5 py-2 text-sm text-sea-deep outline-none focus:border-sea"
+              />
+            </label>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="border border-line bg-card p-4">
+          <h3 className="text-sm font-semibold text-sea-deep">
+            {isVi ? "Giá" : "Pricing"}
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-mist">
+            {isVi
+              ? "Giá liên hệ — shop báo qua Zalo / Messenger / WhatsApp khi bạn đặt hàng."
+              : "Contact for price — we quote on Zalo / Messenger / WhatsApp when you order."}
+          </p>
+        </div>
+      )}
 
       <button
         type="button"
@@ -620,8 +659,8 @@ function ShopPageContent() {
                 </h1>
                 <p className="mt-3 max-w-xl text-foam/90">
                   {isVi
-                    ? "Lọc theo danh mục, giá, yêu thích — tìm đúng món quà mang về từ chợ Cồn."
-                    : "Filter by category, price, and favorites — find the right Chợ Cồn gift to bring home."}
+                    ? "Lọc theo danh mục và yêu thích — giá liên hệ qua Zalo / Messenger / WhatsApp."
+                    : "Filter by category and favorites — prices confirmed on Zalo / Messenger / WhatsApp."}
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3 text-sm">
@@ -687,12 +726,16 @@ function ShopPageContent() {
                     <option value="featured">
                       {isVi ? "Nổi bật" : "Featured"}
                     </option>
-                    <option value="price-asc">
-                      {isVi ? "Giá thấp → cao" : "Price: low to high"}
-                    </option>
-                    <option value="price-desc">
-                      {isVi ? "Giá cao → thấp" : "Price: high to low"}
-                    </option>
+                    {!CONTACT_PRICING_ENABLED ? (
+                      <>
+                        <option value="price-asc">
+                          {isVi ? "Giá thấp → cao" : "Price: low to high"}
+                        </option>
+                        <option value="price-desc">
+                          {isVi ? "Giá cao → thấp" : "Price: high to low"}
+                        </option>
+                      </>
+                    ) : null}
                     <option value="name">
                       {isVi ? "Tên A → Z" : "Name A → Z"}
                     </option>
@@ -854,8 +897,8 @@ function ShopPageContent() {
                   </p>
                   <p className="mt-2 text-sm text-mist">
                     {isVi
-                      ? "Thử đổi từ khóa, danh mục hoặc khoảng giá."
-                      : "Try a different keyword, category, or price range."}
+                      ? "Thử đổi từ khóa hoặc danh mục."
+                      : "Try a different keyword or category."}
                   </p>
                   <button
                     type="button"

@@ -26,7 +26,13 @@ import {
   type CheckoutFormErrors,
   type CheckoutFormValues,
 } from "@/lib/checkout";
-import { formatPrice, formatWeight } from "@/lib/products";
+import {
+  CONTACT_PRICING_ENABLED,
+  formatPrice,
+  formatPublicPrice,
+  formatWeight,
+  getContactPricingHint,
+} from "@/lib/products";
 import { getShopContact } from "@/lib/shopContact";
 import {
   findAirCautionProducts,
@@ -350,8 +356,8 @@ export default function CheckoutPage() {
             </h1>
             <p className="mt-3 text-mist">
               {isVi
-                ? "Nhận tại kiốt, giao Việt Nam, hoặc ship quốc tế toàn cầu — phí ship ước tính theo kg, xác nhận cuối qua chat."
-                : "Pickup, Vietnam delivery, or worldwide shipping — estimate by kg, final quote confirmed on chat."}
+                ? "Nhận tại kiốt, giao Việt Nam, hoặc ship quốc tế — giá SP và phí ship shop báo qua Zalo / Messenger / WhatsApp."
+                : "Pickup, Vietnam delivery, or worldwide shipping — product and shipping prices quoted on Zalo / Messenger / WhatsApp."}
             </p>
             <Link
               href="/shipping"
@@ -750,7 +756,7 @@ export default function CheckoutPage() {
                         <span className="text-mist">×{quantity}</span>
                       </span>
                       <span className="shrink-0 font-medium text-sea">
-                        {formatPrice(product.price * quantity, language)}
+                        {formatPublicPrice(language, product.price * quantity)}
                       </span>
                     </li>
                   ))}
@@ -775,12 +781,17 @@ export default function CheckoutPage() {
                 </div>
 
                 <div className="mt-4 space-y-2 text-sm">
+                  {CONTACT_PRICING_ENABLED ? (
+                    <p className="rounded-none border border-sea/15 bg-background px-3 py-2 text-xs leading-relaxed text-mist">
+                      {getContactPricingHint(language)}
+                    </p>
+                  ) : null}
                   <div className="flex items-start justify-between gap-3">
                     <span className="text-mist">
                       {isVi ? "Tạm tính SP" : "Products"}
                     </span>
                     <span className="font-medium text-sea-deep">
-                      {formatPrice(totalPrice, language)}
+                      {formatPublicPrice(language, totalPrice)}
                     </span>
                   </div>
                   <div className="flex items-start justify-between gap-3">
@@ -795,7 +806,9 @@ export default function CheckoutPage() {
                       </span>
                     </span>
                     <span className="font-medium text-sea-deep">
-                      {formatPrice(shippingEstimate.shippingFee, language)}
+                      {CONTACT_PRICING_ENABLED
+                        ? formatPublicPrice(language)
+                        : formatPrice(shippingEstimate.shippingFee, language)}
                     </span>
                   </div>
                   <div className="flex items-center justify-between border-t border-line pt-3">
@@ -803,7 +816,10 @@ export default function CheckoutPage() {
                       {isVi ? "Tổng ước tính" : "Est. grand total"}
                     </span>
                     <span className="font-display text-2xl font-semibold text-sea">
-                      {formatPrice(shippingEstimate.grandTotal, language)}
+                      {formatPublicPrice(
+                        language,
+                        shippingEstimate.grandTotal,
+                      )}
                     </span>
                   </div>
                 </div>

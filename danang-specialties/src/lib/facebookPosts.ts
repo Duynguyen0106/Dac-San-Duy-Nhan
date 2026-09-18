@@ -1,5 +1,9 @@
 import type { Language, Product } from "@/lib/products";
-import { categoryLabels, formatPrice, type ShopCategory } from "@/lib/products";
+import {
+  categoryLabels,
+  formatPublicPrice,
+  type ShopCategory,
+} from "@/lib/products";
 import { SHOP_CONTACT } from "@/lib/shopContact";
 
 export const FACEBOOK_PAGE_ID_DEFAULT = "100057455118487";
@@ -73,7 +77,7 @@ export function composeFacebookPost(
   const pageUrl = SHOP_CONTACT.facebookUrl;
   const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(productUrl)}`;
   const category = categoryLabel(product.category, language);
-  const price = formatPrice(product.price, language);
+  const price = formatPublicPrice(language, product.price);
 
   const caption =
     language === "VI"

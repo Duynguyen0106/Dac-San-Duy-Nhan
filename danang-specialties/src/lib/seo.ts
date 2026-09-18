@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { isProductAvailable, type Product } from "@/lib/products";
+import {
+  CONTACT_PRICING_ENABLED,
+  isProductAvailable,
+  type Product,
+} from "@/lib/products";
 import { SHOP_CONTACT } from "@/lib/shopContact";
 
 export const SITE_NAME = "Duy Nhân - Đặc Sản Đà Nẵng";
@@ -179,7 +183,7 @@ export function buildLocalBusinessJsonLd() {
       SHOP_CONTACT.whatsappUrl,
       SHOP_CONTACT.messengerUrl,
     ],
-    priceRange: "₫₫",
+    priceRange: CONTACT_PRICING_ENABLED ? "Contact for quote" : "₫₫",
     areaServed: [
       { "@type": "City", name: "Đà Nẵng" },
       { "@type": "Country", name: "Vietnam" },
@@ -209,20 +213,36 @@ export function buildProductJsonLd(
       "@type": "Brand",
       name: SITE_NAME,
     },
-    offers: {
-      "@type": "Offer",
-      url: absoluteUrl(`/products/${product.id}`),
-      priceCurrency: "VND",
-      price: product.price,
-      availability: isProductAvailable(product)
-        ? "https://schema.org/InStock"
-        : "https://schema.org/OutOfStock",
-      itemCondition: "https://schema.org/NewCondition",
-      seller: {
-        "@type": "Organization",
-        name: SITE_NAME,
-      },
-    },
+    offers: CONTACT_PRICING_ENABLED
+      ? {
+          "@type": "Offer",
+          url: absoluteUrl(`/products/${product.id}`),
+          priceCurrency: "VND",
+          availability: isProductAvailable(product)
+            ? "https://schema.org/InStock"
+            : "https://schema.org/OutOfStock",
+          itemCondition: "https://schema.org/NewCondition",
+          description:
+            "Price confirmed via Zalo, Messenger, or WhatsApp when ordering.",
+          seller: {
+            "@type": "Organization",
+            name: SITE_NAME,
+          },
+        }
+      : {
+          "@type": "Offer",
+          url: absoluteUrl(`/products/${product.id}`),
+          priceCurrency: "VND",
+          price: product.price,
+          availability: isProductAvailable(product)
+            ? "https://schema.org/InStock"
+            : "https://schema.org/OutOfStock",
+          itemCondition: "https://schema.org/NewCondition",
+          seller: {
+            "@type": "Organization",
+            name: SITE_NAME,
+          },
+        },
   };
 
   if (rating && rating.count > 0) {

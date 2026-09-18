@@ -5,8 +5,10 @@ import Link from "next/link";
 import { Minus, Plus, Scale, Trash2, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import {
-  formatPrice,
+  CONTACT_PRICING_ENABLED,
+  formatPublicPrice,
   formatWeight,
+  getContactPricingHint,
   getProductWeightGrams,
   type Language,
 } from "@/lib/products";
@@ -195,7 +197,7 @@ export default function CartDrawer({ language = "VI" }: CartDrawerProps) {
                           </button>
                         </div>
                         <p className="text-sm font-semibold text-sea">
-                          {formatPrice(product.price * quantity, language)}
+                          {formatPublicPrice(language, product.price * quantity)}
                         </p>
                       </div>
                     </div>
@@ -216,13 +218,20 @@ export default function CartDrawer({ language = "VI" }: CartDrawerProps) {
                 {formatWeight(totalWeightGrams, language)}
               </span>
             </div>
-            <div className="mb-4 flex items-center justify-between">
-              <span className="text-sm text-mist">
-                {isVi ? "Tổng tiền" : "Subtotal"}
-              </span>
-              <span className="font-display text-xl font-semibold text-sea">
-                {formatPrice(totalPrice, language)}
-              </span>
+            <div className="mb-4">
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-mist">
+                  {isVi ? "Giá" : "Price"}
+                </span>
+                <span className="font-display text-xl font-semibold text-sea">
+                  {formatPublicPrice(language, totalPrice)}
+                </span>
+              </div>
+              {CONTACT_PRICING_ENABLED ? (
+                <p className="mt-1 text-xs text-mist">
+                  {getContactPricingHint(language)}
+                </p>
+              ) : null}
             </div>
             <Link
               href="/checkout"
