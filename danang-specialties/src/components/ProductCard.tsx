@@ -7,7 +7,7 @@ import { Check, Heart, ShoppingCart } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useFavorites } from "@/context/FavoritesContext";
 import { useTranslation } from "@/hooks/useTranslation";
-import { formatPrice, isProductAvailable, type Language, type Product } from "@/lib/products";
+import { formatPublicPrice, isProductAvailable, type Language, type Product } from "@/lib/products";
 
 type ProductCardProps = {
   product: Product;
@@ -141,7 +141,7 @@ export default function ProductCard({
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <p className="text-lg font-semibold text-sea">
-              {formatPrice(product.price, language)}
+              {formatPublicPrice(language, product.price)}
             </p>
             <button
               type="button"
@@ -200,7 +200,7 @@ export default function ProductCard({
         </Link>
         <p className="mt-1 text-sm text-mist">{product.weight}</p>
         <p className="mt-3 text-base font-semibold text-sea">
-          {formatPrice(product.price, language)}
+          {formatPublicPrice(language, product.price)}
         </p>
         <div className="mt-auto flex flex-col gap-2 pt-4">
           <button

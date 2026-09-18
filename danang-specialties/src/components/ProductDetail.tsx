@@ -13,7 +13,8 @@ import { useFavorites } from "@/context/FavoritesContext";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import { useTranslation } from "@/hooks/useTranslation";
 import {
-  formatPrice,
+  formatPublicPrice,
+  getContactPricingHint,
   categoryToSlug,
   isProductAvailable,
   type Product,
@@ -137,7 +138,10 @@ export default function ProductDetail({
                 {productName}
               </h1>
               <p className="mt-4 font-display text-2xl font-semibold text-sea sm:text-3xl">
-                {formatPrice(product.price, language)}
+                {formatPublicPrice(language, product.price)}
+              </p>
+              <p className="mt-1 text-sm text-mist">
+                {getContactPricingHint(language)}
               </p>
               <p className="mt-2 text-sm text-mist">
                 {t("product.weight")}:{" "}

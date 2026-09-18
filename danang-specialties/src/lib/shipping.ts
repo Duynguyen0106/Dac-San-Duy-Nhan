@@ -1,5 +1,11 @@
 import ratesData from "../../data/shipping-rates.json";
-import { formatPrice, type Language, type Product } from "@/lib/products";
+import {
+  CONTACT_PRICING_ENABLED,
+  formatPrice,
+  formatPublicPrice,
+  type Language,
+  type Product,
+} from "@/lib/products";
 
 export type ShippingZoneId =
   | "pickup"
@@ -172,8 +178,10 @@ export function formatShippingSummary(
     `${isVi ? "Cân tính phí" : "Chargeable weight"}: ${(
       estimate.chargeableWeightGrams / 1000
     ).toFixed(2)} kg`,
-    `${isVi ? "Ship ước tính" : "Est. shipping"}: ${formatPrice(estimate.shippingFee, language)}`,
-    `${isVi ? "Tổng ước tính" : "Est. grand total"}: ${formatPrice(estimate.grandTotal, language)}`,
+    CONTACT_PRICING_ENABLED
+      ? `${isVi ? "Ship ước tính" : "Est. shipping"}: ${formatPublicPrice(language)}`
+      : `${isVi ? "Ship ước tính" : "Est. shipping"}: ${formatPrice(estimate.shippingFee, language)}`,
+    `${isVi ? "Tổng ước tính" : "Est. grand total"}: ${formatPublicPrice(language, estimate.grandTotal)}`,
   ].join("\n");
 }
 

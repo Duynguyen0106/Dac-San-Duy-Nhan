@@ -30,9 +30,32 @@ export function isProductAvailable(product: Product): boolean {
   return product.stock > 0;
 }
 
+/**
+ * Storefront shows contact pricing — customers confirm via Zalo/Messenger/WhatsApp.
+ * Admin still edits numeric `price` for internal reference.
+ */
+export const CONTACT_PRICING_ENABLED = true;
+
 export const formatPrice = (price: number, language: Language = "VI") =>
   new Intl.NumberFormat(language === "VI" ? "vi-VN" : "en-US").format(price) +
   "đ";
+
+/** Public-facing price label (Liên hệ / Contact). */
+export function formatPublicPrice(
+  language: Language = "VI",
+  price = 0,
+): string {
+  if (CONTACT_PRICING_ENABLED) {
+    return language === "VI" ? "Liên hệ" : "Contact";
+  }
+  return formatPrice(price, language);
+}
+
+export function getContactPricingHint(language: Language = "VI"): string {
+  return language === "VI"
+    ? "Giá báo qua Zalo / Messenger / WhatsApp khi đặt hàng."
+    : "Price confirmed on Zalo / Messenger / WhatsApp when you order.";
+}
 
 /** Parse product weight strings like "200g" or "1.5kg" into grams. */
 export const parseWeightGrams = (weight: string): number => {
