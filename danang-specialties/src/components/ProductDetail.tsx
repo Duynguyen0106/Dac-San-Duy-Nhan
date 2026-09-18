@@ -15,6 +15,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 import {
   formatPrice,
   categoryToSlug,
+  isProductAvailable,
   type Product,
   type ShopCategory,
 } from "@/lib/products";
@@ -48,6 +49,7 @@ export default function ProductDetail({
   const increase = () => setQuantity((q) => Math.min(99, q + 1));
 
   const handleBuyNow = () => {
+    if (!isProductAvailable(product)) return;
     addItem(product, quantity);
   };
 
@@ -58,30 +60,35 @@ export default function ProductDetail({
   const categoryLabel =
     t(`product.categories.${product.category}`) || product.category;
   const contact = getShopContact(language);
+  const available = isProductAvailable(product);
 
   return (
     <div className="flex min-h-full flex-col bg-background text-foreground">
       <Header />
 
       <main className="flex-1 bg-[radial-gradient(ellipse_at_top,_#eaf4f2_0%,_#f3f7f6_55%,_#efe8dc_100%)]">
-        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
-          <nav className="mb-6 text-sm text-mist">
+        <div className="mx-auto max-w-6xl px-4 py-8 pb-10 sm:px-6 sm:py-12">
+          <nav className="mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-mist">
             <Link href="/" className="hover:text-sea">
               {t("common.home")}
             </Link>
-            <span className="mx-2">/</span>
+            <span aria-hidden>/</span>
             <Link href="/shop" className="hover:text-sea">
               {t("common.shop")}
             </Link>
-            <span className="mx-2">/</span>
+            <span aria-hidden>/</span>
             <Link
               href={`/shop/${categoryToSlug(product.category as ShopCategory)}`}
               className="hover:text-sea"
             >
               {categoryLabel}
             </Link>
-            <span className="mx-2">/</span>
-            <span className="text-sea-deep">{productName}</span>
+            <span aria-hidden className="hidden sm:inline">
+              /
+            </span>
+            <span className="w-full truncate text-sea-deep sm:w-auto">
+              {productName}
+            </span>
           </nav>
 
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
@@ -135,6 +142,20 @@ export default function ProductDetail({
               <p className="mt-2 text-sm text-mist">
                 {t("product.weight")}:{" "}
                 <span className="font-medium text-sea-deep">{product.weight}</span>
+                {" · "}
+                <span
+                  className={`font-medium ${
+                    available ? "text-sea" : "text-red-700"
+                  }`}
+                >
+                  {available
+                    ? isVi
+                      ? "Còn hàng"
+                      : "In stock"
+                    : isVi
+                      ? "Hết hàng"
+                      : "Sold out"}
+                </span>
               </p>
 
               <p className="mt-6 text-base leading-relaxed text-foreground/85">
@@ -185,10 +206,15 @@ export default function ProductDetail({
                 <button
                   type="button"
                   onClick={handleBuyNow}
-                  className="inline-flex flex-1 items-center justify-center gap-2 bg-sun px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-sun-hover"
+                  disabled={!available}
+                  className="inline-flex flex-1 items-center justify-center gap-2 bg-sun px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-sun-hover disabled:cursor-not-allowed disabled:bg-mist/50"
                 >
                   <ShoppingBag className="h-4 w-4" />
-                  {t("product.buyNow")}
+                  {available
+                    ? t("product.buyNow")
+                    : isVi
+                      ? "Hết hàng"
+                      : "Sold out"}
                 </button>
                 <a
                   href={contact.chatUrl}

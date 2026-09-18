@@ -19,20 +19,24 @@ import { useTranslation } from "@/hooks/useTranslation";
 import {
   SHOP_CATEGORIES,
   formatPrice,
+  isProductAvailable,
   type Product,
   type ShopCategory,
 } from "@/lib/products";
+import AdminLeadsPanel from "@/components/AdminLeadsPanel";
 
 type FormState = {
   name: string;
   nameEn: string;
   category: ShopCategory;
   price: string;
+  stock: string;
   weight: string;
   weightGrams: string;
   image: string;
   description: string;
   descriptionEn: string;
+  tags: Product["tags"];
 };
 
 const emptyForm: FormState = {
@@ -40,11 +44,13 @@ const emptyForm: FormState = {
   nameEn: "",
   category: "Dried Seafood",
   price: "",
+  stock: "",
   weight: "",
   weightGrams: "",
   image: "",
   description: "",
   descriptionEn: "",
+  tags: undefined,
 };
 
 function toFormState(product: Product): FormState {
@@ -53,12 +59,17 @@ function toFormState(product: Product): FormState {
     nameEn: product.nameEn,
     category: product.category as ShopCategory,
     price: String(product.price),
+    stock:
+      product.stock === undefined || product.stock === null
+        ? ""
+        : String(product.stock),
     weight: product.weight,
     weightGrams:
       product.weightGrams === undefined ? "" : String(product.weightGrams),
     image: product.image,
     description: product.description,
     descriptionEn: product.descriptionEn,
+    tags: product.tags,
   };
 }
 
@@ -76,6 +87,16 @@ function toPayload(form: FormState) {
 
   if (form.weightGrams.trim() !== "") {
     payload.weightGrams = Number(form.weightGrams);
+  }
+
+  if (form.stock.trim() === "") {
+    payload.stock = null;
+  } else {
+    payload.stock = Number(form.stock);
+  }
+
+  if (form.tags && form.tags.length > 0) {
+    payload.tags = form.tags;
   }
 
   return payload;
@@ -260,6 +281,35 @@ export default function AdminPage() {
     await loadProducts();
   };
 
+  const quickPatchProduct = async (
+    product: Product,
+    patch: { price?: number; stock?: number | null },
+  ) => {
+    setError(null);
+    setMessage(null);
+    const response = await fetch(`/api/products/${product.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(patch),
+    });
+    const data = (await response.json()) as {
+      error?: string;
+      product?: Product;
+    };
+    if (!response.ok) {
+      setError(
+        data.error || (isVi ? "Không cập nhật được." : "Could not update."),
+      );
+      return;
+    }
+    setMessage(
+      isVi
+        ? `Đã cập nhật #${product.id} (giá/tồn).`
+        : `Updated #${product.id} (price/stock).`,
+    );
+    await loadProducts();
+  };
+
   if (!authChecked) {
     return (
       <div className="flex min-h-full flex-col bg-background">
@@ -329,7 +379,7 @@ export default function AdminPage() {
     <div className="flex min-h-full flex-col bg-background text-foreground">
       <Header />
 
-      <main className="flex-1 bg-[linear-gradient(180deg,#f3f7f6_0%,#e8f1ef_50%,#efe8dc_100%)]">
+      <main className="flex-1 bg-[linear-gradient(180deg,#f3f7f6_0%,#e8f1ef_50%,#efe8dc_100%)] pb-8">
         <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -340,7 +390,7 @@ export default function AdminPage() {
                 <ArrowLeft className="h-4 w-4" />
                 {t("common.shop")}
               </Link>
-              <h1 className="mt-2 font-display text-3xl font-semibold text-sea-deep">
+              <h1 className="mt-2 font-display text-2xl font-semibold text-sea-deep sm:text-3xl">
                 {isVi ? "Quản lý sản phẩm" : "Manage products"}
               </h1>
               <p className="mt-1 text-sm text-mist">
@@ -349,11 +399,11 @@ export default function AdminPage() {
                   : "Add, edit, delete products — upload photos, and create Facebook posts for each item."}
               </p>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:flex-wrap">
               <button
                 type="button"
                 onClick={startCreate}
-                className="inline-flex items-center gap-2 bg-sea px-4 py-2.5 text-sm font-semibold text-foam hover:bg-sea-deep"
+                className="inline-flex items-center justify-center gap-2 bg-sea px-4 py-2.5 text-sm font-semibold text-foam hover:bg-sea-deep"
               >
                 <Plus className="h-4 w-4" />
                 {isVi ? "Thêm sản phẩm" : "Add product"}
@@ -361,7 +411,7 @@ export default function AdminPage() {
               <button
                 type="button"
                 onClick={handleLogout}
-                className="inline-flex items-center gap-2 border border-line bg-card px-4 py-2.5 text-sm font-medium text-sea-deep hover:border-sea"
+                className="inline-flex items-center justify-center gap-2 border border-line bg-card px-4 py-2.5 text-sm font-medium text-sea-deep hover:border-sea"
               >
                 <LogOut className="h-4 w-4" />
                 {isVi ? "Đăng xuất" : "Log out"}
@@ -457,6 +507,25 @@ export default function AdminPage() {
                     className={inputClass}
                   />
                 </Field>
+                <Field
+                  label={
+                    isVi
+                      ? "Tồn kho (để trống = không theo dõi)"
+                      : "Stock (blank = untracked)"
+                  }
+                >
+                  <input
+                    type="number"
+                    min={0}
+                    step={1}
+                    value={form.stock}
+                    onChange={(e) =>
+                      setForm({ ...form, stock: e.target.value })
+                    }
+                    placeholder={isVi ? "VD: 12" : "e.g. 12"}
+                    className={inputClass}
+                  />
+                </Field>
                 <Field label={isVi ? "Khối lượng hiển thị" : "Display weight"}>
                   <input
                     required
@@ -530,6 +599,12 @@ export default function AdminPage() {
             </form>
           )}
 
+          <AdminLeadsPanel
+            isVi={isVi}
+            language={language}
+            enabled={authenticated}
+          />
+
           <div className="mt-8 border border-line bg-card">
             <div className="border-b border-line px-4 py-3 sm:px-5">
               <h2 className="font-display text-lg font-semibold text-sea-deep">
@@ -571,11 +646,79 @@ export default function AdminPage() {
                         #{product.id} · {product.name}
                       </p>
                       <p className="text-sm text-mist">
-                        {product.nameEn} · {product.category} · {product.weight}{" "}
-                        · {formatPrice(product.price, language)}
+                        {product.nameEn} · {product.category} · {product.weight}
                       </p>
+                      <div className="mt-2 flex flex-wrap items-end gap-3">
+                        <label className="text-xs text-mist">
+                          {isVi ? "Giá" : "Price"}
+                          <input
+                            type="number"
+                            min={0}
+                            step={1000}
+                            defaultValue={product.price}
+                            key={`price-${product.id}-${product.price}`}
+                            onBlur={(event) => {
+                              const next = Number(event.target.value);
+                              if (
+                                !Number.isFinite(next) ||
+                                next === product.price
+                              ) {
+                                return;
+                              }
+                              void quickPatchProduct(product, { price: next });
+                            }}
+                            className="mt-1 block w-28 border border-line bg-background px-2 py-1.5 text-sm text-sea-deep"
+                          />
+                        </label>
+                        <label className="text-xs text-mist">
+                          {isVi ? "Tồn" : "Stock"}
+                          <input
+                            type="number"
+                            min={0}
+                            step={1}
+                            defaultValue={
+                              product.stock === undefined ||
+                              product.stock === null
+                                ? ""
+                                : product.stock
+                            }
+                            key={`stock-${product.id}-${product.stock ?? "x"}`}
+                            placeholder="∞"
+                            onBlur={(event) => {
+                              const raw = event.target.value.trim();
+                              const next =
+                                raw === "" ? null : Number(raw);
+                              const current =
+                                product.stock === undefined
+                                  ? null
+                                  : product.stock;
+                              if (raw !== "" && !Number.isFinite(next)) return;
+                              if (next === current) return;
+                              void quickPatchProduct(product, {
+                                stock: next as number | null,
+                              });
+                            }}
+                            className="mt-1 block w-20 border border-line bg-background px-2 py-1.5 text-sm text-sea-deep"
+                          />
+                        </label>
+                        <span
+                          className={`mb-1.5 text-xs font-medium ${
+                            isProductAvailable(product)
+                              ? "text-sea"
+                              : "text-red-700"
+                          }`}
+                        >
+                          {isProductAvailable(product)
+                            ? isVi
+                              ? "Còn bán"
+                              : "Available"
+                            : isVi
+                              ? "Hết hàng"
+                              : "Sold out"}
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap">
                       <button
                         type="button"
                         onClick={() => {
@@ -584,7 +727,7 @@ export default function AdminPage() {
                             .getElementById("admin-facebook-tool")
                             ?.scrollIntoView({ behavior: "smooth", block: "start" });
                         }}
-                        className="inline-flex items-center gap-1.5 border border-[#1877F2]/30 px-3 py-2 text-sm font-medium text-[#1877F2] hover:bg-[#1877F2]/5"
+                        className="inline-flex items-center justify-center gap-1.5 border border-[#1877F2]/30 px-2 py-2 text-sm font-medium text-[#1877F2] hover:bg-[#1877F2]/5 sm:px-3"
                       >
                         <FacebookGlyph className="h-3.5 w-3.5" />
                         FB
@@ -592,7 +735,7 @@ export default function AdminPage() {
                       <button
                         type="button"
                         onClick={() => startEdit(product)}
-                        className="inline-flex items-center gap-1.5 border border-line px-3 py-2 text-sm font-medium text-sea-deep hover:border-sea"
+                        className="inline-flex items-center justify-center gap-1.5 border border-line px-2 py-2 text-sm font-medium text-sea-deep hover:border-sea sm:px-3"
                       >
                         <Pencil className="h-3.5 w-3.5" />
                         {isVi ? "Sửa" : "Edit"}
@@ -600,7 +743,7 @@ export default function AdminPage() {
                       <button
                         type="button"
                         onClick={() => handleDelete(product)}
-                        className="inline-flex items-center gap-1.5 border border-red-200 px-3 py-2 text-sm font-medium text-red-700 hover:bg-red-50"
+                        className="inline-flex items-center justify-center gap-1.5 border border-red-200 px-2 py-2 text-sm font-medium text-red-700 hover:bg-red-50 sm:px-3"
                       >
                         <Trash2 className="h-3.5 w-3.5" />
                         {isVi ? "Xóa" : "Delete"}

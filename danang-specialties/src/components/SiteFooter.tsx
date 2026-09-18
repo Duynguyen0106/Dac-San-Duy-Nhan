@@ -8,9 +8,10 @@ import { SHOP_CONTACT, getShopContact } from "@/lib/shopContact";
 export default function SiteFooter() {
   const { t, language } = useTranslation();
   const contact = getShopContact(language);
+  const isVi = language === "VI";
 
   return (
-    <footer className="border-t border-line bg-sea-deep text-foam">
+    <footer className="site-footer-pad border-t border-line bg-sea-deep text-foam">
       <div className="mx-auto grid max-w-6xl gap-6 px-4 py-8 sm:grid-cols-[1fr_auto] sm:px-6 sm:py-10">
         <div>
           <p className="font-display text-lg font-semibold">
@@ -86,8 +87,23 @@ export default function SiteFooter() {
             <Link href="/how-to-order" className="text-foam/85 hover:text-white">
               {t("common.howToOrder")}
             </Link>
+            <Link href="/shipping" className="text-foam/85 hover:text-white">
+              {t("common.shipping")}
+            </Link>
             <Link href="/tips" className="text-foam/85 hover:text-white">
               {t("common.tips")}
+            </Link>
+            <Link
+              href="/promo/airport-packing"
+              className="text-foam/85 hover:text-white"
+            >
+              {isVi ? "Set mang máy bay" : "Airport packing"}
+            </Link>
+            <Link
+              href="/promo/tet-gifts"
+              className="text-foam/85 hover:text-white"
+            >
+              {isVi ? "Giỏ quà Tết" : "Tet gifts"}
             </Link>
             <Link href="/shop" className="text-foam/85 hover:text-white">
               {t("common.shop")}

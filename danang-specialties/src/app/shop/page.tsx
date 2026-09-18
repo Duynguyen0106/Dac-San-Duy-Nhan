@@ -581,7 +581,7 @@ function ShopPageContent() {
     <div className="flex min-h-full flex-col bg-background text-foreground">
       <Header />
 
-      <main className="flex-1 bg-[linear-gradient(180deg,#f3f7f6_0%,#e8f1ef_40%,#efe8dc_100%)]">
+      <main className="flex-1 bg-[linear-gradient(180deg,#f3f7f6_0%,#e8f1ef_40%,#efe8dc_100%)] pb-4 sm:pb-0">
         <section className="relative min-h-[16rem] overflow-hidden border-b border-line/70 sm:min-h-[18rem]">
           <div className="absolute inset-0">
             <Image
@@ -638,8 +638,8 @@ function ShopPageContent() {
         </section>
 
         <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
-          <div className="sticky top-[6.5rem] z-30 -mx-4 border-y border-line/70 bg-background/95 px-4 py-3 backdrop-blur-md sm:top-[7rem] sm:-mx-6 sm:px-6 lg:static lg:mx-0 lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none">
-            <div className="flex flex-col gap-3 lg:flex-row">
+          <div className="sticky top-[5.75rem] z-30 -mx-4 border-y border-line/70 bg-background/95 px-4 py-3 backdrop-blur-md sm:top-[7rem] sm:-mx-6 sm:px-6 lg:static lg:mx-0 lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none">
+            <div className="flex flex-col gap-2 sm:gap-3 lg:flex-row">
               <label className="relative min-w-0 flex-1">
                 <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-mist" />
                 <input
@@ -672,8 +672,8 @@ function ShopPageContent() {
                 )}
               </label>
 
-              <div className="flex flex-wrap gap-2">
-                <label className="relative min-w-[11rem] flex-1 sm:flex-none">
+              <div className="flex gap-2">
+                <label className="relative min-w-0 flex-1 sm:min-w-[11rem] sm:flex-none">
                   <SlidersHorizontal className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-mist" />
                   <select
                     value={sort}
@@ -702,7 +702,7 @@ function ShopPageContent() {
                   </select>
                 </label>
 
-                <div className="flex overflow-hidden border border-line bg-card">
+                <div className="flex shrink-0 overflow-hidden border border-line bg-card">
                   <button
                     type="button"
                     onClick={() => {
@@ -740,10 +740,10 @@ function ShopPageContent() {
                 <button
                   type="button"
                   onClick={() => setMobileFiltersOpen(true)}
-                  className="inline-flex items-center gap-2 border border-line bg-card px-3 py-2.5 text-sm font-medium text-sea-deep lg:hidden"
+                  className="inline-flex shrink-0 items-center gap-1.5 border border-line bg-card px-3 py-2.5 text-sm font-medium text-sea-deep lg:hidden"
                 >
                   <SlidersHorizontal className="h-4 w-4" />
-                  {isVi ? "Bộ lọc" : "Filters"}
+                  {isVi ? "Lọc" : "Filter"}
                 </button>
               </div>
             </div>
@@ -921,7 +921,7 @@ function ShopPageContent() {
       </main>
 
       {mobileFiltersOpen && (
-        <div className="fixed inset-0 z-[60] lg:hidden">
+        <div className="fixed inset-0 z-[80] lg:hidden">
           <button
             type="button"
             aria-label={isVi ? "Đóng bộ lọc" : "Close filters"}
@@ -941,7 +941,7 @@ function ShopPageContent() {
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="flex-1 overflow-y-auto p-4">{filterPanel}</div>
+            <div className="flex-1 overflow-y-auto p-4 pb-8">{filterPanel}</div>
           </div>
         </div>
       )}

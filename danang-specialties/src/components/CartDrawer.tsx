@@ -83,9 +83,16 @@ export default function CartDrawer({ language = "VI" }: CartDrawerProps) {
               </p>
               <p className="mt-1 text-xs leading-relaxed text-mist">
                 {isVi
-                  ? "Phí ship tại Việt Nam tính theo kg — kiểm tra khối lượng trước khi đặt."
-                  : "Vietnam shipping is charged by weight — check kg before ordering."}
+                  ? "Ship VN & quốc tế tính theo kg — xem bảng phí / ước tính ở thanh toán."
+                  : "VN & worldwide shipping by kg — see rates / estimate at checkout."}
               </p>
+              <Link
+                href="/shipping"
+                onClick={closeCart}
+                className="mt-2 inline-flex text-xs font-medium text-sea hover:text-sea-deep"
+              >
+                {isVi ? "Ship toàn cầu →" : "Worldwide shipping →"}
+              </Link>
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ import { Check, Heart, ShoppingCart } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useFavorites } from "@/context/FavoritesContext";
 import { useTranslation } from "@/hooks/useTranslation";
-import { formatPrice, type Language, type Product } from "@/lib/products";
+import { formatPrice, isProductAvailable, type Language, type Product } from "@/lib/products";
 
 type ProductCardProps = {
   product: Product;
@@ -35,6 +35,7 @@ export default function ProductCard({
   const [justAdded, setJustAdded] = useState(false);
   const isGift = product.tags?.includes("gift");
   const isTouristPick = product.tags?.includes("tourist");
+  const available = isProductAvailable(product);
 
   useEffect(() => {
     if (!justAdded) return;
@@ -43,6 +44,7 @@ export default function ProductCard({
   }, [justAdded]);
 
   const handleAdd = () => {
+    if (!available) return;
     addItem(product, 1);
     setJustAdded(true);
   };
@@ -144,13 +146,16 @@ export default function ProductCard({
             <button
               type="button"
               onClick={handleAdd}
-              className="inline-flex items-center justify-center gap-2 bg-sea px-4 py-2.5 text-sm font-semibold text-foam transition-colors hover:bg-sea-deep"
+              disabled={!available}
+              className="inline-flex items-center justify-center gap-2 bg-sea px-4 py-2.5 text-sm font-semibold text-foam transition-colors hover:bg-sea-deep disabled:cursor-not-allowed disabled:bg-mist/40 disabled:text-white"
             >
               {justAdded ? (
                 <>
                   <Check className="h-4 w-4" />
                   {isVi ? "Đã thêm" : "Added"}
                 </>
+              ) : !available ? (
+                isVi ? "Hết hàng" : "Sold out"
               ) : (
                 <>
                   <ShoppingCart className="h-4 w-4" />
@@ -201,13 +206,16 @@ export default function ProductCard({
           <button
             type="button"
             onClick={handleAdd}
-            className="inline-flex w-full items-center justify-center gap-2 bg-sea px-4 py-2.5 text-sm font-semibold text-foam transition-colors hover:bg-sea-deep"
+            disabled={!available}
+            className="inline-flex w-full items-center justify-center gap-2 bg-sea px-4 py-2.5 text-sm font-semibold text-foam transition-colors hover:bg-sea-deep disabled:cursor-not-allowed disabled:bg-mist/40 disabled:text-white"
           >
             {justAdded ? (
               <>
                 <Check className="h-4 w-4" />
                 {isVi ? "Đã thêm" : "Added"}
               </>
+            ) : !available ? (
+              isVi ? "Hết hàng" : "Sold out"
             ) : (
               <>
                 <ShoppingCart className="h-4 w-4" />

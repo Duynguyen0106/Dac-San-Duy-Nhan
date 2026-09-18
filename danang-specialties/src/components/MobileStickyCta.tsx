@@ -15,13 +15,13 @@ export default function MobileStickyCta() {
   if (pathname?.startsWith("/admin")) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[55] border-t border-line bg-card/95 px-3 py-2.5 backdrop-blur-md sm:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-[55] border-t border-line bg-card/95 px-3 pb-[max(0.625rem,env(safe-area-inset-bottom))] pt-2.5 backdrop-blur-md sm:hidden">
       <div className="mx-auto flex max-w-6xl gap-2">
         <a
           href={contact.phoneTel}
           className="inline-flex flex-1 items-center justify-center gap-2 border border-line bg-background px-3 py-3 text-sm font-semibold text-sea-deep"
         >
-          <Phone className="h-4 w-4" />
+          <Phone className="h-4 w-4 shrink-0" />
           {isVi ? "Gọi" : "Call"}
         </a>
         <a
@@ -30,7 +30,7 @@ export default function MobileStickyCta() {
           rel="noopener noreferrer"
           className="inline-flex flex-1 items-center justify-center gap-2 bg-sea px-3 py-3 text-sm font-semibold text-foam"
         >
-          <MessageCircle className="h-4 w-4" />
+          <MessageCircle className="h-4 w-4 shrink-0" />
           {isVi ? `Chat ${contact.chatLabel}` : `Chat ${contact.chatLabel}`}
         </a>
       </div>

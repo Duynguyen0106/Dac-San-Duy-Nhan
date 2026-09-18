@@ -33,6 +33,8 @@ export type ProductInput = {
   description: string;
   descriptionEn: string;
   tags?: Product["tags"];
+  /** Omit to leave unset; null clears tracking; number sets quantity. */
+  stock?: number | null;
 };
 
 function isShopCategory(value: string): value is ShopCategory {
@@ -110,6 +112,18 @@ export function validateProductInput(input: Partial<ProductInput>): {
     data.tags = tags;
   }
 
+  if (input.stock !== undefined) {
+    if (input.stock === null) {
+      data.stock = null;
+    } else {
+      const stock = Number(input.stock);
+      if (!Number.isFinite(stock) || stock < 0) {
+        return { ok: false, error: "Stock must be a non-negative number or empty." };
+      }
+      data.stock = Math.round(stock);
+    }
+  }
+
   return { ok: true, data };
 }
 
@@ -157,10 +171,47 @@ export async function updateProduct(
   if (input.tags === undefined) {
     delete updated.tags;
   }
+  if (input.stock === undefined || input.stock === null) {
+    delete updated.stock;
+  }
 
   products[index] = updated;
   await writeProducts(products);
   return updated;
+}
+
+export async function patchProduct(
+  id: number,
+  patch: { price?: number; stock?: number | null },
+): Promise<Product | null> {
+  const products = await readProducts();
+  const index = products.findIndex((product) => product.id === id);
+  if (index === -1) return null;
+
+  const current = products[index];
+  const next: Product = { ...current };
+
+  if (patch.price !== undefined) {
+    if (!Number.isFinite(patch.price) || patch.price < 0) {
+      throw new Error("Price must be a non-negative number.");
+    }
+    next.price = Math.round(patch.price);
+  }
+
+  if (patch.stock !== undefined) {
+    if (patch.stock === null) {
+      delete next.stock;
+    } else {
+      if (!Number.isFinite(patch.stock) || patch.stock < 0) {
+        throw new Error("Stock must be a non-negative number.");
+      }
+      next.stock = Math.round(patch.stock);
+    }
+  }
+
+  products[index] = next;
+  await writeProducts(products);
+  return next;
 }
 
 export async function deleteProduct(id: number): Promise<boolean> {

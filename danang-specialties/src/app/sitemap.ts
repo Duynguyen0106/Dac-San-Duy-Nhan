@@ -32,10 +32,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
+      url: `${siteUrl}/shipping`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
       url: `${siteUrl}/tips`,
       lastModified,
       changeFrequency: "weekly",
       priority: 0.7,
+    },
+    {
+      url: `${siteUrl}/promo/airport-packing`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${siteUrl}/promo/tet-gifts`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
     },
   ];
 
